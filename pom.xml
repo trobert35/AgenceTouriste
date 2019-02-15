@@ -16,6 +16,51 @@
 	<description>Projet site gestion</description>
 	<packaging>pom</packaging>
 
+	<developers>
+		<developer>
+			<name>Claire LOYEN</name>
+			<email>claire_1306@hotmail.fr</email>
+			<roles>
+				<role>Chef de projet</role>
+				<role>Développeur BACKEND</role>
+			</roles>
+		</developer>
+
+		<developer>
+			<name>Thomas ROBERT</name>
+			<email>thomas.robert32@live.fr</email>
+			<roles>
+				<role>Référent technique</role>
+				<role>Développeur BACKEND</role>
+			</roles>
+		</developer>
+
+		<developer>
+			<name>Thomas SIMON</name>
+			<email>thomas.simon.28210@gmail.com</email>
+			<roles>
+				<role>Développeur BACKEND</role>
+			</roles>
+		</developer>
+
+		<developer>
+			<name>Mohamed EL AGREBI</name>
+			<email>mohamed.elagrebi1@gmail.com</email>
+			<roles>
+				<role>Développeur BACKEND</role>
+			</roles>
+		</developer>
+
+		<developer>
+			<name>Maxime STERVINOU</name>
+			<email>maxime.stervinou@orange.fr</email>
+			<roles>
+				<role>Développeur BACKEND</role>
+			</roles>
+		</developer>
+
+	</developers>
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

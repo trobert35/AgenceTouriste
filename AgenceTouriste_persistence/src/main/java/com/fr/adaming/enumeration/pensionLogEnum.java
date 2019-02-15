@@ -4,6 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum pensionLogEnum {
+	/**
+	 * @author Claire
+	 */
 
 	demiPension("demiPension"), pensionComplete("pensionComp"), toutInclus("toutInclus"), petitDejeuner("petitDej");
 	

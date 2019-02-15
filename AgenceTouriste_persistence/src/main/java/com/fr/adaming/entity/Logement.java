@@ -22,6 +22,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Logement {
+	/**
+	 * @author Claire
+	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

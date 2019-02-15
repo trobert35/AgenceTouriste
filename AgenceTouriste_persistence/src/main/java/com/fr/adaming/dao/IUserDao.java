@@ -6,6 +6,12 @@ import com.fr.adaming.entity.User;
 
 
 public interface IUserDao extends JpaRepository<User, Long> {
+	/**
+	 * @author Claire
+	 * @param email
+	 * @param pwd
+	 * @return
+	 */
 
 	public User findByEmailAndPwd(String email, String pwd);
 }

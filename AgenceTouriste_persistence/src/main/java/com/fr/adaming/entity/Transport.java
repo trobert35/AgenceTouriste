@@ -20,6 +20,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Transport {
+	/**
+	 * @author Claire
+	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

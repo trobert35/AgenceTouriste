@@ -7,6 +7,11 @@ import com.fr.adaming.entity.User;
 
 
 public interface IActiviteDao extends JpaRepository<Activite, Long> {
+	/**
+	 * @author Claire
+	 * @param nomPrestaAct
+	 * @return
+	 */
 
 	public Activite findByNomPrestaAct(String nomPrestaAct);
 }

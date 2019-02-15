@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -24,6 +25,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Prestation {
+	/**
+	 * @author Claire
+	 * @author Maxime
+	 *
+	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +56,24 @@ public class Prestation {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="activite")
 	private List<Activite> activite;
+	
+	@JsonManagedReference
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user")
+	private User user;
+
+	public Prestation(Date debutPresta, Date finPresta, String villeDepartArrivee, String destination, int nbPersonnes,
+			float commission, String avis, User user) {
+		super();
+		this.debutPresta = debutPresta;
+		this.finPresta = finPresta;
+		this.villeDepartArrivee = villeDepartArrivee;
+		this.destination = destination;
+		this.nbPersonnes = nbPersonnes;
+		this.commission = commission;
+		this.avis = avis;
+		this.user = user;
+	}
 
 	public Prestation(Date debutPresta, Date finPresta, String villeDepartArrivee, String destination, int nbPersonnes,
 			float commission, String avis) {
@@ -62,5 +86,7 @@ public class Prestation {
 		this.commission = commission;
 		this.avis = avis;
 	}
+	
+	
 
 }

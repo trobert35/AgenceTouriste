@@ -4,6 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum typeTransEnum {
+	/**
+	 * @author Claire
+	 */
 
 	avion("avion"), train("train"), car("car"), bateau("bateau");
 	

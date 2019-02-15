@@ -12,6 +12,9 @@ import lombok.Setter;
 @Embeddable
 @Getter @Setter
 public class CB {
+	/**
+	 * @author Claire
+	 */
 
 	@Column(unique=true, nullable=true)
 	private Long numeroCarte;
