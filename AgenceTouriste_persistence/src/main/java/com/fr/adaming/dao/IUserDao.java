@@ -14,4 +14,5 @@ public interface IUserDao extends JpaRepository<User, Long> {
 	 */
 
 	public User findByEmailAndPwd(String email, String pwd);
+	public User findByNomAndPrenom(String nom, String prenom);
 }

@@ -30,6 +30,7 @@ public class Activite {
 	private typeActEnum typeAct;
 	private String nom;
 	private String nomPrestaAct;
+	private String urlImg;
 
 	public Activite(Double prix, typeActEnum typeAct, String nom, String nomPrestaAct) {
 		super();
