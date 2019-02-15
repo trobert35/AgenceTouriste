@@ -44,36 +44,23 @@ public class Prestation {
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="transport")
+	@JoinColumn(name="prestation")
 	private List<Transport> transport;
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="logement")
+	@JoinColumn(name="prestation")
 	private List<Logement> logement;
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="activite")
+	@JoinColumn(name="prestation")
 	private List<Activite> activite;
 	
 	@JsonManagedReference
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user")
-	private User user;
-
-	public Prestation(Date debutPresta, Date finPresta, String villeDepartArrivee, String destination, int nbPersonnes,
-			float commission, String avis, User user) {
-		super();
-		this.debutPresta = debutPresta;
-		this.finPresta = finPresta;
-		this.villeDepartArrivee = villeDepartArrivee;
-		this.destination = destination;
-		this.nbPersonnes = nbPersonnes;
-		this.commission = commission;
-		this.avis = avis;
-		this.user = user;
-	}
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="prestation")
+	private List<User> user;
 
 	public Prestation(Date debutPresta, Date finPresta, String villeDepartArrivee, String destination, int nbPersonnes,
 			float commission, String avis) {
