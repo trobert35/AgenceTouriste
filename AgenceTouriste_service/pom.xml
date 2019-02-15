@@ -17,11 +17,12 @@
 			<artifactId>AgenceTouriste_commun</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.fr.adaming</groupId>
 			<artifactId>AgenceTouriste_persistence</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 	</dependencies>
 </project>

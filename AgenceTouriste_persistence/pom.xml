@@ -17,15 +17,13 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.15</version>
-		</dependency>
+			</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.4.1.Final</version>
-		</dependency>
+			</dependency>
 
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
@@ -40,6 +38,7 @@
 			<artifactId>AgenceTouriste_commun</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
 
 	</dependencies>
 </project>
