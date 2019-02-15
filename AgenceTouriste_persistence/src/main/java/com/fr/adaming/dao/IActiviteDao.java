@@ -12,6 +12,11 @@ import java.lang.Double;
 
 
 public interface IActiviteDao extends JpaRepository<Activite, Long> {
+	/**
+	 * @author Claire
+	 * @param nomPrestaAct
+	 * @return
+	 */
 
 	public List<Activite> findByNomPrestaAct(String nomPrestaAct);
 	public List<Activite> findByPrix(Double prix);

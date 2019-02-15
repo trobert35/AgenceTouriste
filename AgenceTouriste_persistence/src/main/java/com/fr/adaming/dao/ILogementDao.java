@@ -9,6 +9,11 @@ import com.fr.adaming.entity.User;
 import com.fr.adaming.enumeration.typeLogEnum;
 
 public interface ILogementDao extends JpaRepository<Logement, Long>{
+	/**
+	 * @author Claire
+	 * @param prestaLog
+	 * @return
+	 */
 
 	public List<Logement> findByPrestaLog(String prestaLog);
 	public List<Logement> findByVille(String ville);

@@ -4,6 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum typeActEnum {
+	/**
+	 * @author Claire
+	 */
 
 	escalade("escalade"), plage("plage"), monument("monument"), musee("musee"), spa("spa"), 
 	randonnee("randonnee"), croisiere("croisiere"), golf("golf"), plongee("plongee"), safari("safari"), tour("tour");

@@ -18,6 +18,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Activite {
+	/**
+	 * @author Claire
+	 *
+	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

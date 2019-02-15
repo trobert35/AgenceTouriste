@@ -4,6 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum typeLogEnum {
+	/**
+	 * @author Claire
+	 */
 
 	hotel("hotel"), auberge("auberge"), gite("gite"), camping("camping"), palace("palace"), 
 	chambre("chambre"), appartement("appartement");

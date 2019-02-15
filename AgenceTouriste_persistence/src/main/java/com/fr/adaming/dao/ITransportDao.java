@@ -9,6 +9,11 @@ import com.fr.adaming.entity.User;
 import com.fr.adaming.enumeration.typeTransEnum;
 
 public interface ITransportDao extends JpaRepository<Transport, Long> {
+	/**
+	 * @author Claire
+	 * @param prestaTrans
+	 * @return
+	 */
 
 	public List<Transport> findByPrestaTrans(String prestaTrans);
 	public List<Transport> findByPrix(Double prix);

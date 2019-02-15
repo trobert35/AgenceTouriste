@@ -12,6 +12,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Admin extends User {
+	/**
+	 * @author Claire
+	 */
 
 	private Boolean admin;
 	private float remise;
