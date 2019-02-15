@@ -35,6 +35,7 @@ public class Logement {
 	private typeLogEnum typeLog;
 	private pensionLogEnum pension;
 	private qualiteLogEnum qualite;
+	private String urlImg;
 
 	public Logement(String prestaLog, Date entreeLog, Date sortieLog, String nom, String ville, Double prix,
 			typeLogEnum typeLog, pensionLogEnum pension, qualiteLogEnum qualite) {
