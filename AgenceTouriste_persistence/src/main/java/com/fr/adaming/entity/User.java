@@ -30,22 +30,23 @@ public class User {
 	private Long id;
 	private String nom;
 	private String prenom;
-	@Column(unique=true)
+	@Column(unique = true)
 	private String email;
 	private String pwd;
 	private String urlImg;
-	
+
 	@Embedded
 	private CB cb;
 
-	public User(String nom, String prenom, String email, String pwd) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.pwd = pwd;
-	}
-
+	/**
+	 * 
+	 * @param nom    le nom du user
+	 * @param prenom le prenom du user
+	 * @param email  l'email du user
+	 * @param pwd    le mot de passe du user
+	 * @param cb     la carte bancaire du user
+	 */
+	
 	public User(String nom, String prenom, String email, String pwd, CB cb) {
 		super();
 		this.nom = nom;
@@ -54,7 +55,13 @@ public class User {
 		this.pwd = pwd;
 		this.cb = cb;
 	}
-	
-	
+
+	public User(String nom, String prenom, String email, String pwd) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.pwd = pwd;
+	}
 
 }

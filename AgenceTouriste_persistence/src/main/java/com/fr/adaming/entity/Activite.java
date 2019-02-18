@@ -30,8 +30,15 @@ public class Activite {
 	private typeActEnum typeAct;
 	private String nom;
 	private String nomPrestaAct;
-	private String urlImg;
+	private String urlImg; // l'url de l'image correspondant à l'activité
 
+	/**
+	 * 
+	 * @param prix         le prix de l'activite
+	 * @param typeAct      le type d'activite
+	 * @param nom          le nom de l'activite
+	 * @param nomPrestaAct le nom du prestataire de l'activite
+	 */
 	public Activite(Double prix, typeActEnum typeAct, String nom, String nomPrestaAct) {
 		super();
 		this.prix = prix;
