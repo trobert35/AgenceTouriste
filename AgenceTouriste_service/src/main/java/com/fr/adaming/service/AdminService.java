@@ -77,7 +77,7 @@ public class AdminService
 		return "Admin supprime";
 	}
 
-	// Methodes CRUD Logement + readLogementByPrestaLog
+	// Methodes CRUD Logement + readLogementByPrestaLog + readByVille + readByTypeLog
 	/**
 	 * @param logement 
 	 * prend une instance de l objet Logement en param
@@ -131,7 +131,7 @@ public class AdminService
 		return daoL.findByPrix(prix);
 	}
 	
-	// Methodes CRUD Prestation
+	// Methodes CRUD Prestation + readByDebutPrestaAndFinPresta + readByVilleDepartArriveeAndDestination
 	/**
 	 * @param prestation 
 	 * prend une instance de l objet Prestation en param
@@ -181,7 +181,7 @@ public class AdminService
 	}
 
 	
-	// Methodes CRUD Transport + readTransportByPrestaTrans
+	// Methodes CRUD Transport + readTransportByPrestaTrans + readByPrix + readByTypeTrans
 	/**
 	 * @param transport 
 	 * prend une instance de l objet Transport en param
@@ -231,7 +231,7 @@ public class AdminService
 	}
 
 	
-	// Methodes CRUD Activite + readActiviteByPrestaAct
+	// Methodes CRUD Activite + readActiviteByPrestaAct + readActiviteByPrix + readActiviteByTypeAct
 	/**
 	 * @param activite 
 	 * prend une instance de l objet Activite en param
