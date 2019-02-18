@@ -3,6 +3,7 @@ package com.fr.adaming.service;
 import java.util.List;
 
 import com.fr.adaming.entity.Logement;
+import com.fr.adaming.enumeration.typeLogEnum;
 
 public interface ILogementService {
 
@@ -22,4 +23,9 @@ public interface ILogementService {
 	
 	public List<Logement> readLogementByPrestaLog(String prestaLog);
 
+	public List<Logement> readByVille(String ville);
+	
+	public List<Logement> readByTypeLog(typeLogEnum typeLog);
+	
+	public List<Logement> readByPrixLogement(Double prix);
 }

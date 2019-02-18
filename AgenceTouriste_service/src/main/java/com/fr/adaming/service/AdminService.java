@@ -1,5 +1,6 @@
 package com.fr.adaming.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import com.fr.adaming.entity.Logement;
 import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.entity.Transport;
 import com.fr.adaming.entity.User;
+import com.fr.adaming.enumeration.typeActEnum;
+import com.fr.adaming.enumeration.typeLogEnum;
+import com.fr.adaming.enumeration.typeTransEnum;
 
 @Service
 public class AdminService
@@ -115,6 +119,18 @@ public class AdminService
 		return daoL.findByPrestaLog(prestaLog);
 	}
 
+	public List<Logement> readByVille(String ville) {
+		return daoL.findByVille(ville);
+	}
+
+	public List<Logement> readByTypeLog(typeLogEnum typeLog) {
+		return daoL.findByTypeLog(typeLog);
+	}
+
+	public List<Logement> readByPrixLogement(Double prix) {
+		return daoL.findByPrix(prix);
+	}
+	
 	// Methodes CRUD Prestation
 	/**
 	 * @param prestation 
@@ -156,6 +172,15 @@ public class AdminService
 		return "Prestation supprimee";
 	}
 
+	public List<Prestation> readByDebutPrestaAndFinPresta(Date debutPresta, Date finPresta) {
+		return daoP.findByDebutPrestaAndFinPresta(debutPresta, finPresta);
+	}
+
+	public List<Prestation> readByVilleDepartArriveeAndDestination(String villeDepartArrivee, String destination) {
+		return daoP.findByVilleDepartArriveeAndDestination(villeDepartArrivee, destination);
+	}
+
+	
 	// Methodes CRUD Transport + readTransportByPrestaTrans
 	/**
 	 * @param transport 
@@ -197,6 +222,15 @@ public class AdminService
 		return daoT.findByPrestaTrans(prestaTrans);
 	}
 
+	public List<Transport> readByPrix(Double prix) {
+		return daoT.findByPrix(prix);
+	}
+
+	public List<Transport> readByTypeTrans(typeTransEnum type) {
+		return daoT.findByTypeTrans(type);
+	}
+
+	
 	// Methodes CRUD Activite + readActiviteByPrestaAct
 	/**
 	 * @param activite 
@@ -240,5 +274,14 @@ public class AdminService
 	public List<Activite> readActiviteByNomPrestaAct(String nomPrestaAct) {
 		return daoA.findByNomPrestaAct(nomPrestaAct);
 	}
+
+	public List<Activite> readActiviteByPrix(Double prix) {
+		return daoA.findByPrix(prix);
+	}
+
+	public List<Activite> readActiviteByTypeAct(typeActEnum typeAct) {
+		return daoA.findByTypeAct(typeAct);
+	}
+
 
 }

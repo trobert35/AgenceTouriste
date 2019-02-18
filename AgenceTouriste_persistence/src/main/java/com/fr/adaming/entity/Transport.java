@@ -1,7 +1,5 @@
 package com.fr.adaming.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,8 +27,6 @@ public class Transport {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String prestaTrans;
-	private Date arriveeTrans;
-	private Date departTrans;
 	private String villeArriveeTrans;
 	private String villeDepartTrans;
 	private Double prix;
@@ -47,12 +43,10 @@ public class Transport {
 	 * @param typeTrans         le type de transport
 	 */
 
-	public Transport(String prestaTrans, Date arriveeTrans, Date departTrans, String villeArriveeTrans,
+	public Transport(String prestaTrans, String villeArriveeTrans,
 			String villeDepartTrans, Double prix, typeTransEnum typeTrans) {
 		super();
 		this.prestaTrans = prestaTrans;
-		this.arriveeTrans = arriveeTrans;
-		this.departTrans = departTrans;
 		this.villeArriveeTrans = villeArriveeTrans;
 		this.villeDepartTrans = villeDepartTrans;
 		this.prix = prix;
