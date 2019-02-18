@@ -1,5 +1,6 @@
 package com.fr.adaming.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -17,11 +18,7 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fr.adaming.entity.Activite;
-import com.fr.adaming.entity.Logement;
-import com.fr.adaming.enumeration.pensionLogEnum;
-import com.fr.adaming.enumeration.qualiteLogEnum;
 import com.fr.adaming.enumeration.typeActEnum;
-import com.fr.adaming.enumeration.typeLogEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -197,6 +194,60 @@ public class ActiviteServiceTest {
 		// Tester la suppression d'un objet null
 		activite = null;
 		actService.deleteActiviteById(activite.getId());
+	}
+
+	@Test
+	public void v_readActiviteByValidNomPrestAct() {
+		// Tester la lecture d'un objet avec nomPrestaAct valide
+		activite = new Activite(90d, typeActEnum.golf, "Le mini golf du trou", "Mr Balle");
+		actService.readActiviteByNomPrestaAct(activite.getNomPrestaAct());
+		assertNotNull(activite);
+	}
+
+	@Test
+	public void w_readActiviteByNullNomPrestAct() {
+		// Tester la lecture d'un objet avec nomPrestaAct = null
+		assertThat(actService.readActiviteByNomPrestaAct(null)).isEmpty();
+	}
+
+	@Test
+	public void x_readActiviteByNonExistingNomPrestAct() {
+		// Tester la lecture d'un objet avec nomPrestaAct inexistant
+		assertThat(actService.readActiviteByNomPrestaAct("nomInexistant")).isEmpty();
+	}
+
+	@Test
+	public void y_readActiviteByValidPrix() {
+		// Tester la lecture d'un objet avec prix valide
+		activite = new Activite();
+		actService.readActiviteByPrix(activite.getPrix());
+		assertNotNull(activite);
+	}
+
+	@Test
+	public void z_readActiviteByNonExistingPrix() {
+		// Tester la lecture d'un objet avec prix non existant
+		assertThat(actService.readActiviteByPrix(8888888888888888888d)).isEmpty();
+	}
+
+	@Test
+	public void za_readActiviteByNullPrix() {
+		// Tester la lecture d'un objet avec un prix null
+		assertThat(actService.readActiviteByPrix(null)).isEmpty();
+	}
+
+	@Test
+	public void zb_readActiviteByValidTypeAct() {
+		// Tester la lecture d'un objet avec typeAct valide
+		activite = new Activite();
+		actService.readActiviteByTypeAct(activite.getTypeAct());
+		assertNotNull(activite);
+	}
+
+	@Test
+	public void zd_readActiviteByNullTypeAct() {
+		// Tester la lecture d'un objet avec typeAct null
+		assertThat(actService.readActiviteByTypeAct(null)).isEmpty();
 	}
 
 	@After
