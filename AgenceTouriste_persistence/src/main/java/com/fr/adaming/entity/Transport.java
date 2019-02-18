@@ -37,7 +37,7 @@ public class Transport {
 	private typeTransEnum typeTrans;
 
 	/**
-	 * 
+	 * Constructor with parameters for Transport
 	 * @param prestaTrans       le nom du prestataire du transport
 	 * @param arriveeTrans      la date d'arrivee du transport
 	 * @param departTrans       la date de depart du transport

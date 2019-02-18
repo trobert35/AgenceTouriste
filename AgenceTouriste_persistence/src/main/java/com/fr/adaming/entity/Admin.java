@@ -17,7 +17,7 @@ public class Admin extends User {
 	private float remise;
 
 	/**
-	 * 
+	 * Constructor with parameters for Admin
 	 * @param nom    le nom de l'admin
 	 * @param prenom le prenom de l'admin
 	 * @param email  l'email de l'admin

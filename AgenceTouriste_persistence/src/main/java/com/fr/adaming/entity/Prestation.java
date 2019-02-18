@@ -67,7 +67,7 @@ public class Prestation {
 	private List<User> user;
 
 	/**
-	 * 
+	 * Constructor with parameters for Prestation
 	 * @param nom                le nom de la prestation
 	 * @param debutPresta        la date de debut de la prestation
 	 * @param finPresta          la date de fin de la prestation

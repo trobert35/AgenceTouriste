@@ -41,7 +41,7 @@ public class Logement {
 	private String urlImg;
 
 	/**
-	 * 
+	 * Constructor with parameters for Logement
 	 * @param prestaLog le nom du prestataire du logement
 	 * @param entreeLog la date d'entree dans le logement
 	 * @param sortieLog la date de la sortie du logement

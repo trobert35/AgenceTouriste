@@ -33,7 +33,7 @@ public class Activite {
 	private String urlImg; // l'url de l'image correspondant à l'activité
 
 	/**
-	 * 
+	 * Constructor with parameters for Activite
 	 * @param prix         le prix de l'activite
 	 * @param typeAct      le type d'activite
 	 * @param nom          le nom de l'activite
