@@ -41,7 +41,7 @@ public class PrestationService implements IProduitService<Prestation> {
 	}
 
 	public Prestation update(Prestation obj) {
-		if (obj.getId() != null || obj.getId() != 0 || dao.existsById(obj.getId())) {
+		if (obj.getId() != null && obj.getId() != 0 && dao.existsById(obj.getId())) {
 			System.out.println("Prestation modifiée");
 			return dao.save(obj);
 
