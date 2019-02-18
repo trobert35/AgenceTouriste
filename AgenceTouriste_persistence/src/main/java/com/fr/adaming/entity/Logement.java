@@ -30,11 +30,9 @@ public class Logement {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String prestaLog;
-	private Date entreeLog;
-	private Date sortieLog;
 	private String nom;
 	private String ville;
-	private Double prix;
+	private double prix;
 	private typeLogEnum typeLog;
 	private pensionLogEnum pension;
 	private qualiteLogEnum qualite;
@@ -43,8 +41,6 @@ public class Logement {
 	/**
 	 * Constructor with parameters for Logement
 	 * @param prestaLog le nom du prestataire du logement
-	 * @param entreeLog la date d'entree dans le logement
-	 * @param sortieLog la date de la sortie du logement
 	 * @param nom       le nom du logement
 	 * @param ville     la ville ou le logement se situe
 	 * @param prix      le prix de location du logement
@@ -52,12 +48,10 @@ public class Logement {
 	 * @param pension   le type de pension desire
 	 * @param qualite   l'evaluation du logement
 	 */
-	public Logement(String prestaLog, Date entreeLog, Date sortieLog, String nom, String ville, Double prix,
+	public Logement(String prestaLog, String nom, String ville, double prix,
 			typeLogEnum typeLog, pensionLogEnum pension, qualiteLogEnum qualite) {
 		super();
 		this.prestaLog = prestaLog;
-		this.entreeLog = entreeLog;
-		this.sortieLog = sortieLog;
 		this.nom = nom;
 		this.ville = ville;
 		this.prix = prix;
