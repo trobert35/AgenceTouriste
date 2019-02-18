@@ -25,7 +25,7 @@ public class UserService implements IUserService<User> {
 	@Autowired
 	private IPrestationDao daoP;
 	
-	private Logger log;
+	private Logger log = Logger.getLogger(UserService.class);
 
 	public User readByNomAndPrenom(String nom, String prenom) {
 		try {
@@ -64,7 +64,9 @@ public class UserService implements IUserService<User> {
 	public User create(User user) {
 		if (user.getId() == null || user.getId() == 0 || !dao.existsById(user.getId())) {
 			System.out.println("User cree");
+			log.info("Test LOG");
 			log.info("Enregistrement du User SUCCESS");
+			System.out.println("DEEEEEBUG");
 			return dao.save(user);
 		} else {
 			System.out.println("User non cree car id null, id = 0 ou id deja existant");

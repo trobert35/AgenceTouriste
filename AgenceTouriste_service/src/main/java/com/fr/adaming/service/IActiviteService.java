@@ -3,6 +3,7 @@ package com.fr.adaming.service;
 import java.util.List;
 
 import com.fr.adaming.entity.Activite;
+import com.fr.adaming.enumeration.typeActEnum;
 
 public interface IActiviteService {
 
@@ -21,5 +22,9 @@ public interface IActiviteService {
 	public String deleteActiviteById(Long id);
 	
 	public List<Activite> readActiviteByNomPrestaAct(String nomPrestaAct);
+	
+	public List<Activite> readActiviteByPrix(Double prix);
+	
+	public List<Activite> readActiviteByTypeAct(typeActEnum typeAct);
 
 }

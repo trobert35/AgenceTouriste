@@ -1,5 +1,6 @@
 package com.fr.adaming.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -17,6 +18,9 @@ import com.fr.adaming.entity.Logement;
 import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.entity.Transport;
 import com.fr.adaming.entity.User;
+import com.fr.adaming.enumeration.typeActEnum;
+import com.fr.adaming.enumeration.typeLogEnum;
+import com.fr.adaming.enumeration.typeTransEnum;
 
 @Service
 public class AdminService
@@ -94,7 +98,7 @@ public class AdminService
 		return "Admin supprime";
 	}
 
-	// Methodes CRUD Logement + readLogementByPrestaLog
+	// Methodes CRUD Logement + readLogementByPrestaLog + readByVille + readByTypeLog
 	/**
 	 * @param logement 
 	 * prend une instance de l objet Logement en param
@@ -159,7 +163,19 @@ public class AdminService
 		return lili;
 	}
 
-	// Methodes CRUD Prestation
+	public List<Logement> readByVille(String ville) {
+		return daoL.findByVille(ville);
+	}
+
+	public List<Logement> readByTypeLog(typeLogEnum typeLog) {
+		return daoL.findByTypeLog(typeLog);
+	}
+
+	public List<Logement> readByPrixLogement(Double prix) {
+		return daoL.findByPrix(prix);
+	}
+	
+	// Methodes CRUD Prestation + readByDebutPrestaAndFinPresta + readByVilleDepartArriveeAndDestination
 	/**
 	 * @param prestation 
 	 * prend une instance de l objet Prestation en param
@@ -216,7 +232,16 @@ public class AdminService
 		return "Prestation supprimee";
 	}
 
-	// Methodes CRUD Transport + readTransportByPrestaTrans
+	public List<Prestation> readByDebutPrestaAndFinPresta(Date debutPresta, Date finPresta) {
+		return daoP.findByDebutPrestaAndFinPresta(debutPresta, finPresta);
+	}
+
+	public List<Prestation> readByVilleDepartArriveeAndDestination(String villeDepartArrivee, String destination) {
+		return daoP.findByVilleDepartArriveeAndDestination(villeDepartArrivee, destination);
+	}
+
+	
+	// Methodes CRUD Transport + readTransportByPrestaTrans + readByPrix + readByTypeTrans
 	/**
 	 * @param transport 
 	 * prend une instance de l objet Transport en param
@@ -280,7 +305,16 @@ public class AdminService
 		return lili;
 	}
 
-	// Methodes CRUD Activite + readActiviteByPrestaAct
+	public List<Transport> readByPrix(Double prix) {
+		return daoT.findByPrix(prix);
+	}
+
+	public List<Transport> readByTypeTrans(typeTransEnum type) {
+		return daoT.findByTypeTrans(type);
+	}
+
+	
+	// Methodes CRUD Activite + readActiviteByPrestaAct + readActiviteByPrix + readActiviteByTypeAct
 	/**
 	 * @param activite 
 	 * prend une instance de l objet Activite en param
@@ -347,5 +381,14 @@ public class AdminService
 		}
 		return lili;
 	}
+
+	public List<Activite> readActiviteByPrix(Double prix) {
+		return daoA.findByPrix(prix);
+	}
+
+	public List<Activite> readActiviteByTypeAct(typeActEnum typeAct) {
+		return daoA.findByTypeAct(typeAct);
+	}
+
 
 }

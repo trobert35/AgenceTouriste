@@ -13,7 +13,7 @@ public interface IUserService<User> {
 	public User register(User user);
 
 	public User readByNomAndPrenom(String nom, String prenom);
-
+	
 	public User create(User user);
 
 	public User update(User user);
