@@ -10,26 +10,30 @@ import com.fr.adaming.entity.Activite;
 
 @Service
 public class ActiviteService implements IProduitService<Activite> {
+	/**
+	 * @author Thomas S
+	 * @author Maxime
+	 */
 
 	@Autowired
 	private IActiviteDao dao;
 
 	public Activite create(Activite activite) {
-		if (activite.getId()==null || activite.getId()==0) {
-			System.out.println("activite cree");
+		if (activite.getId() == null || activite.getId() == 0 || !dao.existsById(activite.getId())) {
+			System.out.println("Activité créée");
 			return dao.save(activite);
 		}else {
-			System.out.println("activite non cree car existe deja pour cer id");
+			System.out.println("Activité non créée car id null, id = 0 ou id déjà existant");
 			return null;
 		}
 	}
 
 	public Activite update(Activite activite) {
-		if (activite.getId() !=null && activite.getId() !=0 && dao.existsById(activite.getId())) {
-			System.out.println("activite modifiee");
+		if (activite.getId() != null && activite.getId() != 0 && dao.existsById(activite.getId())) {
+			System.out.println("Activité modifiée");
 			return dao.save(activite);
 		} else {
-			System.out.println("activite non modifiee");
+			System.out.println("Activité non modifiée");
 			return null;
 
 		}
@@ -49,7 +53,7 @@ public class ActiviteService implements IProduitService<Activite> {
 
 	public String deleteById(Long id) {
 		dao.deleteById(id);
-		return "activite supprimee";
+		return "Activité supprimée";
 	}
 
 

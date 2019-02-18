@@ -8,12 +8,15 @@ import com.fr.adaming.entity.User;
 
 @Repository
 public interface IAdminService {
+	/**
+	 * @author Thomas S
+	 */
 
 	public User create(User user);
 	
 	public User update(User user);
 	
-	public User readById (Long id);
+	public User readById(Long id);
 	
 	public List<User> readAll();
 }

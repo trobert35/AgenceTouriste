@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IProduitService<T> {
+	/**
+	 * @author Thomas S
+	 */
 
 	public T create (T obj);
 	

@@ -10,23 +10,27 @@ import com.fr.adaming.entity.Transport;
 
 @Service
 public class TransportService implements IProduitService<Transport>{
+	/**
+	 * @author Thomas S
+	 * @author Maxime
+	 */
 
 	@Autowired
 	private ITransportDao dao;
 
 	public Transport create(Transport transport) {
-		if (transport.getId() == null || transport.getId() == 0) {
+		if (transport.getId() == null || transport.getId() == 0 || !dao.existsById(transport.getId())) {
 			System.out.println("transport cree");
 			return dao.save(transport);
 		} else {
-			System.out.println("transport non cree car existe deja pour cer id");
+			System.out.println("Transport non crée car existe déjà pour cet id");
 			return null;
 		}
 	}
 
 	public Transport update(Transport transport) {
 		if (transport.getId() != null && transport.getId() != 0 && dao.existsById(transport.getId())) {
-			System.out.println("transport modifie");
+			System.out.println("Transport modifié");
 			return dao.save(transport);
 		} else {
 			return null;
@@ -47,7 +51,7 @@ public class TransportService implements IProduitService<Transport>{
 
 	public String deleteById(Long id) {
 		dao.deleteById(id);
-		return "transport supprime";
+		return "Transport supprimé";
 	}
 
 }

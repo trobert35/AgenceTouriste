@@ -4,6 +4,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IUserService<User> {
+	/**
+	 * @author Thomas S
+	 */
 
 	public User login(String email, String pwd);
 	

@@ -8,6 +8,10 @@ import com.fr.adaming.dao.IPrestationDao;
 import com.fr.adaming.entity.Prestation;
 
 public class PrestationService implements IProduitService<Prestation> {
+	/**
+	 * @author Thomas S
+	 * @author Maxime
+	 */
 
 	@Autowired
 	private IPrestationDao dao;
@@ -22,27 +26,27 @@ public class PrestationService implements IProduitService<Prestation> {
 
 	public String deleteById(Long id) {
 		dao.deleteById(id);
-		return "prestation supprimee";
+		return "Prestation supprimée";
 	}
 
 	public Prestation create(Prestation obj) {
-		if (obj.getId() == null || obj.getId() == 0) {
-			System.out.println("prestation cree");
+		if (obj.getId() == null || obj.getId() == 0 || !dao.existsById(obj.getId())) {
+			System.out.println("Prestation créée");
 			return dao.save(obj);
 
 		} else {
-			System.out.println("prestation non cree car existe deja pour cer id");
+			System.out.println("Prestation non créée car id null, id = 0 ou id déjà existant");
 			return null;
 		}
 	}
 
 	public Prestation update(Prestation obj) {
-		if (obj.getId() == null || obj.getId() == 0) {
-			System.out.println("prestation cree");
+		if (obj.getId() != null || obj.getId() != 0 || dao.existsById(obj.getId())) {
+			System.out.println("Prestation modifiée");
 			return dao.save(obj);
 
 		} else {
-			System.out.println("prestation non cree car existe deja pour cer id");
+			System.out.println("Prestation non modifiée");
 			return null;
 		}
 	}
