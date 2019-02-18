@@ -1,6 +1,5 @@
 package com.fr.adaming.entity;
 
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,14 +9,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Embeddable
-@Getter @Setter
+@Getter
+@Setter
 public class CB {
 	/**
 	 * @author Claire
 	 */
 
-	@Column(unique=true, nullable=true)
-	private Long numeroCarte;
-	private Date dateExp;
-	private Long crypto;
+	@Column(unique = true, nullable = true)
+	private Long numeroCarte; // numéro de la carte bancaire
+	private Date dateExp; // la date d'expiration de la carte bancaire
+	private Long crypto; // le cryptogramme de la carte bancaire
+
 }

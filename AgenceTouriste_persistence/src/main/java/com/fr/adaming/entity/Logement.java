@@ -40,6 +40,18 @@ public class Logement {
 	private qualiteLogEnum qualite;
 	private String urlImg;
 
+	/**
+	 * Constructor with parameters for Logement
+	 * @param prestaLog le nom du prestataire du logement
+	 * @param entreeLog la date d'entree dans le logement
+	 * @param sortieLog la date de la sortie du logement
+	 * @param nom       le nom du logement
+	 * @param ville     la ville ou le logement se situe
+	 * @param prix      le prix de location du logement
+	 * @param typeLog   le type de logement
+	 * @param pension   le type de pension desire
+	 * @param qualite   l'evaluation du logement
+	 */
 	public Logement(String prestaLog, Date entreeLog, Date sortieLog, String nom, String ville, Double prix,
 			typeLogEnum typeLog, pensionLogEnum pension, qualiteLogEnum qualite) {
 		super();

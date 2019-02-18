@@ -22,6 +22,7 @@ import lombok.ToString;
 public class Transport {
 	/**
 	 * @author Claire
+	 * @author Maxime
 	 */
 
 	@Id
@@ -34,6 +35,17 @@ public class Transport {
 	private String villeDepartTrans;
 	private Double prix;
 	private typeTransEnum typeTrans;
+
+	/**
+	 * Constructor with parameters for Transport
+	 * @param prestaTrans       le nom du prestataire du transport
+	 * @param arriveeTrans      la date d'arrivee du transport
+	 * @param departTrans       la date de depart du transport
+	 * @param villeArriveeTrans le nom de la ville d'arrivee du transport
+	 * @param villeDepartTrans  le nom de la ville de depart du transport
+	 * @param prix              le prix du transport
+	 * @param typeTrans         le type de transport
+	 */
 
 	public Transport(String prestaTrans, Date arriveeTrans, Date departTrans, String villeArriveeTrans,
 			String villeDepartTrans, Double prix, typeTransEnum typeTrans) {
