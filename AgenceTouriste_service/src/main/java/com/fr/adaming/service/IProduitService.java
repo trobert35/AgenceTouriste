@@ -8,14 +8,14 @@ public interface IProduitService<T> {
 	 * @author Thomas S
 	 */
 
-	public T create (T obj);
+	public T createPrestation (T obj);
 	
-	public T update (T obj);
+	public T updatePrestation (T obj);
 
-	public List<T> readAll();
+	public List<T> readAllPrestation();
 	
-	public T readById(Long id);
+	public T readPrestationById(Long id);
 	
-	public String deleteById(Long id);
+	public String deletePrestationById(Long id);
 
 }

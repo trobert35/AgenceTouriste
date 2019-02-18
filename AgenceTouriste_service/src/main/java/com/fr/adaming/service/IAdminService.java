@@ -11,13 +11,13 @@ public interface IAdminService {
 	 * @author Thomas S
 	 */
 
-	public Admin create(Admin user);
+	public Admin createAdmin(Admin user);
 
-	public Admin update(Admin admin);
+	public Admin updateAdmin(Admin admin);
 
-	public User readById(Long id);
+	public User readAdminById(Long id);
 
-	public List<User> readAll();
+	public List<User> readAllAdmin();
 
-	public String deleteById(Long id);
+	public String deleteAdminById(Long id);
 }

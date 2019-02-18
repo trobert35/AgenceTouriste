@@ -4,12 +4,22 @@ import java.util.List;
 
 import com.fr.adaming.entity.Activite;
 
-public interface IActiviteService extends IProduitService<Activite>{
+public interface IActiviteService {
 
-	public List<Activite>readByNomPrestaAct(String nom);
-	
 	/**
 	 * @author Thomas S
-	 * **/
+	 **/
+
+	public Activite createActivite(Activite activite);
+
+	public Activite updateActivite(Activite activite);
+
+	public Activite readActiviteById(Long id);
+
+	public List<Activite> readAllActivite();
+
+	public String deleteActiviteById(Long id);
 	
+	public List<Activite> readActiviteByNomPrestaAct(String nomPrestaAct);
+
 }
