@@ -60,7 +60,7 @@ public class Prestation {
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="prestation")
-	private List<User> user;
+	private List<User> userS;
 
 	public Prestation(Date debutPresta, Date finPresta, String villeDepartArrivee, String destination, int nbPersonnes,
 			float commission, String avis) {
