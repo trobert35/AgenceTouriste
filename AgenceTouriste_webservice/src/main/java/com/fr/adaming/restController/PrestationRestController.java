@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.entity.Activite;
@@ -36,67 +37,67 @@ public class PrestationRestController implements IPrestationRestController {
 	@Autowired
 	private IActiviteService activiteService;
 	
-	@RequestMapping(path="readAll")
+	@RequestMapping(path="readAll", method=RequestMethod.GET)
 	public List<Prestation> readAll() {
 		List<Prestation> listPrestation = prestaService.readAllPrestation();
 		return listPrestation;
 	}
 
-	@RequestMapping(path="readById")
+	@RequestMapping(path="readById", method=RequestMethod.GET)
 	public String readById(@RequestBody Long id) {
 		Prestation presta = prestaService.readPrestationById(id);
 		return "Prestation : " + presta;
 	}
 
-	@RequestMapping(path="readByVille")
+	@RequestMapping(path="readByVille", method=RequestMethod.GET)
 	public String readByVille(@RequestBody String ville) {
 		List<Logement> listLogement = logementService.readByVille(ville);
 		return "Pour la ville de " + ville + ", voici les logements : \n" + listLogement;
 	}
 	
-	@RequestMapping(path="readByTypeOfLogement")
+	@RequestMapping(path="readByTypeOfLogement", method=RequestMethod.GET)
 	public String readByTypeOfLogement(@RequestBody typeLogEnum type) {
 		List<Logement> listLogement = logementService.readByTypeLog(type);
 		return "Pour le type " + type + ", voici les logements : \n" + listLogement;
 	}
 	
-	@RequestMapping(path="readByPrixLogement")
+	@RequestMapping(path="readByPrixLogement", method=RequestMethod.GET)
 	public String readByPrixLogement(@RequestBody Double prix) {
 		List<Logement> listLogement = logementService.readByPrixLogement(prix);
 		return "Pour la modique somme de " + prix + ", voici les logements : \n" + listLogement;
 	}
 	
-	@RequestMapping(path="readByDatesDePresta")
+	@RequestMapping(path="readByDatesDePresta", method=RequestMethod.GET)
 	public String readByDatesDePresta(@RequestBody Date debut, @RequestBody Date fin) {
 		List<Prestation> listPrestation = prestaService.readByDebutPrestaAndFinPresta(debut, fin);
 		return "Pour des dates comprises entre " + debut + " et " + fin + ", voici les prestations : \n" + listPrestation;
 	}
 	
-	@RequestMapping(path="readByResidenceAndDestinationPresta")
+	@RequestMapping(path="readByResidenceAndDestinationPresta", method=RequestMethod.GET)
 	public String readByResidenceAndDestinationPresta(@RequestBody String villeResidence, @RequestBody String destination) {
 		List<Prestation> listPrestation = prestaService.readByVilleDepartArriveeAndDestination(villeResidence, destination);
 		return "Pour votre ville de residence " + villeResidence + " pour " + destination + ", voici les prestations : \n" + listPrestation;
 	}
 	
-	@RequestMapping(path="readByPrixTransport")
+	@RequestMapping(path="readByPrixTransport", method=RequestMethod.GET)
 	public String readByPrixTransport(@RequestBody Double prix) {
 		List<Transport> translist = transportService.readByPrix(prix);
 		return "Prestation avec des transports au prix de " + prix + " : \n" + translist;
 	}
 	
-	@RequestMapping(path="readByTypeTransport")
+	@RequestMapping(path="readByTypeTransport", method=RequestMethod.GET)
 	public String readByTypeTransport(@RequestBody typeTransEnum type) {
 		List<Transport> translist = transportService.readByTypeTrans(type);
 		return "Prestation avec des transports de type " + type + " : \n" + translist;
 	}
 	
-	@RequestMapping(path="readByPrixActivite")
+	@RequestMapping(path="readByPrixActivite", method=RequestMethod.GET)
 	public String readByPrixActivite(@RequestBody Double prix) {
 		List<Activite> activiteList = activiteService.readActiviteByPrix(prix);
 		return "Prestation avec des activites au prix de " + prix + " : \n" + activiteList;
 	}
 	
-	@RequestMapping(path="readByTypeActivite")
+	@RequestMapping(path="readByTypeActivite", method=RequestMethod.GET)
 	public String readByTypeActivite(@RequestBody typeActEnum type) {
 		List<Activite> activiteList = activiteService.readActiviteByTypeAct(type);
 		return "Prestation avec des activites de type " + type + " : \n" + activiteList;
