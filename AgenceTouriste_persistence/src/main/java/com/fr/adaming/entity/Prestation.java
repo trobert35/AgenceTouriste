@@ -64,7 +64,7 @@ public class Prestation {
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<User> user;
+	private List<User> users;
 
 	/**
 	 * Constructor with parameters for Prestation

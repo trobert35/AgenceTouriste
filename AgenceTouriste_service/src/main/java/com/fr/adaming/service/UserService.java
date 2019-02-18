@@ -90,9 +90,9 @@ public class UserService implements IUserService<User> {
 		} else if (!(prestation.getId() != null && prestation.getId() != 0 && daoP.existsById(prestation.getId()))) {
 			return false;
 		} else {
-			List<User> midUserList = prestation.getUserS();
+			List<User> midUserList = prestation.getUsers();
 			midUserList.add(user);
-			prestation.setUserS(midUserList);
+			prestation.setUsers(midUserList);
 			return true;
 		}
 
