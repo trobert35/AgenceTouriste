@@ -8,6 +8,10 @@ import com.fr.adaming.entity.User;
 
 @Service
 public class UserService implements IUserService<User> {
+	/**
+	 * @author Thomas S
+	 * @author Maxime
+	 */
 
 	@Autowired
 	private IUserDao dao;
@@ -29,11 +33,11 @@ public class UserService implements IUserService<User> {
 	}
 
 	public User register(User user) {
-		if (user.getId() == null || user.getId() == 0) {
-			System.out.println("user cree");
+		if (user.getId() == null || user.getId() == 0 || !dao.existsById(user.getId())) {
+			System.out.println("User crée");
 			return dao.save(user);
 		} else {
-			System.out.println("user non cree");
+			System.out.println("User non crée car id null, id = 0 ou id déjà existant");
 			return null;
 		}
 	}

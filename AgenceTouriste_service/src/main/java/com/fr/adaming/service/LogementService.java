@@ -10,16 +10,20 @@ import com.fr.adaming.entity.Logement;
 
 @Service
 public class LogementService implements IProduitService<Logement>{
+	/**
+	 * @author Thomas S
+	 * @author Maxime
+	 */
 
 	@Autowired
 	private ILogementDao dao;
 
 	public Logement create(Logement logement) {
-		if (logement.getId() == null || logement.getId() == 0) {
-			System.out.println("logement cree");
+		if (logement.getId() == null || logement.getId() == 0 || !dao.existsById(logement.getId())) {
+			System.out.println("Logement crée");
 			return dao.save(logement);
 		} else {
-			System.out.println("logement non cree car existe deja pour cer id");
+			System.out.println("Logement non crée car id null, id = 0 ou id déjà existant");
 			return null;
 		}
 	}
