@@ -32,7 +32,24 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.fr.adaming</groupId>
+			<artifactId>AgenceTouriste_commun</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
+		<dependency>
+			<groupId>com.fr.adaming</groupId>
+			<artifactId>AgenceTouriste_persistence</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fr.adaming</groupId>
+			<artifactId>AgenceTouriste_service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>AgenceTouriste_webservice</finalName>
