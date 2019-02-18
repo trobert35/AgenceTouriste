@@ -9,7 +9,8 @@ import com.fr.adaming.dao.ILogementDao;
 import com.fr.adaming.entity.Logement;
 
 @Service
-public class LogementService implements IProduitService<Logement>{
+public class LogementService implements ILogementService {
+	
 	/**
 	 * @author Thomas S
 	 * @author Maxime
@@ -38,20 +39,21 @@ public class LogementService implements IProduitService<Logement>{
 		}
 	}
 
-	public Logement readById(Long id) {
-		return dao.findById(id).get();
-	}
-	public List<Logement> readByPrestaLog(String prestaLog) {
-		return dao.findByPrestaLog(prestaLog);
-	}
-	
 	public List<Logement> readAll() {
 		return dao.findAll();
+	}
+
+	public Logement readById(Long id) {
+		return dao.findById(id).get();
 	}
 
 	public String deleteById(Long id) {
 		dao.deleteById(id);
 		return "logement supprime";
+	}
+
+	public List<Logement> readByPrestaLog(String prestaLog) {
+		return dao.findByPrestaLog(prestaLog);
 	}
 
 }

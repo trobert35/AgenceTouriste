@@ -9,7 +9,7 @@ import com.fr.adaming.dao.IActiviteDao;
 import com.fr.adaming.entity.Activite;
 
 @Service
-public class ActiviteService implements IProduitService<Activite> {
+public class ActiviteService implements IActiviteService {
 	/**
 	 * @author Thomas S
 	 * @author Maxime
@@ -20,41 +20,40 @@ public class ActiviteService implements IProduitService<Activite> {
 
 	public Activite create(Activite activite) {
 		if (activite.getId() == null || activite.getId() == 0 || !dao.existsById(activite.getId())) {
-			System.out.println("Activité créée");
+			System.out.println("Activite creee");
 			return dao.save(activite);
-		}else {
-			System.out.println("Activité non créée car id null, id = 0 ou id déjà existant");
+		} else {
+			System.out.println("Activite non creee car id null, id = 0 ou id deja existant");
 			return null;
 		}
 	}
 
 	public Activite update(Activite activite) {
 		if (activite.getId() != null && activite.getId() != 0 && dao.existsById(activite.getId())) {
-			System.out.println("Activité modifiée");
+			System.out.println("Activite modifiee");
 			return dao.save(activite);
 		} else {
-			System.out.println("Activité non modifiée");
+			System.out.println("Activite non modifiee");
 			return null;
 
 		}
-	}
-
-	public Activite readById(Long id) {
-		return dao.findById(id).get();
-	}
-	
-	public List<Activite> readByNomPrestaAct(String nomPrestaAct) {
-		return dao.findByNomPrestaAct(nomPrestaAct);
 	}
 
 	public List<Activite> readAll() {
 		return dao.findAll();
 	}
 
-	public String deleteById(Long id) {
-		dao.deleteById(id);
-		return "Activité supprimée";
+	public Activite readById(Long id) {
+		return dao.findById(id).get();
 	}
 
+	public String deleteById(Long id) {
+		dao.deleteById(id);
+		return "Activite supprimee";
+	}
+
+	public List<Activite> readByNomPrestaAct(String nomPrestaAct) {
+		return dao.findByNomPrestaAct(nomPrestaAct);
+	}
 
 }

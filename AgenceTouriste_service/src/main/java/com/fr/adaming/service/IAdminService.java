@@ -2,21 +2,22 @@ package com.fr.adaming.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
+import com.fr.adaming.entity.Admin;
 import com.fr.adaming.entity.User;
 
-@Repository
 public interface IAdminService {
+	
 	/**
 	 * @author Thomas S
 	 */
 
-	public User create(User user);
-	
-	public User update(User user);
-	
+	public Admin create(Admin user);
+
+	public Admin update(Admin admin);
+
 	public User readById(Long id);
-	
+
 	public List<User> readAll();
+
+	public String deleteById(Long id);
 }

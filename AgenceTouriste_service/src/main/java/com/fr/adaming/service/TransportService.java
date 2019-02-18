@@ -9,7 +9,8 @@ import com.fr.adaming.dao.ITransportDao;
 import com.fr.adaming.entity.Transport;
 
 @Service
-public class TransportService implements IProduitService<Transport>{
+public class TransportService implements ITransportService {
+	
 	/**
 	 * @author Thomas S
 	 * @author Maxime
@@ -37,21 +38,21 @@ public class TransportService implements IProduitService<Transport>{
 		}
 	}
 
-	public Transport readById(Long id) {
-		return dao.findById(id).get();
-	}
-
-	public List<Transport > readByPrestaTrans(String prestaTrans) {
-		return dao.findByPrestaTrans(prestaTrans);
-	}
-	
 	public List<Transport> readAll() {
 		return dao.findAll();
+	}
+
+	public Transport readById(Long id) {
+		return dao.findById(id).get();
 	}
 
 	public String deleteById(Long id) {
 		dao.deleteById(id);
 		return "Transport supprimé";
+	}
+
+	public List<Transport> readByPrestaTrans(String prestaTrans) {
+		return dao.findByPrestaTrans(prestaTrans);
 	}
 
 }

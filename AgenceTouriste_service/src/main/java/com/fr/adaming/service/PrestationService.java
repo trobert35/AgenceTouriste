@@ -3,11 +3,14 @@ package com.fr.adaming.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fr.adaming.dao.IPrestationDao;
 import com.fr.adaming.entity.Prestation;
 
+@Service
 public class PrestationService implements IProduitService<Prestation> {
+	
 	/**
 	 * @author Thomas S
 	 * @author Maxime
