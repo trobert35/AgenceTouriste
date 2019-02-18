@@ -34,6 +34,7 @@ public class Prestation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String nom;
 	private Date debutPresta;
 	private Date finPresta;
 	private String villeDepartArrivee;
@@ -41,6 +42,7 @@ public class Prestation {
 	private int nbPersonnes;
 	private float commission;
 	private String avis;
+	private int nbPersonnesMax;
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
@@ -62,14 +64,15 @@ public class Prestation {
 	@JoinColumn(name="prestation")
 	private List<User> user;
 
-	public Prestation(Date debutPresta, Date finPresta, String villeDepartArrivee, String destination, int nbPersonnes,
+	public Prestation(String nom, Date debutPresta, Date finPresta, String villeDepartArrivee, String destination, int nbPersonnesMax,
 			float commission, String avis) {
 		super();
+		this.nom = nom;
 		this.debutPresta = debutPresta;
 		this.finPresta = finPresta;
 		this.villeDepartArrivee = villeDepartArrivee;
 		this.destination = destination;
-		this.nbPersonnes = nbPersonnes;
+		this.nbPersonnesMax = nbPersonnesMax;
 		this.commission = commission;
 		this.avis = avis;
 	}
