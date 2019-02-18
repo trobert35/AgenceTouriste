@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.LoginDTO;
@@ -21,7 +22,7 @@ public class AuthRestController implements IAuthRestController{
 	@Autowired
 	private IUserService<User> userService;
 	
-	@RequestMapping(path="login")
+	@RequestMapping(path="login", method=RequestMethod.POST)
 	public String loginRest(@Valid @RequestBody LoginDTO logDto) {
 		User user = new User();
 		user.setEmail(logDto.getEmail());
@@ -30,7 +31,7 @@ public class AuthRestController implements IAuthRestController{
 		return "Bonjour " + user.getPrenom() +  user.getNom() + " , vous etes bien connecte";
 	}
 	
-	@RequestMapping(path="register")
+	@RequestMapping(path="register", method=RequestMethod.POST)
 	public String register(@Valid @RequestBody RegisterDTO regDto) {
 		User user = new User(regDto.getNom(), regDto.getPrenom(), regDto.getEmail(), regDto.getPwd());
 		User user1 = userService.register(user);
