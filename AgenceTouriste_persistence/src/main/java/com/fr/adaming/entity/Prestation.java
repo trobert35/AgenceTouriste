@@ -47,22 +47,18 @@ public class Prestation {
 	private String avis;
 	private int nbPersonnesMax;
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
 	private List<Transport> transport; // la liste des transports liés à la prestation
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
 	private List<Logement> logement; // la liste des logements liés à la prestation
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
 	private List<Activite> activite; // la liste des activités liés à la prestation
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
 	private List<User> users; // la liste des users ayant achetés la prestation
