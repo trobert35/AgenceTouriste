@@ -15,8 +15,22 @@ public interface ITransportDao extends JpaRepository<Transport, Long> {
 	 * @return
 	 */
 
+	/**
+	 * @param prestaTrans
+	 * @return une liste de transports selon le nom du prestataire
+	 */
 	public List<Transport> findByPrestaTrans(String prestaTrans);
+	
+	/**
+	 * @param prix
+	 * @return une liste de transports selon le prix
+	 */
 	public List<Transport> findByPrix(Double prix);
+	
+	/**
+	 * @param typeTrans
+	 * @return une liste de transports selon le type de transport
+	 */
 	public List<Transport> findByTypeTrans(typeTransEnum typeTrans);
 	
 }

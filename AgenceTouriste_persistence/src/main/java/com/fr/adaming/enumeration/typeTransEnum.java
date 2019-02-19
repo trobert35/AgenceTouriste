@@ -6,15 +6,16 @@ import lombok.Getter;
 public enum typeTransEnum {
 	/**
 	 * @author Claire
+	 * 
 	 */
-
-	avion("avion"), train("train"), car("car"), bateau("bateau");
+//l'agence de voyage peut définir de quel type de transport il s'agit pour chaque instance de transport créée
 	
-	private String typeTrans="";
+	avion("avion"), train("train"), car("car"), bateau("bateau");
+
+	private String typeTrans = "";
 
 	private typeTransEnum(String typeTrans) {
 		this.typeTrans = typeTrans;
 	}
-	
-	
+
 }

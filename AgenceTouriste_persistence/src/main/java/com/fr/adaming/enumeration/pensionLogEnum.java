@@ -7,6 +7,8 @@ public enum pensionLogEnum {
 	/**
 	 * @author Claire
 	 */
+	
+	//L'agence définit le type de pension pour chaque instance de logement.
 
 	demiPension("demiPension"), pensionComplete("pensionComp"), toutInclus("toutInclus"), petitDejeuner("petitDej");
 	
