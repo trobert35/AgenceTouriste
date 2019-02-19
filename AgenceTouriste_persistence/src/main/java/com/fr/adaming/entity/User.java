@@ -35,7 +35,7 @@ public class User {
 	@Column(unique = true)
 	private String email;
 	private String pwd;
-	private String urlImg;
+	private String urlImg; // l'url correspondant à la photo du user
 
 	@Embedded
 	private CB cb;

@@ -50,22 +50,22 @@ public class Prestation {
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<Transport> transport;
+	private List<Transport> transport; // la liste des transports liés à la prestation
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<Logement> logement;
+	private List<Logement> logement; // la liste des logements liés à la prestation
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<Activite> activite;
+	private List<Activite> activite; // la liste des activités liés à la prestation
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<User> users;
+	private List<User> users; // la liste des users ayant achetés la prestation
 
 	/**
 	 * Constructor with parameters for Prestation
