@@ -68,7 +68,7 @@ public class AdminRestController implements IAdminRestController{
 	@RequestMapping(path="createLogement", method=RequestMethod.POST)
 	public String createLogement(@RequestBody Logement logement) {
 		logementService.createLogement(logement);
-		return logement.getNom() + " est un admin correctement supprime";
+		return logement.getNom() + " est un admin correctement cree";
 	}
 	
 	@RequestMapping(path="updateLogement", method=RequestMethod.POST)
