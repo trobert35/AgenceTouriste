@@ -3,12 +3,20 @@ package com.fr.adaming.service;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fr.adaming.entity.Admin;
 import com.fr.adaming.entity.User;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AdminServiceTest {
 
 	@Autowired
@@ -21,6 +29,7 @@ public class AdminServiceTest {
 	public void a_createValid() {
 		// Tester l'insertion d'un objet valide
 		admin = new Admin("adminNom", "adminPrenom", "email@admin.fr", "pwd", 0.2F);
+		System.out.println("DEBUG Admin : " + admin.getNom() + " " + admin.getPrenom() +" " + admin.getEmail() + " " + admin.getPwd()+ " " + admin.getRemise());
 		admin = admService.createAdmin(admin);
 		assertNotNull(admin);
 
