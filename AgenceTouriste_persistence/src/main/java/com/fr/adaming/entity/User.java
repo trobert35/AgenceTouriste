@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.Email;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class User {
 	private String nom;
 	private String prenom;
 	@Column(unique = true)
+	@Email
 	private String email;
 	private String pwd;
 	private String urlImg; // l'url correspondant à la photo du user
