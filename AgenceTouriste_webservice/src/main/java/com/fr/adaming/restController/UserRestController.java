@@ -17,27 +17,19 @@ import com.fr.adaming.entity.User;
 import com.fr.adaming.service.IUserService;
 
 @RestController
-@RequestMapping(path="user/")
+@RequestMapping(path="api/")
 public class UserRestController implements IUserRestController{
 
 	@Autowired
 	private IUserService<User> userService;
 	
 	
-	@RequestMapping(path="register", method=RequestMethod.POST)
+	@RequestMapping(path="user", method=RequestMethod.POST)
 	public String register(@Valid @RequestBody RegisterDTO regDto) {
 		User user = new User(regDto.getNom(), regDto.getPrenom(), regDto.getEmail(), regDto.getPwd());
 		userService.register(user);
 		return "Bienvenue " + user.getPrenom() + " " +user.getNom();
 	}
-
-	@RequestMapping(path="create", method=RequestMethod.POST)
-	public String create(@Valid @RequestBody RegisterDTO regDto) {
-		User user = new User(regDto.getNom(), regDto.getPrenom(), regDto.getEmail(), regDto.getPwd());
-		userService.register(user);
-		return "Bienvenue " + user.getPrenom() + " " +user.getNom();
-	}
-	
 	
 	@RequestMapping(path="login", method=RequestMethod.POST)
 	public String login(@Valid @RequestBody LoginDTO logDto) {
@@ -45,32 +37,32 @@ public class UserRestController implements IUserRestController{
 		return "Bonjour " + user.getPrenom() + " " + user.getNom() + ", vous etes connecte";
 	}
 	
-	@RequestMapping(path="readAll", method=RequestMethod.GET)
+	@RequestMapping(path="user", method=RequestMethod.GET)
 	public List<User> readAll() {
 		List<User> listUser = userService.readAll();
 		return listUser;
 	}
 	
-	@RequestMapping(path="readById/{id}", method=RequestMethod.GET)
+	@RequestMapping(path="user/{id}", method=RequestMethod.GET)
 	public String readById(@PathVariable Long id) {
 		User user = userService.readById(id);
 		return "Client : " + user;
 	}
 
-	@RequestMapping(path="readByNomAndPrenom/{nom}/conf/{prenom}", method=RequestMethod.GET)
+	@RequestMapping(path="user/{nom}/conf/{prenom}", method=RequestMethod.GET)
 	public User readByNomAndPrenom(@PathVariable String nom, @PathVariable String prenom) {
 		User user = userService.readByNomAndPrenom(nom, prenom);
 		return user;
 	}
 	
-	@RequestMapping(path="updateUser", method=RequestMethod.POST)
+	@RequestMapping(path="user", method=RequestMethod.PUT)
 	public String update(@RequestBody User user){
 		User user0 = userService.readById(user.getId());
 		User user1 = userService.update(user);
 		return "Avant modif : " + user0 + "\nApres modif : " + user1;
 	}
 
-	@RequestMapping(path="delete/{id}", method=RequestMethod.GET)
+	@RequestMapping(path="user/{id}", method=RequestMethod.DELETE)
 	public String delete(@PathVariable Long id) {
 		User user0 = userService.readById(id);
 		userService.deleteById(id);

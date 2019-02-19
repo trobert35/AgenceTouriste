@@ -39,7 +39,7 @@ public class UserService implements IUserService<User> {
 
 			return u;
 		} catch (Exception e) {
-			log.info("Lecture du User de nom " + nom + " et prenom " + prenom + " FAILED");
+			log.warn("Lecture du User de nom " + nom + " et prenom " + prenom + " FAILED");
 			return null;
 		}
 	}

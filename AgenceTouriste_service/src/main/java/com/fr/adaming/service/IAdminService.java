@@ -16,6 +16,8 @@ public interface IAdminService {
 	public Admin updateAdmin(Admin admin);
 
 	public User readAdminById(Long id);
+	
+	public User readAdminByEmailAndPwd(String email, String pwd);
 
 	public List<User> readAllAdmin();
 

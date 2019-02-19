@@ -107,6 +107,24 @@ public class AdminService
 		}
 	}
 
+	
+	/**
+	 * Ressort un objet User (Admin) de la database si il existe
+	 * @param email
+	 * @param pwd
+	 * @return Null si l'email et le pwd n'existe pas, Admin si ils existent
+	 */
+	public User readAdminByEmailAndPwd(String email, String pwd) {
+		try {
+			Admin a =  (Admin) daoU.findByEmailAndPwd(email, pwd);
+			log.info("Recherche de l'admin avec l'email " + email + " SUCCESS");
+			return a;
+		}catch(Exception e) {
+			log.warn("L'Admin avec l'email " + email + " n'existe pas");
+			return null;
+		}
+	}
+	
 	/**
 	 * Ressort la liste de tous les User de la database
 	 * 
