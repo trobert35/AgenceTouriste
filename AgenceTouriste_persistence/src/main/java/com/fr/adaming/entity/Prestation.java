@@ -1,5 +1,6 @@
 package com.fr.adaming.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -92,6 +93,7 @@ public class Prestation {
 		this.nbPersonnesMax = nbPersonnesMax;
 		this.commission = commission;
 		this.avis = avis;
+		this.users = new ArrayList<User>();
 	}
 
 }
