@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.validation.ConstraintViolationException;
+
 import org.junit.After;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -60,13 +62,20 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void ac_createUserWithNullId() {
+	public void aca_createUserWithNullId() {
 		// Tester l'insertion d'un objet avec id = null
 		user = new User("MICHEL2", "Jean", "guigui@gmail.com", "kiki");
 		user.setId(null);
 		user = userService.create(user);
 		assertNotNull(user);
 
+	}
+	
+	@Test(expected = ConstraintViolationException.class)
+	public void acb_createUserWithWrongEmail() {
+		// Tester l'insertion d'un object avec un mauvais email
+		user = new User("MICAH", "Gabbro", "string", "pwd");
+		userService.create(user);
 	}
 
 	@Test
@@ -301,6 +310,7 @@ public class UserServiceTest {
 	
 	@Test
 	public void be_loginValid() {
+		// Tester le login d'un user valide
 		aa_createValidUser();
 		user = userService.login(user.getEmail(), user.getPwd());
 		assertNotNull(user);
@@ -308,24 +318,28 @@ public class UserServiceTest {
 	
 	@Test
 	public void bf_loginWithEmailAndPwdUnknown() {
+		// Tester le login d'un user inconnu
 		user = userService.login("hujn@hot.fr", "frere");
 		assertNull(user);
 	}
 	
 	@Test
 	public void bg_loginWithEmailNull() {
+		// Tester le login d'un user avec un email null
 		user = userService.login(null, "kaka");
 		assertNull(user);
 	}
 	
 	@Test
 	public void bh_loginWithPwdNull() {
+		// Tester le login d'un user avec un pwd null
 		user = userService.login("guigui@gmail.com", null);
 		assertNull(user);
 	}
 	
 	@Test
 	public void bi_bookPrestationValid() throws ParseException {
+		// Tester un book valide
 		aa_createValidUser();
 		presta = new Prestation("Campin", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
 				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
@@ -337,12 +351,14 @@ public class UserServiceTest {
 	
 	@Test
 	public void bj_bookPrestationWithUserUnknown() {
+		// Tester un book par un user inconnu
 		user = new User("MICHEL2", "Jean", "guigui@gmail.com", "kiki");
 		assertFalse(userService.bookPrestation(user, presta));
 	}
 	
 	@Test
 	public void bk_bookPrestationWithPrestationUnknown() throws ParseException {
+		// Tester le book d'une prestation inconnue
 		aa_createValidUser();
 		presta = new Prestation("Camping", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
 				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
@@ -352,6 +368,7 @@ public class UserServiceTest {
 	
 	@Test
 	public void bl_bookPrestationWithIdUserNull() {
+		// Tester le book d'un user avec id null
 		aa_createValidUser();
 		long i = user.getId();
 		user.setId(null);
@@ -361,6 +378,7 @@ public class UserServiceTest {
 	
 	@Test
 	public void bm_bookPrestationWithIdUserEqualsToZero() {
+		// Tester le book d'un user avec id égal à 0
 		aa_createValidUser();
 		long i = user.getId();
 		user.setId(0L);
@@ -370,6 +388,7 @@ public class UserServiceTest {
 	
 	@Test
 	public void bn_bookPrestationWithIdPrestationNull() throws ParseException {
+		// Tester le book d'une prestation avec id null
 		aa_createValidUser();
 		presta = new Prestation("Campong", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
 				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
@@ -382,7 +401,8 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void bo_bookPrestationWithIdPrestationNull() throws ParseException {
+	public void bo_bookPrestationWithIdPrestationEqualsToZero() throws ParseException {
+		// Tester le book d'une prestation avec id égal à 0
 		aa_createValidUser();
 		presta = new Prestation("Campang", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
 				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
@@ -396,18 +416,19 @@ public class UserServiceTest {
 	
 	@Test(expected = NullPointerException.class)
 	public void bp_bookPrestationWithUserNull() {
+		// Tester le book d'un user null
 		userService.bookPrestation(null, presta);
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void bq_bookPrestationWithPrestationNull() {
+		// Tester le book d'une prestation null
 		aa_createValidUser();
 		userService.bookPrestation(user, null);
 	}
 
 	@After
 	public void after() {
-		System.out.println("********************* DEBUG TESTING afterMethod *********************");
 		if (user != null && user.getId() != null) {
 			userService.deleteById(user.getId());
 			if(user2 != null && user2.getId() != null) {
