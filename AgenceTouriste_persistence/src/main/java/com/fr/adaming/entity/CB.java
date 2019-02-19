@@ -1,5 +1,6 @@
 package com.fr.adaming.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,7 +12,11 @@ import lombok.Setter;
 @Embeddable
 @Getter
 @Setter
-public class CB {
+public class CB implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * @author Claire
 	 */

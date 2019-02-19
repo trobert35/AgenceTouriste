@@ -1,5 +1,7 @@
 package com.fr.adaming.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +19,11 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Transport {
+public class Transport implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * @author Claire
 	 * @author Maxime

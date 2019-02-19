@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fr.adaming.dto.PrestationCreateDTO;
 import com.fr.adaming.entity.Activite;
 import com.fr.adaming.entity.Logement;
 import com.fr.adaming.entity.Prestation;
@@ -39,9 +40,12 @@ public class PrestationRestController implements IPrestationRestController {
 	private IActiviteService activiteService;
 
 	@RequestMapping(path = "prestation", method = RequestMethod.POST)
-	public String createPrestation(@RequestBody Prestation presta) {
-		presta = prestaService.createPrestation(presta);
-		return "Prestation cree : " + presta;
+	public String createPrestation(@RequestBody PrestationCreateDTO dtoPresta) {
+		prestaService.createPrestation(new Prestation(dtoPresta.getNom(), dtoPresta.getDebutPresta(),
+				dtoPresta.getFinPresta(),
+				dtoPresta.getVilleDepartArrivee(), dtoPresta.getDestination(),
+				dtoPresta.getNbPersonnesMax(), dtoPresta.getCommission(), dtoPresta.getAvis()));
+		return "Prestation cree : " + dtoPresta.getNom();
 	}
 
 	@RequestMapping(path = "prestation", method = RequestMethod.PUT)
@@ -127,4 +131,10 @@ public class PrestationRestController implements IPrestationRestController {
 		return "Prestation avec des activites de type " + type + " : \n" + activiteList;
 	}
 
+	@RequestMapping(path= "prestation/{presta}", method = RequestMethod.POST)
+	public String calculPrixTotal(@RequestBody PrestationCreateDTO dtoPresta) {
+		Prestation p = prestaService.readByDebutPrestaAndFinPresta(dtoPresta.getDebutPresta(), dtoPresta.getFinPresta()).get(0);
+		prestaService.calculPrixTotal(p);
+		return Double.toString(p.getPrixTotal());
+	}
 }

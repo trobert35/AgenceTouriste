@@ -1,5 +1,6 @@
 package com.fr.adaming.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,11 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Prestation {
+public class Prestation implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * @author Claire
 	 * @author Maxime
@@ -43,26 +48,23 @@ public class Prestation {
 	private String villeDepartArrivee;
 	private String destination;
 	private int nbPersonnes; // le nombre de personnes participant à cette formation
-	private float commission;
+	private double commission;
 	private String avis;
 	private int nbPersonnesMax;
+	private double prixTotal;
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
 	private List<Transport> transport; // la liste des transports liés à la prestation
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
 	private List<Logement> logement; // la liste des logements liés à la prestation
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
 	private List<Activite> activite; // la liste des activités liés à la prestation
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
 	private List<User> users; // la liste des users ayant achetés la prestation
@@ -83,7 +85,7 @@ public class Prestation {
 	 */
 
 	public Prestation(String nom, Date debutPresta, Date finPresta, String villeDepartArrivee, String destination,
-			int nbPersonnesMax, float commission, String avis) {
+			int nbPersonnesMax, double commission, String avis) {
 		super();
 		this.nom = nom;
 		this.debutPresta = debutPresta;
@@ -94,6 +96,9 @@ public class Prestation {
 		this.commission = commission;
 		this.avis = avis;
 		this.users = new ArrayList<User>();
+		this.activite = new ArrayList<Activite>();
+		this.logement = new ArrayList<Logement>();
+		this.transport = new ArrayList<Transport>();
 	}
 
 }
