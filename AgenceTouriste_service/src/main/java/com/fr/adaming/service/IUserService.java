@@ -2,6 +2,8 @@ package com.fr.adaming.service;
 
 import java.util.List;
 
+import com.fr.adaming.entity.Prestation;
+
 public interface IUserService<User> {
 	
 	/**
@@ -23,4 +25,6 @@ public interface IUserService<User> {
 	public List<User> readAll();
 
 	public String deleteById(Long id);
+	
+	public boolean bookPrestation(User user, Prestation prestation);
 }
