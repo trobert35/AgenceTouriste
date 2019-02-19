@@ -33,6 +33,9 @@ import com.fr.adaming.entity.User;
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserServiceTest {
+	/**
+	 * @author Maxime
+	 */
 	
 	@Autowired
 	private IUserService<User> userService;

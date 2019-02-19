@@ -26,6 +26,9 @@ import com.fr.adaming.enumeration.typeLogEnum;
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LogementServiceTest {
+	/**
+	 * @author Claire
+	 */
 
 	@Autowired
 	private ILogementService logService;
