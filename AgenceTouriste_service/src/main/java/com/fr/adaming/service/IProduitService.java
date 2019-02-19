@@ -24,5 +24,7 @@ public interface IProduitService<T> {
 	public List<Prestation> readByDebutPrestaAndFinPresta(Date debutPresta, Date finPresta);
 	
 	public List<Prestation> readByVilleDepartArriveeAndDestination(String villeDepartArrivee, String destination);
+	
+	public void calculPrixTotal(Prestation prestation);
 
 }

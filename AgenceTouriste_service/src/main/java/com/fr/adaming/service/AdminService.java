@@ -638,5 +638,32 @@ public class AdminService
 	public List<Activite> readActiviteByTypeAct(typeActEnum typeAct) {
 		return daoA.findByTypeAct(typeAct);
 	}
+	
+	/**Calcule le prix total de l'objet Prestation, grace aux prix d activite, de logement et de transport
+	 * 
+	 * @param prestation prend une instance de l objet Prestation en param, ne doit pas etre null
+	 * @return void
+	 * @throws NullPointerException si prestation est null
+	 */
+	public void calculPrixTotal(Prestation prestation) {
+		double prixActTot = 0, prixLogTot = 0, prixTraTot = 0;
+		
+		if(!prestation.getActivite().isEmpty()) {
+		for (int i = 0 ; i < prestation.getActivite().size() ; i++) {
+			prixActTot = prixActTot + prestation.getActivite().get(i).getPrix();
+		} }
+		
+		if(!prestation.getLogement().isEmpty()) {
+		for (int i = 0 ; i < prestation.getLogement().size() ; i++) {
+			prixLogTot = prixLogTot + prestation.getLogement().get(i).getPrix();
+		} }
+		
+		if(!prestation.getTransport().isEmpty()) {
+		for (int i = 0 ; i < prestation.getTransport().size() ; i++) {
+			prixTraTot = prixTraTot + prestation.getTransport().get(i).getPrix();
+		} }
+		
+		prestation.setPrixTotal((prixActTot + prixLogTot + prixTraTot) * (1 + prestation.getCommission()));
+	}
 
 }

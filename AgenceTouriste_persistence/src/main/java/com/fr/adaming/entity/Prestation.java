@@ -42,10 +42,11 @@ public class Prestation {
 	private Date finPresta;
 	private String villeDepartArrivee;
 	private String destination;
-	private int nbPersonnes; // le nombre de personnes participant à cette formation
-	private float commission;
+	private int nbPersonnes; // le nombre de personnes participant à cette prestation
+	private double commission;
 	private String avis;
 	private int nbPersonnesMax;
+	private double prixTotal; // le prix total de la prestation
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY)
@@ -83,7 +84,7 @@ public class Prestation {
 	 */
 
 	public Prestation(String nom, Date debutPresta, Date finPresta, String villeDepartArrivee, String destination,
-			int nbPersonnesMax, float commission, String avis) {
+			int nbPersonnesMax, double commission, String avis) {
 		super();
 		this.nom = nom;
 		this.debutPresta = debutPresta;
@@ -94,6 +95,9 @@ public class Prestation {
 		this.commission = commission;
 		this.avis = avis;
 		this.users = new ArrayList<User>();
+		this.activite = new ArrayList<Activite>();
+		this.logement = new ArrayList<Logement>();
+		this.transport = new ArrayList<Transport>();
 	}
 
 }
