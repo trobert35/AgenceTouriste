@@ -199,7 +199,6 @@ public class AdminService
 			System.out.println("Prestation modifiee");
 			log.info("Modification de la Prestation SUCCESS");
 			return daoP.save(obj);
-
 		} else {
 			System.out.println("Prestation non modifiee");
 			log.warn("Modification de la Prestation FAILED");
@@ -228,8 +227,12 @@ public class AdminService
 	}
 
 	public String deletePrestationById(Long id) {
-		daoP.deleteById(id);
-		return "Prestation supprimee";
+		if(id != null && daoP.findById(id).isPresent()) {
+			daoP.deleteById(id);
+			return "Prestation supprimee";
+		}else {
+		return null;
+		}
 	}
 
 	public List<Prestation> readByDebutPrestaAndFinPresta(Date debutPresta, Date finPresta) {
