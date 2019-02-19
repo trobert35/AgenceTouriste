@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,13 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.LoginDTO;
 import com.fr.adaming.dto.RegisterDTO;
-import com.fr.adaming.entity.Admin;
 import com.fr.adaming.entity.User;
-import com.fr.adaming.service.IAdminService;
 import com.fr.adaming.service.IUserService;
 
 @RestController
-@RequestMapping(path="User/")
+@RequestMapping(path="user/")
 public class UserRestController implements IUserRestController{
 
 	@Autowired
@@ -52,14 +51,14 @@ public class UserRestController implements IUserRestController{
 		return listUser;
 	}
 	
-	@RequestMapping(path="readById", method=RequestMethod.GET)
-	public String readById(@RequestBody Long id) {
+	@RequestMapping(path="readById/{id}", method=RequestMethod.GET)
+	public String readById(@PathVariable Long id) {
 		User user = userService.readById(id);
 		return "Client : " + user;
 	}
 
-	@RequestMapping(path="readByNomAndPrenom", method=RequestMethod.GET)
-	public User readByNomAndPrenom(@RequestBody String nom, @RequestBody String prenom) {
+	@RequestMapping(path="readByNomAndPrenom/{nom}/conf/{prenom}", method=RequestMethod.GET)
+	public User readByNomAndPrenom(@PathVariable String nom, @PathVariable String prenom) {
 		User user = userService.readByNomAndPrenom(nom, prenom);
 		return user;
 	}
@@ -71,8 +70,8 @@ public class UserRestController implements IUserRestController{
 		return "Avant modif : " + user0 + "\nApres modif : " + user1;
 	}
 
-	@RequestMapping(path="delete", method=RequestMethod.GET)
-	public String delete(@RequestBody Long id) {
+	@RequestMapping(path="delete/{id}", method=RequestMethod.GET)
+	public String delete(@PathVariable Long id) {
 		User user0 = userService.readById(id);
 		userService.deleteById(id);
 		return user0.getPrenom() + " " + user0.getNom() + " a ete supprime";

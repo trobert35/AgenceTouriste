@@ -16,7 +16,7 @@ import com.fr.adaming.service.IUserService;
 
 
 @RestController
-@RequestMapping(path="authentification/")
+@RequestMapping(path="auth/")
 public class AuthRestController implements IAuthRestController{
 
 	@Autowired

@@ -3,6 +3,7 @@ package com.fr.adaming.restController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +22,7 @@ import com.fr.adaming.service.IProduitService;
 import com.fr.adaming.service.ITransportService;
 
 @RestController
-@RequestMapping(path="Admin/")
+@RequestMapping(path="admin/")
 public class AdminRestController implements IAdminRestController{
 
 	@Autowired
@@ -41,8 +42,8 @@ public class AdminRestController implements IAdminRestController{
 		return admin.getNom() + " est un admin correctement modifie";
 	}
 	
-	@RequestMapping(path="readAdmin", method=RequestMethod.GET)
-	public Admin readAdminById(@RequestBody Long id) {
+	@RequestMapping(path="readAdmin/{id}", method=RequestMethod.GET)
+	public Admin readAdminById(@PathVariable Long id) {
 		Admin admin = (Admin) adminService.readAdminById(id);
 		return admin;
 	}
@@ -53,8 +54,8 @@ public class AdminRestController implements IAdminRestController{
 		return admin;
 	}
 	
-	@RequestMapping(path="deleteAdmin", method=RequestMethod.GET)
-	public String deleteAdmin(@RequestBody Long id) {
+	@RequestMapping(path="deleteAdmin/{id}", method=RequestMethod.GET)
+	public String deleteAdmin(@PathVariable Long id) {
 		Admin admin = (Admin) adminService.readAdminById(id);
 		adminService.deleteAdminById(id);
 		return admin.getNom() + " est un admin correctement supprime";
@@ -82,21 +83,21 @@ public class AdminRestController implements IAdminRestController{
 		return listLogement;
 	}
 	
-	@RequestMapping(path="readByIdLogement", method=RequestMethod.GET)
-	public String readByIdLogement(@RequestBody Long id) {
+	@RequestMapping(path="readByIdLogement/{id}", method=RequestMethod.GET)
+	public String readByIdLogement(@PathVariable Long id) {
 		Logement logement = logementService.readLogementById(id);
 		return "Logement : " + logement;
 	}
 	
-	@RequestMapping(path="deleteLogement", method=RequestMethod.GET)
-	public String deleteLogement(@RequestBody Long id) {
+	@RequestMapping(path="deleteLogement/{id}", method=RequestMethod.GET)
+	public String deleteLogement(@PathVariable Long id) {
 		Logement logement = logementService.readLogementById(id);
 		logementService.deleteLogementById(id);
 		return logement.getNom() + " a correctement ete supprime";
 	}
 	
-	@RequestMapping(path="readLogementByPresta", method=RequestMethod.GET)
-	public String readLogementByPresta(@RequestBody String prestaLog) {
+	@RequestMapping(path="readLogementByPresta/{prestaLog}", method=RequestMethod.GET)
+	public String readLogementByPresta(@PathVariable String prestaLog) {
 		List<Logement> listlogement = logementService.readLogementByPrestaLog(prestaLog);
 		return "Logements fournis par " + prestaLog + " :\n" + listlogement;
 	}
@@ -118,8 +119,8 @@ public class AdminRestController implements IAdminRestController{
 		return "Prestation modifiee : " + presta;
 	}
 	
-	@RequestMapping(path="readByIdPrestation", method=RequestMethod.GET)
-	public String readByIdPrestation(@RequestBody Long id) {
+	@RequestMapping(path="readByIdPrestation/{id}", method=RequestMethod.GET)
+	public String readByIdPrestation(@PathVariable Long id) {
 		Prestation presta = prestaService.readPrestationById(id);
 		return "Prestation : " + presta;
 	}
@@ -130,8 +131,8 @@ public class AdminRestController implements IAdminRestController{
 		return "Liste des Prestations : " + listpresta;
 	}
 	
-	@RequestMapping(path="deletePrestation", method=RequestMethod.GET)
-	public String deletePrestation(@RequestBody Long id) {
+	@RequestMapping(path="deletePrestation/{id}", method=RequestMethod.GET)
+	public String deletePrestation(@PathVariable Long id) {
 		Prestation presta = prestaService.readPrestationById(id);
 		prestaService.deletePrestationById(id);
 		return presta.getNom() + " a ete supprimee";
@@ -160,21 +161,21 @@ public class AdminRestController implements IAdminRestController{
 		return "Liste des Transports : " + listtrans;
 	}
 	
-	@RequestMapping(path="readByIdTransport", method=RequestMethod.GET)
-	public String readByIdTransport(@RequestBody Long id) {
+	@RequestMapping(path="readByIdTransport/{id}", method=RequestMethod.GET)
+	public String readByIdTransport(@PathVariable Long id) {
 		Transport trans = transportService.readTransportById(id);
 		return "Transports : " + trans;
 	}
 	
-	@RequestMapping(path="deleteTransport", method=RequestMethod.GET)
-	public String deleteTransport(@RequestBody Long id) {
+	@RequestMapping(path="deleteTransport/{id}", method=RequestMethod.GET)
+	public String deleteTransport(@PathVariable Long id) {
 		Transport trans = transportService.readTransportById(id);
 		transportService.deleteTransportById(id);
 		return trans.getPrestaTrans() + " a ete supprime";
 	}
 	
-	@RequestMapping(path="readTransportByPresta", method=RequestMethod.GET)
-	public String readTransportByPresta(@RequestBody String presta) {
+	@RequestMapping(path="readTransportByPresta/{presta}", method=RequestMethod.GET)
+	public String readTransportByPresta(@PathVariable String presta) {
 		List<Transport> listtrans = transportService.readTransportByPrestaTrans(presta);
 		return "Transports de " + presta + " : \n" + listtrans;
 	}
@@ -202,21 +203,21 @@ public class AdminRestController implements IAdminRestController{
 		return "Liste Activite : " + listact;
 	}
 	
-	@RequestMapping(path="readByIdActivite", method=RequestMethod.GET)
-	public String readByIdActivite(@RequestBody Long id) {
+	@RequestMapping(path="readByIdActivite/{id}", method=RequestMethod.GET)
+	public String readByIdActivite(@PathVariable Long id) {
 		Activite act = activiteService.readActiviteById(id);
 		return "Activite : " + act;
 	}
 	
-	@RequestMapping(path="deleteActivite", method=RequestMethod.GET)
-	public String deleteActivite(@RequestBody Long id) {
+	@RequestMapping(path="deleteActivite/{id}", method=RequestMethod.GET)
+	public String deleteActivite(@PathVariable Long id) {
 		Activite act = activiteService.readActiviteById(id);
 		activiteService.deleteActiviteById(id);
 		return act.getNom() + " a ete supprime";
 	}
 	
-	@RequestMapping(path="readActiviteByPresta", method=RequestMethod.GET)
-	public String readActiviteByPresta(@RequestBody String presta) {
+	@RequestMapping(path="readActiviteByPresta/{presta}", method=RequestMethod.GET)
+	public String readActiviteByPresta(@PathVariable String presta) {
 		List<Activite> listact = activiteService.readActiviteByNomPrestaAct(presta);
 		return "Activites proposee par " + presta + ":\n" + listact;
 	}
