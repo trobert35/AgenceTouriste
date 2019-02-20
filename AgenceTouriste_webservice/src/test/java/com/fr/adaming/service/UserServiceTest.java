@@ -130,7 +130,7 @@ public class UserServiceTest {
 	public void aj_readAllUserValid() {
 		// Tester la lecture d'une liste d'objets valides
 		aa_createValidUser();
-		userService.readAll();
+		assertFalse(userService.readAll().isEmpty());
 
 	}
 
@@ -167,7 +167,7 @@ public class UserServiceTest {
 		aa_createValidUser();
 		long i = user.getId();
 		user.setId(null);
-		assertNull(user2 = userService.update(user));
+		assertNull(userService.update(user));
 		user.setId(i);
 	}
 
@@ -431,7 +431,6 @@ public class UserServiceTest {
 				userService.deleteById(user2.getId());
 			}
 		}
-
 	}
 
 }

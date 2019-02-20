@@ -236,10 +236,10 @@ public class LogementServiceTest {
 		assertThat(logService.readByPrixLogement(88888888888888888888888888888d)).isEmpty();
 	}
 
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void za_readLogementByNullPrix() {
 		// Tester la lecture d'un objet avec prix = null
-		assertThat(logService.readByPrixLogement(null)).isEmpty();
+		logService.readByPrixLogement(null);
 	}
 
 	@Test
