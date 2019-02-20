@@ -15,8 +15,8 @@ import com.fr.adaming.entity.User;
 import com.fr.adaming.service.IAdminService;
 
 /**
- * @author INTI
- *
+ * @author Mohamed EL AGREBI
+ * 		   Thomas S
  */
 @RestController
 @RequestMapping(path = "api/")
@@ -24,10 +24,6 @@ public class AdminRestController implements IAdminRestController {
 
 	@Autowired
 	private IAdminService adminService;
-	/**
-	 * @author Mohamed EL AGREBI
-	 * 		   Thomas S
-	 */
 	
 	// Methodes CRUD Admin
 	/**

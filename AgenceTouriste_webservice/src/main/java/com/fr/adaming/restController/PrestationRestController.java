@@ -16,6 +16,10 @@ import com.fr.adaming.dto.PrestationCreateDTO;
 import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.service.IProduitService;
 
+/**
+ * @author Mohamed EL AGREBI
+ *		   Thomas S
+ */
 @RestController
 @RequestMapping(path = "api/")
 public class PrestationRestController implements IPrestationRestController {

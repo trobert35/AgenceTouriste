@@ -14,16 +14,16 @@ import com.fr.adaming.entity.Activite;
 import com.fr.adaming.enumeration.typeActEnum;
 import com.fr.adaming.service.IActiviteService;
 
+/**
+ * @author Mohamed EL AGREBI
+ *		   Thomas S
+ */
 @RestController
 @RequestMapping(path = "api/")
 public class ActiviteRestController {
 
 	// Methodes CRUD Activite
 
-	/**
-	 *@author Mohamed EL AGREBI
-	 *		  Thomas S
-	 */
 	@Autowired
 	private IActiviteService activiteService;
 

@@ -14,6 +14,10 @@ import com.fr.adaming.entity.Logement;
 import com.fr.adaming.enumeration.typeLogEnum;
 import com.fr.adaming.service.ILogementService;
 
+/**
+ * @author Mohamed EL AGREBI
+ *		   Thomas S
+ */
 @RestController
 @RequestMapping(path = "api/")
 public class LogementRestController {

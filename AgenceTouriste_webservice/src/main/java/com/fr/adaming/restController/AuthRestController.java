@@ -14,8 +14,8 @@ import com.fr.adaming.entity.User;
 import com.fr.adaming.service.IUserService;
 
 /**
- * @author INTI
- *
+ * @author Mohamed EL AGREBI
+ * 		   Thomas S
  */
 @RestController
 @RequestMapping(path = "auth/")
@@ -23,11 +23,6 @@ public class AuthRestController implements IAuthRestController {
 
 	@Autowired
 	private IUserService<User> userService;
-
-	/**
-	 *@author Mohamed EL AGREBI
-	 *		  Thomas S 
-	 */
 	
 	/**
 	 * @param prend les caracteristiques  d un objet User necessaires a la connexion
