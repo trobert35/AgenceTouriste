@@ -213,12 +213,14 @@ public class PrestationServiceTest {
 	@Test
 	public void u_readByDebutPrestaAndFinPresta() throws ParseException {
 		a_createValidPrestation();
-		assertNotNull(prestaService.readByDebutPrestaAndFinPresta(prestation.getDebutPresta(),
-				prestation.getFinPresta()));
+		prestation = prestaService.readByDebutPrestaAndFinPresta(prestation.getDebutPresta(),
+				prestation.getFinPresta()).get(0);
+		assertNotNull(prestation);
+		System.out.println("\n DEBUUUUUUUUUUUUUUUUUUUG *********"+prestation.getNom());
 	}
 	
 	@Test
-	public void u_readByVilleDepartAndDestination() throws ParseException {
+	public void v_readByVilleDepartAndDestination() throws ParseException {
 		//Creation d'une prestation valide puis lecture par Ville
 		
 		//qsdsdf

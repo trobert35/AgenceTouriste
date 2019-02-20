@@ -1,5 +1,7 @@
 package com.fr.adaming.restController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.LoginDTO;
+import com.fr.adaming.dto.PrestationCreateDTO;
+import com.fr.adaming.dto.PrestationDateDTO;
 import com.fr.adaming.dto.RegisterDTO;
+import com.fr.adaming.dto.UserDTO;
+import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.entity.User;
+import com.fr.adaming.service.IProduitService;
 import com.fr.adaming.service.IUserService;
 
 @RestController
@@ -22,6 +29,9 @@ public class UserRestController implements IUserRestController{
 
 	@Autowired
 	private IUserService<User> userService;
+	
+	@Autowired
+	private IProduitService<Prestation> prestaService;
 	
 	
 	@RequestMapping(path="user", method=RequestMethod.POST)
@@ -67,6 +77,27 @@ public class UserRestController implements IUserRestController{
 		User user0 = userService.readById(id);
 		userService.deleteById(id);
 		return user0.getPrenom() + " " + user0.getNom() + " a ete supprime";
+	}
+	@RequestMapping(path="user/{PrestationToBook}/conf/{userToBook}", method=RequestMethod.POST)
+	public String book(@RequestBody PrestationDateDTO dtoPresta, @RequestBody UserDTO dtoUser) throws ParseException {
+		
+		System.out.println("DEBUUUUUUUUUUG"+dtoPresta.getDebutPresta());
+		System.out.println("DEBUUUUUUUUUUG"+dtoPresta.getFinPresta());
+		Prestation p = prestaService.readByDebutPrestaAndFinPresta(
+				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getDebutPresta()),
+				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getFinPresta())).get(0);
+		
+		System.out.println(p.getDebutPresta());
+		System.out.println(p.getFinPresta());
+		
+		User u = userService.readByNomAndPrenom(dtoUser.getNom(), dtoUser.getPrenom());
+		boolean isBookGood = userService.bookPrestation(u, p);
+		if(isBookGood) {
+			return "Reservation effectuee ! Pour l'utilisateur "+dtoUser.getNom()+" et a la date "+dtoPresta.getDebutPresta();
+		}else {
+			return "Reservation ECHEC";
+		}
+
 	}
 
 }

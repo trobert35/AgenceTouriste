@@ -1,5 +1,7 @@
 package com.fr.adaming.restController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -40,9 +42,10 @@ public class PrestationRestController implements IPrestationRestController {
 	private IActiviteService activiteService;
 
 	@RequestMapping(path = "prestation", method = RequestMethod.POST)
-	public String createPrestation(@RequestBody PrestationCreateDTO dtoPresta) {
-		prestaService.createPrestation(new Prestation(dtoPresta.getNom(), dtoPresta.getDebutPresta(),
-				dtoPresta.getFinPresta(),
+	public String createPrestation(@RequestBody PrestationCreateDTO dtoPresta) throws ParseException {
+		prestaService.createPrestation(new Prestation(dtoPresta.getNom(),
+				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getDebutPresta()),
+				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getFinPresta()),
 				dtoPresta.getVilleDepartArrivee(), dtoPresta.getDestination(),
 				dtoPresta.getNbPersonnesMax(), dtoPresta.getCommission(), dtoPresta.getAvis()));
 		return "Prestation cree : " + dtoPresta.getNom();
@@ -132,8 +135,10 @@ public class PrestationRestController implements IPrestationRestController {
 	}
 
 	@RequestMapping(path= "prestation/{presta}", method = RequestMethod.POST)
-	public String calculPrixTotal(@RequestBody PrestationCreateDTO dtoPresta) {
-		Prestation p = prestaService.readByDebutPrestaAndFinPresta(dtoPresta.getDebutPresta(), dtoPresta.getFinPresta()).get(0);
+	public String calculPrixTotal(@RequestBody PrestationCreateDTO dtoPresta) throws ParseException {
+		Prestation p = prestaService.readByDebutPrestaAndFinPresta(
+				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getDebutPresta()),
+				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getFinPresta())).get(0);
 		prestaService.calculPrixTotal(p);
 		return Double.toString(p.getPrixTotal());
 	}

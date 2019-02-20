@@ -159,16 +159,17 @@ public class UserService implements IUserService<User> {
 	 */
 	public boolean bookPrestation(User user, Prestation prestation) {
 
-		if (!(user.getId() != null && user.getId() != 0 && dao.existsById(user.getId()))) {
+		if (user.getId() != null || user.getId() != 0 || !dao.existsById(user.getId())) {
 			log.warn("RESERVATION pour l'Utilisateur FAILED > User n'existe pas");
 			return false;
-		} else if (!(prestation.getId() != null && prestation.getId() != 0 && daoP.existsById(prestation.getId()))) {
+		} else if (prestation.getId() != null || prestation.getId() != 0 || !daoP.existsById(prestation.getId())) {
 			log.warn("RESERVATION pour l'Utilisateur FAILED > Prestation n'existe pas");
 			return false;
 		} else {
 			List<User> midUserList = prestation.getUsers();
 			midUserList.add(user);
 			prestation.setUsers(midUserList);
+			prestation.setNbPersonnes(midUserList.size());
 			log.info("RESERVATION pour l'Utilisateur " + user.getNom() + " et la Prestation " + prestation.getNom()
 					+ " SUCCESS");
 			return true;

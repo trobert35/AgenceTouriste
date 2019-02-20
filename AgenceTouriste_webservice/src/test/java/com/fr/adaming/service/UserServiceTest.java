@@ -35,7 +35,7 @@ public class UserServiceTest {
 	@Autowired
 	private IUserService<User> userService;
 	@Autowired
-	private AdminService prestaService;
+	private PrestationService prestaService;
 
 	private User user, user2;
 	private Prestation presta;
