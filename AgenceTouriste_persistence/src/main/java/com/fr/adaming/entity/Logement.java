@@ -1,7 +1,6 @@
 package com.fr.adaming.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +21,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Logement implements Serializable{
+public class Logement implements Serializable {
 	/**
 	 * 
 	 */
@@ -45,6 +44,7 @@ public class Logement implements Serializable{
 
 	/**
 	 * Constructor with parameters for Logement
+	 * 
 	 * @param prestaLog le nom du prestataire du logement
 	 * @param nom       le nom du logement
 	 * @param ville     la ville ou le logement se situe
@@ -53,8 +53,8 @@ public class Logement implements Serializable{
 	 * @param pension   le type de pension desire
 	 * @param qualite   l'evaluation du logement
 	 */
-	public Logement(String prestaLog, String nom, String ville, double prix,
-			typeLogEnum typeLog, pensionLogEnum pension, qualiteLogEnum qualite) {
+	public Logement(String prestaLog, String nom, String ville, double prix, typeLogEnum typeLog,
+			pensionLogEnum pension, qualiteLogEnum qualite) {
 		super();
 		this.prestaLog = prestaLog;
 		this.nom = nom;

@@ -44,7 +44,7 @@ public class Prestation implements Serializable {
 	private Date finPresta;
 	private String villeDepartArrivee;
 	private String destination;
-	private int nbPersonnes; // le nombre de personnes participant à cette prestation
+	private int nbPersonnes; // le nombre de personnes participant a cette prestation
 	private double commission;
 	private String avis;
 	private int nbPersonnesMax;
@@ -52,19 +52,19 @@ public class Prestation implements Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<Transport> transport; // la liste des transports liés à la prestation
+	private List<Transport> transport; // la liste des transports lies a la prestation
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<Logement> logement; // la liste des logements liés à la prestation
+	private List<Logement> logement; // la liste des logements lies a la prestation
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<Activite> activite; // la liste des activités liés à la prestation
+	private List<Activite> activite; // la liste des activites liés a la prestation
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
-	private List<User> users; // la liste des users ayant achetés la prestation
+	private List<User> users; // la liste des users ayant achetes la prestation
 
 	/**
 	 * Constructor with parameters for Prestation

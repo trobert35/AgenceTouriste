@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @DiscriminatorValue("admin")
-public class Admin extends User implements Serializable{
+public class Admin extends User implements Serializable {
 	/**
 	 * 
 	 */
@@ -29,6 +29,7 @@ public class Admin extends User implements Serializable{
 
 	/**
 	 * Constructor with parameters for Admin
+	 * 
 	 * @param nom    le nom de l'admin
 	 * @param prenom le prenom de l'admin
 	 * @param email  l'email de l'admin

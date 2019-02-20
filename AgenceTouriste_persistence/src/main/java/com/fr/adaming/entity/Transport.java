@@ -40,6 +40,7 @@ public class Transport implements Serializable {
 
 	/**
 	 * Constructor with parameters for Transport
+	 * 
 	 * @param prestaTrans       le nom du prestataire du transport
 	 * @param arriveeTrans      la date d'arrivee du transport
 	 * @param departTrans       la date de depart du transport
@@ -49,8 +50,8 @@ public class Transport implements Serializable {
 	 * @param typeTrans         le type de transport
 	 */
 
-	public Transport(String prestaTrans, String villeArriveeTrans,
-			String villeDepartTrans, Double prix, typeTransEnum typeTrans) {
+	public Transport(String prestaTrans, String villeArriveeTrans, String villeDepartTrans, Double prix,
+			typeTransEnum typeTrans) {
 		super();
 		this.prestaTrans = prestaTrans;
 		this.villeArriveeTrans = villeArriveeTrans;

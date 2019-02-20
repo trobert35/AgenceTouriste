@@ -12,7 +12,7 @@ import lombok.Setter;
 @Embeddable
 @Getter
 @Setter
-public class CB implements Serializable{
+public class CB implements Serializable {
 	/**
 	 * 
 	 */
@@ -22,8 +22,8 @@ public class CB implements Serializable{
 	 */
 
 	@Column(unique = true, nullable = true)
-	private Long numeroCarte; // numéro de la carte bancaire
-	private Date dateExp; // la date d'expiration de la carte bancaire
+	private Long numeroCarte; // numero de la carte bancaire
+	private Date dateExp; // la date d expiration de la carte bancaire
 	private Long crypto; // le cryptogramme de la carte bancaire
 
 }

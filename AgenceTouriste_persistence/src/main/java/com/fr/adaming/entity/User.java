@@ -24,7 +24,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="admin")
+@DiscriminatorColumn(name = "admin")
 public class User implements Serializable {
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class User implements Serializable {
 	@Email
 	private String email;
 	private String pwd;
-	private String urlImg; // l'url correspondant à la photo du user
+	private String urlImg; // l url correspondant a la photo du user
 
 	@Embedded
 	private CB cb;
@@ -69,6 +69,7 @@ public class User implements Serializable {
 
 	/**
 	 * Constructor with parameters (without CB) for User
+	 * 
 	 * @param nom    le nom du user
 	 * @param prenom le prenom du user
 	 * @param email  l'email du user

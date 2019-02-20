@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.fr.adaming.entity.User;
 
-
 public interface IUserDao extends JpaRepository<User, Long> {
 	/**
 	 * @author Claire
@@ -14,7 +13,7 @@ public interface IUserDao extends JpaRepository<User, Long> {
 	 * @return un user selon son email et son mot de passe
 	 */
 	public User findByEmailAndPwd(String email, String pwd);
-	
+
 	/**
 	 * @param nom
 	 * @param prenom

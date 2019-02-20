@@ -8,8 +8,8 @@ public enum typeTransEnum {
 	 * @author Claire
 	 * 
 	 */
-//l'agence de voyage peut définir de quel type de transport il s'agit pour chaque instance de transport créée
-	
+// L agence de voyage peut definir de quel type de transport il s agit pour chaque instance de transport creee
+
 	avion("avion"), train("train"), car("car"), bateau("bateau");
 
 	private String typeTrans = "";

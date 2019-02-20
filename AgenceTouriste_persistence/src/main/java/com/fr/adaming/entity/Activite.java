@@ -36,10 +36,11 @@ public class Activite implements Serializable {
 	private typeActEnum typeAct;
 	private String nom;
 	private String nomPrestaAct;
-	private String urlImg; // l'url de l'image correspondant à l'activité
+	private String urlImg; // l url de l'image correspondant a l activite
 
 	/**
 	 * Constructor with parameters for Activite
+	 * 
 	 * @param prix         le prix de l'activite
 	 * @param typeAct      le type d'activite
 	 * @param nom          le nom de l'activite
