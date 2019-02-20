@@ -11,20 +11,20 @@ public interface IActiviteDao extends JpaRepository<Activite, Long> {
 	/**
 	 * @author Claire
 	 * 
-	 * @param nomPrestaAct
+	 * @param nomPrestaAct le nom du prestataire
 	 * @return une liste d'activités en fonction du nom du prestataire
 	 */
 	public List<Activite> findByNomPrestaAct(String nomPrestaAct);
 
 	/**
-	 * @param prix
+	 * @param prix le prix
 	 * @return une liste d'activités en fonction de leur prix
 	 */
 	public List<Activite> findByPrix(Double prix);
 
 	/**
-	 * @param typeAct
-	 * @return une liste d'activités en fonction de leur type
+	 * @param typeAct le type d'activite
+	 * @return une liste d'activites en fonction de leur type
 	 */
 	public List<Activite> findByTypeAct(typeActEnum typeAct);
 }

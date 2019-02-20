@@ -10,8 +10,8 @@ public interface IAdminDao extends JpaRepository<User, Long> {
 	 */
 
 	/**
-	 * @param email
-	 * @param pwd
+	 * @param email l'email
+	 * @param pwd le mot de passe
 	 * @return un Admin trouve grace a l'email et le password
 	 */
 	public User findByEmailAndPwd(String email, String pwd);

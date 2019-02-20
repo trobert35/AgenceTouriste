@@ -42,8 +42,6 @@ public class Transport implements Serializable {
 	 * Constructor with parameters for Transport
 	 * 
 	 * @param prestaTrans       le nom du prestataire du transport
-	 * @param arriveeTrans      la date d'arrivee du transport
-	 * @param departTrans       la date de depart du transport
 	 * @param villeArriveeTrans le nom de la ville d'arrivee du transport
 	 * @param villeDepartTrans  le nom de la ville de depart du transport
 	 * @param prix              le prix du transport

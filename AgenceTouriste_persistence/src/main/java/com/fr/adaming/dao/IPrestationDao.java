@@ -13,16 +13,16 @@ public interface IPrestationDao extends JpaRepository<Prestation, Long> {
 	 */
 
 	/**
-	 * @param debutPresta
-	 * @param finPresta
+	 * @param debutPresta debut prestation
+	 * @param finPresta fin prestation
 	 * @return une liste de prestations selon la date de début et la date de fin de
 	 *         prestation
 	 */
 	public List<Prestation> findByDebutPrestaAndFinPresta(Date debutPresta, Date finPresta);
 
 	/**
-	 * @param villeDepartArrivee
-	 * @param destination
+	 * @param villeDepartArrivee ville de depart et aussi d'arrivee
+	 * @param destination ville de destination
 	 * @return une liste de prestations selon la ville de départ(qui est aussi celle
 	 *         de retour) et la ville de destination
 	 */
