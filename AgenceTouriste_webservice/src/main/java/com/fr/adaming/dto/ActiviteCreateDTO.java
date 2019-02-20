@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class ActiviteCreateDTO {
 
+
 	private Double prix;
 	private typeActEnum typeAct;
 	private String nom;

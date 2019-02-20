@@ -22,6 +22,10 @@ public class LogementRestController {
 	@Autowired
 	private ILogementService logementService;
 
+	/**
+	 * @param logement logement dto
+	 * @return nom logement + String
+	 */
 	@RequestMapping(path = "logement", method = RequestMethod.POST)
 	public String createLogement(@RequestBody LogementCreateDTO logement) {
 		logementService.createLogement(new Logement(logement.getPrestaLog(), logement.getNom(), logement.getVille(),
@@ -29,24 +33,39 @@ public class LogementRestController {
 		return logement.getNom() + " est un logement cree";
 	}
 
+	/**
+	 * @param logement objet logement
+	 * @return nom logement + String
+	 */
 	@RequestMapping(path = "logement", method = RequestMethod.PUT)
 	public String updateLogement(@RequestBody Logement logement) {
 		logementService.updateLogement(logement);
 		return logement.getNom() + " est un logement modifie";
 	}
 
+	/**
+	 * @return liste de logements
+	 */
 	@RequestMapping(path = "logement", method = RequestMethod.GET)
 	public List<Logement> readAllLogement() {
 		List<Logement> listLogement = logementService.readAllLogement();
 		return listLogement;
 	}
 
+	/**
+	 * @param id id logement
+	 * @return String + logement
+	 */
 	@RequestMapping(path = "logement/{id}", method = RequestMethod.GET)
 	public String readByIdLogement(@PathVariable Long id) {
 		Logement logement = logementService.readLogementById(id);
 		return "Logement : " + logement;
 	}
 
+	/**
+	 * @param id id logement
+	 * @return nom logement + String
+	 */
 	@RequestMapping(path = "logement/{id}", method = RequestMethod.DELETE)
 	public String deleteLogement(@PathVariable Long id) {
 		Logement logement = logementService.readLogementById(id);
@@ -54,24 +73,40 @@ public class LogementRestController {
 		return logement.getNom() + " a correctement ete supprime";
 	}
 
+	/**
+	 * @param prestaLog nom prestataire
+	 * @return String + liste logements
+	 */
 	@RequestMapping(path = "logement/{prestaLog}", method = RequestMethod.GET)
 	public String readLogementByPresta(@PathVariable String prestaLog) {
 		List<Logement> listlogement = logementService.readLogementByPrestaLog(prestaLog);
 		return "Logement(s) fourni(s) par " + prestaLog + " :\n" + listlogement;
 	}
 
+	/**
+	 * @param ville ville logement
+	 * @return String + liste logement
+	 */
 	@RequestMapping(path = "logement/{ville}", method = RequestMethod.GET)
 	public String readByVille(@PathVariable String ville) {
 		List<Logement> listLogement = logementService.readByVille(ville);
 		return "Pour la ville de " + ville + ", voici le(s) logement(s) : \n" + listLogement;
 	}
 
+	/**
+	 * @param type type logement
+	 * @return String + liste de logements
+	 */
 	@RequestMapping(path = "logement/{typeLog}", method = RequestMethod.GET)
 	public String readByTypeOfLogement(@PathVariable typeLogEnum type) {
 		List<Logement> listLogement = logementService.readByTypeLog(type);
 		return "Pour le type " + type + ", voici le(s) logement(s) : \n" + listLogement;
 	}
 
+	/**
+	 * @param prix prix
+	 * @return String + liste logements
+	 */
 	@RequestMapping(path = "logement/{prixLog}", method = RequestMethod.GET)
 	public String readByPrixLogement(@PathVariable Double prix) {
 		List<Logement> listLogement = logementService.readByPrixLogement(prix);

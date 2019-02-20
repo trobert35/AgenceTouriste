@@ -23,6 +23,11 @@ public class PrestationRestController implements IPrestationRestController {
 	@Autowired
 	private IProduitService<Prestation> prestaService;
 
+	/**
+	 * @param dtoPresta dto prestation
+	 * @return String + nom presta
+	 * @throws ParseException parseException
+	 */
 	@RequestMapping(path = "prestation", method = RequestMethod.POST)
 	public String createPrestation(@RequestBody PrestationCreateDTO dtoPresta) throws ParseException {
 		prestaService.createPrestation(
@@ -33,12 +38,20 @@ public class PrestationRestController implements IPrestationRestController {
 		return "Prestation creee : " + dtoPresta.getNom();
 	}
 
+	/**
+	 * @param presta un objet prestation
+	 * @return String + l'objet prestation
+	 */
 	@RequestMapping(path = "prestation", method = RequestMethod.PUT)
 	public String updatePrestation(@RequestBody Prestation presta) {
 		presta = prestaService.updatePrestation(presta);
 		return "Prestation modifiee : " + presta;
 	}
 
+	/**
+	 * @param id id de la prestation
+	 * @return nom de la presta + String
+	 */
 	@RequestMapping(path = "prestation/{id}", method = RequestMethod.DELETE)
 	public String deletePrestation(@PathVariable Long id) {
 		Prestation presta = prestaService.readPrestationById(id);
@@ -46,18 +59,30 @@ public class PrestationRestController implements IPrestationRestController {
 		return presta.getNom() + " a ete supprimee";
 	}
 
+	/**
+	 * @return liste de prestations
+	 */
 	@RequestMapping(path = "prestation", method = RequestMethod.GET)
 	public List<Prestation> readAll() {
 		List<Prestation> listPrestation = prestaService.readAllPrestation();
 		return listPrestation;
 	}
 
+	/**
+	 * @param id id de la prestation
+	 * @return String + prestation
+	 */
 	@RequestMapping(path = "prestation/{idPresta}", method = RequestMethod.GET)
 	public String readById(@PathVariable Long id) {
 		Prestation presta = prestaService.readPrestationById(id);
 		return "Prestation : " + presta;
 	}
 
+	/**
+	 * @param debut date de debut de la presta
+	 * @param fin date de fin de la presta
+	 * @return String + liste de prestation
+	 */
 	@RequestMapping(path = "prestation/{debut}/conf/{fin}", method = RequestMethod.GET)
 	public String readByDatesDePresta(@PathVariable("debut") Date debut, @PathVariable("fin") Date fin) {
 		List<Prestation> listPrestation = prestaService.readByDebutPrestaAndFinPresta(debut, fin);
@@ -65,6 +90,11 @@ public class PrestationRestController implements IPrestationRestController {
 				+ listPrestation;
 	}
 
+	/**
+	 * @param villeResidence ville de residence
+	 * @param destination ville de destination
+	 * @return String + liste de prestations
+	 */
 	@RequestMapping(path = "prestation/{villeResidence}/conf/{destination}", method = RequestMethod.GET)
 	public String readByResidenceAndDestinationPresta(@PathVariable("villeResidence") String villeResidence,
 			@PathVariable("destination") String destination) {
@@ -74,6 +104,11 @@ public class PrestationRestController implements IPrestationRestController {
 				+ ", voici le(s) prestation(s) : \n" + listPrestation;
 	}
 
+	/**
+	 * @param dtoPresta dto presta
+	 * @return le prix total combine entre le prix transport + logement + activite et en comptant la commission de l'agence
+	 * @throws ParseException parseException
+	 */
 	@RequestMapping(path = "prestation/{presta}", method = RequestMethod.POST)
 	public String calculPrixTotal(@RequestBody PrestationCreateDTO dtoPresta) throws ParseException {
 		Prestation p = prestaService
