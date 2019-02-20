@@ -32,5 +32,5 @@ public interface ILogementDao extends JpaRepository<Logement, Long> {
 	 * @param prix le prix
 	 * @return une liste de logements selon le prix
 	 */
-	public List<Logement> findByPrix(Double prix);
+	public List<Logement> findByPrix(double prix);
 }
