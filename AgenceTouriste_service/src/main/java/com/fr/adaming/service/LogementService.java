@@ -1,16 +1,19 @@
 package com.fr.adaming.service;
 
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.stereotype.Service;
 
 import com.fr.adaming.dao.ILogementDao;
 import com.fr.adaming.entity.Logement;
 import com.fr.adaming.enumeration.typeLogEnum;
 
+@Service
 public class LogementService implements ILogementService{
 
 	@Autowired

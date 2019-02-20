@@ -6,11 +6,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.stereotype.Service;
 
 import com.fr.adaming.dao.ITransportDao;
 import com.fr.adaming.entity.Transport;
 import com.fr.adaming.enumeration.typeTransEnum;
 
+@Service
 public class TransportService implements ITransportService {
 
 	@Autowired

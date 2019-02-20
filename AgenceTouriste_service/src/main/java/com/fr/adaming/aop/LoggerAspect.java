@@ -15,15 +15,16 @@ import com.fr.adaming.service.AdminService;
 public class LoggerAspect {
 
 	/**
-	 * @param jp 
-	 * @param e Throwable Exception qui sera attrapée par la methode
-	 * La methode enregistre la stack Trace dans le fichier de Log toute erreur consideree comme FATAL
+	 * @param jp
+	 * @param e  Throwable Exception qui sera attrapée par la methode La methode
+	 *           enregistre la stack Trace dans le fichier de Log toute erreur
+	 *           consideree comme FATAL
 	 */
-	@AfterThrowing(pointcut="execution(* com.fr.adaming.service.*(..))", throwing ="e")
-	public void LogError(JoinPoint jp,Throwable e) {
-		
+	@AfterThrowing(pointcut = "execution(* com.fr.adaming.service.*(..))", throwing = "e")
+	public void LogError(JoinPoint jp, Throwable e) {
+
 		Logger log = Logger.getLogger(AdminService.class);
-		
+
 		log.fatal(e.getStackTrace());
 	}
 }
