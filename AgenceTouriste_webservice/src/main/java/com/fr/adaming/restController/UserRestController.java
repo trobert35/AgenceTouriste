@@ -29,7 +29,6 @@ import com.fr.adaming.service.IUserService;
 @RequestMapping(path = "api/")
 public class UserRestController implements IUserRestController {
 
-	
 	@Autowired
 	private IUserService<User> userService;
 
@@ -48,7 +47,7 @@ public class UserRestController implements IUserRestController {
 	}
 
 	/**
-	 * @param logDto
+	 * @param logDto dto login
 	 * @return String
 	 */
 	@RequestMapping(path = "login", method = RequestMethod.POST)
@@ -67,7 +66,7 @@ public class UserRestController implements IUserRestController {
 	}
 
 	/**
-	 * @param id
+	 * @param id id user
 	 * @return String
 	 */
 	@RequestMapping(path = "user/{id}", method = RequestMethod.GET)
@@ -77,8 +76,8 @@ public class UserRestController implements IUserRestController {
 	}
 
 	/**
-	 * @param nom
-	 * @param prenom
+	 * @param nom    nom
+	 * @param prenom prenom
 	 * @return User object
 	 */
 	@RequestMapping(path = "user/{nom}/conf/{prenom}", method = RequestMethod.GET)
@@ -88,7 +87,7 @@ public class UserRestController implements IUserRestController {
 	}
 
 	/**
-	 * @param User Object
+	 * @param User Object user
 	 * @return String
 	 */
 	@RequestMapping(path = "user", method = RequestMethod.PUT)
@@ -99,8 +98,8 @@ public class UserRestController implements IUserRestController {
 	}
 
 	/**
-	 * @param id
-	 * @return
+	 * @param id id user
+	 * @return user + String
 	 */
 	@RequestMapping(path = "user/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long id) {
@@ -110,9 +109,9 @@ public class UserRestController implements IUserRestController {
 	}
 
 	/**
-	 * @param dtoBook
+	 * @param dtoBook dto book
 	 * @return String
-	 * @throws ParseException
+	 * @throws ParseException parseException
 	 */
 	@RequestMapping(path = "user/PrestationToBook/conf/userToBook", method = RequestMethod.POST)
 	public String book(@RequestBody BookingDTO dtoBook) throws ParseException {
