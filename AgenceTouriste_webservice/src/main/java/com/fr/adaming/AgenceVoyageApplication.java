@@ -1,25 +1,19 @@
 package com.fr.adaming;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.fr.adaming.dao.IUserDao;
-import com.fr.adaming.entity.CB;
-import com.fr.adaming.entity.Prestation;
-import com.fr.adaming.entity.User;
-import com.fr.adaming.service.AdminService;
-import com.fr.adaming.service.UserService;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
+@EnableSwagger2
 public class AgenceVoyageApplication {
 	/**
 	 * @author Claire
 	 * @param args
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 
 	public static void main(String[] args) throws ParseException {

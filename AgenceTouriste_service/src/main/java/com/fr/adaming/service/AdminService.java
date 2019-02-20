@@ -1,6 +1,5 @@
 package com.fr.adaming.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,20 +8,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 
-import com.fr.adaming.dao.IActiviteDao;
-import com.fr.adaming.dao.ILogementDao;
-import com.fr.adaming.dao.IPrestationDao;
-import com.fr.adaming.dao.ITransportDao;
 import com.fr.adaming.dao.IUserDao;
-import com.fr.adaming.entity.Activite;
 import com.fr.adaming.entity.Admin;
-import com.fr.adaming.entity.Logement;
-import com.fr.adaming.entity.Prestation;
-import com.fr.adaming.entity.Transport;
 import com.fr.adaming.entity.User;
-import com.fr.adaming.enumeration.typeActEnum;
-import com.fr.adaming.enumeration.typeLogEnum;
-import com.fr.adaming.enumeration.typeTransEnum;
 
 @Service
 public class AdminService
@@ -145,5 +133,4 @@ public class AdminService
 		daoU.deleteById(id);
 		return "Admin supprime";
 	}
-	
 }

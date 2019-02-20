@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.junit.After;
@@ -20,7 +21,16 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.fr.adaming.entity.Activite;
+import com.fr.adaming.entity.Logement;
 import com.fr.adaming.entity.Prestation;
+import com.fr.adaming.entity.Transport;
+import com.fr.adaming.entity.User;
+import com.fr.adaming.enumeration.pensionLogEnum;
+import com.fr.adaming.enumeration.qualiteLogEnum;
+import com.fr.adaming.enumeration.typeActEnum;
+import com.fr.adaming.enumeration.typeLogEnum;
+import com.fr.adaming.enumeration.typeTransEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -228,6 +238,51 @@ public class PrestationServiceTest {
 		assertNotNull(prestaService.readByVilleDepartArriveeAndDestination(
 				prestation.getVilleDepartArrivee(), prestation.getDestination()));
 	}
+	
+	@Test
+	public void v_calculPrixTotalValid() throws ParseException {
+		prestation = new Prestation("Camping", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
+				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
+				"Paris", "Marseille", 60, 1, null);
+		List<Transport> tlist = prestation.getTransport();
+		List<Logement> llist = prestation.getLogement();
+		List<Activite> alist = prestation.getActivite();
+		alist.add(new Activite(210.12, typeActEnum.croisiere, "Nikta'mer", "Moi"));
+		llist.add(new Logement("Jean-Claude", "Au bon Poulet", "Nîmes", 300d, typeLogEnum.auberge, pensionLogEnum.toutInclus, qualiteLogEnum.deux));
+		tlist.add(new Transport("Cash'air", "Jérusalem", "Ballon", 4500d, typeTransEnum.avion));
+		prestation.setActivite(alist);
+		prestation.setLogement(llist);
+		prestation.setTransport(tlist);
+		prestaService.calculPrixTotal(prestation);
+	}
+	
+	@Test
+	public void v_calculPrixTotalWithoutTransport() throws ParseException {
+		prestation = new Prestation("Camping", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
+				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
+				"Paris", "Marseille", 60, 1, null);
+		List<Logement> llist = prestation.getLogement();
+		List<Activite> alist = prestation.getActivite();
+		alist.add(new Activite(210.12, typeActEnum.croisiere, "Nikta'mer", "Moi"));
+		llist.add(new Logement("Jean-Claude", "Au bon Poulet", "Nîmes", 300d, typeLogEnum.auberge, pensionLogEnum.toutInclus, qualiteLogEnum.deux));
+		prestation.setActivite(alist);
+		prestation.setLogement(llist);
+		prestaService.calculPrixTotal(prestation);
+	}
+	
+	@Test
+	public void v_calculPrixTotalWithoutParameters() throws ParseException {
+		prestation = new Prestation("Camping", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
+				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
+				"Paris", "Marseille", 60, 1, null);
+		prestaService.calculPrixTotal(prestation);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void v_calculPrixTotalWithPrestationNull() throws ParseException {
+		prestaService.calculPrixTotal(null);
+	}
+	
 	
 	@After
 	public void after() {

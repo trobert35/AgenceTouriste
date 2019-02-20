@@ -12,10 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +24,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Prestation implements Serializable{
+public class Prestation implements Serializable {
 	/**
 	 * 
 	 */
@@ -47,11 +44,11 @@ public class Prestation implements Serializable{
 	private Date finPresta;
 	private String villeDepartArrivee;
 	private String destination;
-	private int nbPersonnes; // le nombre de personnes participant à cette formation
+	private int nbPersonnes; // le nombre de personnes participant à cette prestation
 	private double commission;
 	private String avis;
 	private int nbPersonnesMax;
-	private double prixTotal;
+	private double prixTotal; // le prix total de la prestation
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prestation")
