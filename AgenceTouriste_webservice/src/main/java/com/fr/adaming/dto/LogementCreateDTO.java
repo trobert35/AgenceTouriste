@@ -7,9 +7,10 @@ import com.fr.adaming.enumeration.typeLogEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class LogementCreateDTO {
-	
+
 	private String prestaLog;
 	private String nom;
 	private String ville;

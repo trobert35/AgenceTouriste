@@ -9,13 +9,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class LoginDTO {
 
 	@Email
-	@ApiModelProperty(example="swagger@gmail.com")
+	@ApiModelProperty(example = "swagger@gmail.com")
 	private String email;
-	
+
 	@NotNull
 	private String pwd;
 }

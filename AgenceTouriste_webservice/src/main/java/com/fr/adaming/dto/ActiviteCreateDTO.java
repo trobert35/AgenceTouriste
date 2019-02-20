@@ -5,7 +5,8 @@ import com.fr.adaming.enumeration.typeActEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class ActiviteCreateDTO {
 
 	private Double prix;
