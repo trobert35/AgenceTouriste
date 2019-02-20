@@ -12,6 +12,11 @@ import com.fr.adaming.dao.ITransportDao;
 import com.fr.adaming.entity.Transport;
 import com.fr.adaming.enumeration.typeTransEnum;
 
+/**
+ * @author Thomas S
+ * @author Maxime
+ *
+ */
 @Service
 public class TransportService implements ITransportService {
 
@@ -21,6 +26,7 @@ public class TransportService implements ITransportService {
 
 	// Methodes CRUD Transport + readTransportByPrestaTrans + readByPrix +
 	// readByTypeTrans
+	
 	/**
 	 * Insere un objet Transport dans la database si transport y est inexistant
 	 * 
@@ -107,8 +113,10 @@ public class TransportService implements ITransportService {
 
 	/**
 	 * Ressort un objet Transport de la database, en utilisant son prestaTrans, si
-	 * transport y existe @param prestaTrans (String) nom du prestataire de
-	 * transport @return une List de Transport @throws
+	 * transport y existe
+	 * 
+	 * @param prestaTrans (String) nom du prestataire de transport
+	 * @return une List de Transport
 	 */
 	public List<Transport> readTransportByPrestaTrans(String prestaTrans) {
 		List<Transport> lili = daoT.findByPrestaTrans(prestaTrans);
@@ -123,8 +131,10 @@ public class TransportService implements ITransportService {
 
 	/**
 	 * Ressort un objet Transport de la database, en utilisant son prix, si
-	 * transport y existe @param prix (Double) prix de transport @return une List de
-	 * Transport @throws
+	 * transport y existe
+	 * 
+	 * @param prix (Double) prix de transport
+	 * @return une List de Transport
 	 */
 	public List<Transport> readByPrix(Double prix) {
 		return daoT.findByPrix(prix);
@@ -132,8 +142,10 @@ public class TransportService implements ITransportService {
 
 	/**
 	 * Ressort un objet Transport de la database, en utilisant son type, si
-	 * transport y existe @param type (Enum) type de transport @return une List de
-	 * Transport @throws
+	 * transport y existe
+	 * 
+	 * @param type (Enum) type de transport
+	 * @return une List de Transport
 	 */
 	public List<Transport> readByTypeTrans(typeTransEnum type) {
 		return daoT.findByTypeTrans(type);

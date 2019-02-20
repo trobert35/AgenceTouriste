@@ -11,13 +11,13 @@ import com.fr.adaming.dao.IUserDao;
 import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.entity.User;
 
+/**
+ * @author Thomas S
+ * @author Maxime
+ *
+ */
 @Service
 public class UserService implements IUserService<User> {
-
-	/**
-	 * @author Thomas S
-	 * @author Maxime
-	 */
 
 	@Autowired
 	private IUserDao dao;
@@ -28,10 +28,9 @@ public class UserService implements IUserService<User> {
 	private Logger log = Logger.getLogger(UserService.class);
 
 	/**
-	 * @param String nom
-	 * @param String prenom
-	 * @return un user selon son nom et son prenom ou null si le nom ou le prenom
-	 *         est incorrect
+	 * @param nom    nom du User
+	 * @param prenom prenom du User
+	 * @return un objet de la classe User
 	 */
 	public User readByNomAndPrenom(String nom, String prenom) {
 		try {
@@ -45,8 +44,8 @@ public class UserService implements IUserService<User> {
 	}
 
 	/**
-	 * @param String email
-	 * @param String pwd
+	 * @param email email du User
+	 * @param pwd   pwd du User
 	 * @return un user selon son email et son pwd ou null si l'email ou le pwd est
 	 *         incorrect
 	 */
@@ -62,7 +61,7 @@ public class UserService implements IUserService<User> {
 	}
 
 	/**
-	 * @param user
+	 * @param user objet de classe User
 	 * @return un user si son id est null, égal à 0 ou s'il n'existe pas dans la BD;
 	 *         retourne null dans le cas contraire
 	 */
@@ -77,7 +76,7 @@ public class UserService implements IUserService<User> {
 	}
 
 	/**
-	 * @param user
+	 * @param user objet de classe User
 	 * @return un user si son id est null, égal à 0 ou s'il n'existe pas dans la BD;
 	 *         retourne null dans le cas contraire
 	 */
@@ -92,7 +91,7 @@ public class UserService implements IUserService<User> {
 	}
 
 	/**
-	 * @param user
+	 * @param user objet de classe User
 	 * @return un user si son id est différent de null, n'est pas égal à 0 ou s'il
 	 *         existe dans la BD; retourne null dans le cas contraire
 	 */
@@ -107,8 +106,8 @@ public class UserService implements IUserService<User> {
 	}
 
 	/**
-	 * @param id
-	 * @return un user s'il n'est pas null; renvoie un warning dans le cas contraire
+	 * @param id id du User
+	 * @return un user s'il n'est pas null, renvoie un warning dans le cas contraire
 	 */
 	public User readById(Long id) {
 		User u = dao.findById(id).get();
@@ -122,7 +121,7 @@ public class UserService implements IUserService<User> {
 
 	/**
 	 * 
-	 * @return une liste de user renvoie un warning si cette liste est vide
+	 * @return une List de User, renvoie un warning si cette liste est vide
 	 */
 	public List<User> readAll() {
 		List<User> lili = dao.findAll();
@@ -135,8 +134,8 @@ public class UserService implements IUserService<User> {
 	}
 
 	/**
-	 * @param id
-	 * @return un string pour signaler que l'user a bien été supprimé
+	 * @param id id du User
+	 * @return String
 	 */
 	public String deleteById(Long id) {
 		dao.deleteById(id);
@@ -144,8 +143,8 @@ public class UserService implements IUserService<User> {
 	}
 
 	/**
-	 * @param user
-	 * @param prestation
+	 * @param user       objet de classe User
+	 * @param prestation objet de classe Prestation
 	 * @return false si la prestation et/ou le user n'existent pas dans la BD;
 	 *         renvoie true si l'user et la prestation ont bien été associés l'un à
 	 *         l'autre

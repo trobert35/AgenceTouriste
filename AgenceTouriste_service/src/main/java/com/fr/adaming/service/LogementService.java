@@ -12,6 +12,11 @@ import com.fr.adaming.dao.ILogementDao;
 import com.fr.adaming.entity.Logement;
 import com.fr.adaming.enumeration.typeLogEnum;
 
+/**
+ * @author Thomas S
+ * @author Maxime
+ *
+ */
 @Service
 public class LogementService implements ILogementService {
 
@@ -21,6 +26,7 @@ public class LogementService implements ILogementService {
 
 	// Methodes CRUD Logement + readLogementByPrestaLog + readByVille +
 	// readByTypeLog
+	
 	/**
 	 * Insere un objet Logement dans la database si logement y est inexistant
 	 * 
@@ -107,8 +113,10 @@ public class LogementService implements ILogementService {
 
 	/**
 	 * Ressort un objet Logement de la database en utilisant son prestaLog si
-	 * logement y existe @param prestaLog (String) nom du prestataire de
-	 * logement @return une List de Logement @throws
+	 * logement y existe
+	 * 
+	 * @param prestaLog (String) nom du prestataire de logement
+	 * @return une List de Logement
 	 */
 	public List<Logement> readLogementByPrestaLog(String prestaLog) {
 		List<Logement> lili = daoL.findByPrestaLog(prestaLog);
@@ -123,8 +131,10 @@ public class LogementService implements ILogementService {
 
 	/**
 	 * Ressort un objet Logement de la database en utilisant sa ville si logement y
-	 * existe @param ville (String) nom de la ville de logement @return une List de
-	 * Logement @throws
+	 * existe
+	 * 
+	 * @param ville (String) nom de la ville de logement
+	 * @return une List de Logement
 	 */
 	public List<Logement> readByVille(String ville) {
 		return daoL.findByVille(ville);
@@ -132,8 +142,10 @@ public class LogementService implements ILogementService {
 
 	/**
 	 * Ressort un objet Logement de la database en utilisant son typeLog si logement
-	 * y existe @param typeLog (Enum) type de logement @return une List de
-	 * Logement @throws
+	 * y existe
+	 * 
+	 * @param typeLog (Enum) type de logement
+	 * @return une List de Logement
 	 */
 	public List<Logement> readByTypeLog(typeLogEnum typeLog) {
 		return daoL.findByTypeLog(typeLog);
@@ -141,8 +153,10 @@ public class LogementService implements ILogementService {
 
 	/**
 	 * Ressort un objet Logement de la database en utilisant son prix si logement y
-	 * existe @param prix (Double) prix de logement @return une List de
-	 * Logement @throws
+	 * existe
+	 * 
+	 * @param prix (Double) prix de logement
+	 * @return une List de Logement
 	 */
 	public List<Logement> readByPrixLogement(Double prix) {
 		return daoL.findByPrix(prix);

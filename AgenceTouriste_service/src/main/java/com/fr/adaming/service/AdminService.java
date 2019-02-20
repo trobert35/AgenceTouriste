@@ -12,13 +12,14 @@ import com.fr.adaming.dao.IUserDao;
 import com.fr.adaming.entity.Admin;
 import com.fr.adaming.entity.User;
 
+/**
+ * @author Thomas S
+ * @author Maxime
+ * @author Thomas R
+ *
+ */
 @Service
 public class AdminService implements IAdminService {
-	/**
-	 * @author Thomas S
-	 * @author Maxime
-	 * @author Thomas R
-	 */
 
 	@Autowired
 	private IUserDao daoU;
@@ -26,6 +27,7 @@ public class AdminService implements IAdminService {
 	private Logger log = Logger.getLogger(AdminService.class);
 
 	// Methodes CRUD Admin
+	
 	/**
 	 * Insere un objet Admin dans la database si admin y est inexistant
 	 * 
@@ -83,11 +85,11 @@ public class AdminService implements IAdminService {
 	}
 
 	/**
-	 * Ressort un objet User (Admin) de la database si il existe
+	 * Ressort un objet User (Admin) de la database s'il existe
 	 * 
-	 * @param email
-	 * @param pwd
-	 * @return Null si l'email et le pwd n'existe pas, Admin si ils existent
+	 * @param email email du User
+	 * @param pwd   pwd du User
+	 * @return Null si l'email et le pwd n'existe pas, Admin s'ils existent
 	 */
 	public User readAdminByEmailAndPwd(String email, String pwd) {
 		try {

@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 import com.fr.adaming.dao.IPrestationDao;
 import com.fr.adaming.entity.Prestation;
 
+/**
+ * @author Thomas S
+ * @author Maxime
+ *
+ */
 @Service
 public class PrestationService implements IProduitService<Prestation> {
 
@@ -113,9 +118,11 @@ public class PrestationService implements IProduitService<Prestation> {
 
 	/**
 	 * Ressort un objet Prestation de la database, en utilisant son debutPresta et
-	 * sa finPresta, si prestation y existe @param debutPresta (Date) date de debut
-	 * de prestation @param finPresta (Date) date de fin de prestation @return une
-	 * List de Prestation @throws
+	 * sa finPresta, si prestation y existe
+	 * 
+	 * @param debutPresta (Date) date de debut de prestation
+	 * @param finPresta   (Date) date de fin de prestation
+	 * @return une List de Prestation
 	 */
 	public List<Prestation> readByDebutPrestaAndFinPresta(Date debutPresta, Date finPresta) {
 		return daoP.findByDebutPrestaAndFinPresta(debutPresta, finPresta);
@@ -123,10 +130,11 @@ public class PrestationService implements IProduitService<Prestation> {
 
 	/**
 	 * Ressort un objet Prestation de la database, en utilisant sa
-	 * villeDepartArrivee et sa destination, si prestation y existe @param
-	 * villeDepartArrivee (String) ville de depart et de retour de prestation @param
-	 * destination (String) destination de prestation @return une List de
-	 * Prestation @throws
+	 * villeDepartArrivee et sa destination, si prestation y existe
+	 * 
+	 * @param villeDepartArrivee (String) ville de depart et de retour de prestation
+	 * @param destination        (String) destination de prestation
+	 * @return une List de Prestation
 	 */
 	public List<Prestation> readByVilleDepartArriveeAndDestination(String villeDepartArrivee, String destination) {
 		return daoP.findByVilleDepartArriveeAndDestination(villeDepartArrivee, destination);
@@ -138,7 +146,6 @@ public class PrestationService implements IProduitService<Prestation> {
 	 * 
 	 * @param prestation prend une instance de l objet Prestation en param, ne doit
 	 *                   pas etre null
-	 * @return void
 	 * @throws NullPointerException si prestation est null
 	 */
 	public void calculPrixTotal(Prestation prestation) {

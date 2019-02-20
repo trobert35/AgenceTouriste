@@ -15,8 +15,8 @@ import com.fr.adaming.service.AdminService;
 public class LoggerAspect {
 
 	/**
-	 * @param jp
-	 * @param e  Throwable Exception qui sera attrapée par la methode La methode
+	 * @param jp JoinPoint
+	 * @param e  Throwable Exception qui sera attrapee par la methode La methode
 	 *           enregistre la stack Trace dans le fichier de Log toute erreur
 	 *           consideree comme FATAL
 	 */

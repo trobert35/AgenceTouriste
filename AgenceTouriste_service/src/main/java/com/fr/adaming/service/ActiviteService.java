@@ -12,6 +12,11 @@ import com.fr.adaming.dao.IActiviteDao;
 import com.fr.adaming.entity.Activite;
 import com.fr.adaming.enumeration.typeActEnum;
 
+/**
+ * @author Thomas S
+ * @author Maxime
+ *
+ */
 @Service
 public class ActiviteService implements IActiviteService {
 
@@ -21,6 +26,7 @@ public class ActiviteService implements IActiviteService {
 
 	// Methodes CRUD Activite + readActiviteByPrestaAct + readActiviteByPrix +
 	// readActiviteByTypeAct
+	
 	/**
 	 * Insere un objet Activite dans la database si activite y est inexistant
 	 * 
@@ -109,8 +115,10 @@ public class ActiviteService implements IActiviteService {
 
 	/**
 	 * Ressort un objet Activite de la database, en utilisant son nomPrestaAct, si
-	 * activite y existe @param nomPrestaAct (String) nom du prestataire de
-	 * activite @return une List de Activite @throws
+	 * activite y existe
+	 * 
+	 * @param nomPrestaAct (String) nom du prestataire de activite
+	 * @return une List de Activite
 	 */
 	public List<Activite> readActiviteByNomPrestaAct(String nomPrestaAct) {
 		List<Activite> lili = daoA.findByNomPrestaAct(nomPrestaAct);
@@ -125,8 +133,10 @@ public class ActiviteService implements IActiviteService {
 
 	/**
 	 * Ressort un objet Activite de la database, en utilisant son prix, si activite
-	 * y existe @param prix (Double) prix de activite @return une List de
-	 * Activite @throws
+	 * y existe
+	 * 
+	 * @param prix (Double) prix de activite
+	 * @return une List de Activite
 	 */
 	public List<Activite> readActiviteByPrix(Double prix) {
 		return daoA.findByPrix(prix);
@@ -134,8 +144,10 @@ public class ActiviteService implements IActiviteService {
 
 	/**
 	 * Ressort un objet Activite de la database, en utilisant son typeAct, si
-	 * activite y existe @param typeAct (Enum) type de activite @return une List de
-	 * Activite @throws
+	 * activite y existe
+	 * 
+	 * @param typeAct (Enum) type de activite
+	 * @return une List de Activite
 	 */
 	public List<Activite> readActiviteByTypeAct(typeActEnum typeAct) {
 		return daoA.findByTypeAct(typeAct);
