@@ -27,7 +27,7 @@ public class AdminRestController implements IAdminRestController {
 	
 	// Methodes CRUD Admin
 	/**
-	 * @param AdminCreateDTO prend les caracs necessaires pour creation d un admin 
+	 * @param admin AdminCreateDTO prend les caracs necessaires pour creation d un admin 
 	 * @return String retournant le nom de l admin cree
 	 */
 	@RequestMapping(path = "admin", method = RequestMethod.POST)
@@ -38,7 +38,7 @@ public class AdminRestController implements IAdminRestController {
 	}
 	
 	/**
-	 * @param AdminCreateDTO prend les caracs necessaires pour la modification d un admin 
+	 * @param admin AdminCreateDTO prend les caracs necessaires pour la modification d un admin 
 	 * @return String retournant le nom l admin modifie
 	 */
 	@RequestMapping(path = "admin", method = RequestMethod.PUT)
@@ -48,7 +48,7 @@ public class AdminRestController implements IAdminRestController {
 	}
 
 	/**
-	 * @param objet Long, prend l id de l admin recherche 
+	 * @param id objet Long, prend l id de l admin recherche 
 	 * @return un objet Admin correspondant a l admin recherche
 	 */
 	@RequestMapping(path = "admin/{id}", method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class AdminRestController implements IAdminRestController {
 	}
 
 	/**
-	 * @param prend un objet Long correpondant a l id de l admin que l on souhaite supprimer
+	 * @param id prend un objet Long correpondant a l id de l admin que l on souhaite supprimer
 	 * @return un String correspondant a l admin supprime
 	 */
 	@RequestMapping(path = "admin/{id}", method = RequestMethod.DELETE)

@@ -25,7 +25,7 @@ public class AuthRestController implements IAuthRestController {
 	private IUserService<User> userService;
 	
 	/**
-	 * @param prend les caracteristiques  d un objet User necessaires a la connexion
+	 * @param logDto prend les caracteristiques  d un objet User necessaires a la connexion
 	 * @return String attestant de la connexion + identite de l utilisateur connecte
 	 */
 	@RequestMapping(path = "login", method = RequestMethod.POST)
@@ -38,7 +38,7 @@ public class AuthRestController implements IAuthRestController {
 	}
 
 	/**
-	 * @param prend les caracteristiques  d un objet User necessaires a l isncription
+	 * @param regDto prend les caracteristiques  d un objet User necessaires a l isncription
 	 * @return String attestant de l inscription + identite de l utilisateur inscrit
 	 */
 	@RequestMapping(path = "register", method = RequestMethod.POST)
@@ -48,14 +48,4 @@ public class AuthRestController implements IAuthRestController {
 		return " " + user1.getPrenom() + " " + user1.getNom() + " a ete correctement enregistre(e) ";
 	}
 
-	
-	/**
-	 * @param prend les caracteristiques d un objet User necessaires a la deconnexion
-	 * @return String attestant de la deconnexion + identite de l utilisateur deconnecte
-	 */
-//	@RequestMapping(path="disconnect")
-//	public String disconnect() {
-//		userService.;
-//		return "Au revoir";
-//	}
 }

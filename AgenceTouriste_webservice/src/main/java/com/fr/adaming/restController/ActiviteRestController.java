@@ -27,8 +27,9 @@ public class ActiviteRestController {
 	@Autowired
 	private IActiviteService activiteService;
 
+
 	/**
-	 * @param correspond aux caracs necessaires a la creation d une activite 
+	 * @param act correspond aux caracs necessaires a la creation d une activite 
 	 * @return String retournant le nom de l activite creee
 	 */
 	@RequestMapping(path = "activite", method = RequestMethod.POST)
@@ -39,7 +40,7 @@ public class ActiviteRestController {
 	}
 
 	/**
-	 * @param objet Activite qui correpond a l activite que l on souhaite modifier
+	 * @param act objet Activite qui correpond a l activite que l on souhaite modifier
 	 * @return l activite modifiee et ses caracteristiques
 	 */
 	@RequestMapping(path = "activite", method = RequestMethod.PUT)
@@ -59,7 +60,7 @@ public class ActiviteRestController {
 	}
 
 	/**
-	 * @param objet Long, prend l id de l activite recherchee 
+	 * @param id objet Long, prend l id de l activite recherchee 
 	 * @return String retournant les details de l activite recherchee
 	 */
 	@RequestMapping(path = "activite/{id}", method = RequestMethod.GET)
@@ -69,7 +70,7 @@ public class ActiviteRestController {
 	}
 
 	/**
-	 * @param objet Long, correspond a l id de l activite que l on souhaite supprimer
+	 * @param id objet Long, correspond a l id de l activite que l on souhaite supprimer
 	 * @return String retournant le nom de l activite supprimee
 	 */
 	@RequestMapping(path = "activite/{id}", method = RequestMethod.DELETE)
@@ -80,7 +81,7 @@ public class ActiviteRestController {
 	}
 
 	/**
-	 * @param objet Long, correspond au prix des activites recherchees
+	 * @param prix objet Double, correspond au prix des activites recherchees
 	 * @return String + liste des activites correspondant au prix recherche
 	 */
 	@RequestMapping(path = "activite/{prixAct}", method = RequestMethod.GET)
@@ -90,7 +91,7 @@ public class ActiviteRestController {
 	}
 
 	/**
-	 * @param typeActEnum, correspond au type d activite que l on recherche
+	 * @param type typeActEnum, correspond au type d activite que l on recherche
 	 * @return String + liste d activites correspondant au type recherche
 	 */
 	@RequestMapping(path = "activite/{typeAct}", method = RequestMethod.GET)
@@ -100,7 +101,7 @@ public class ActiviteRestController {
 	}
 	
 	/**
-	 * @param String, permet de chercher les activites liees a une prestation
+	 * @param presta String, permet de chercher les activites liees a une prestation
 	 * @return String renvoyant les activites liees a la prrestation recherchee
 	 */
 	@RequestMapping(path = "activite/{presta}", method = RequestMethod.GET)

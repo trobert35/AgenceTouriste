@@ -87,7 +87,7 @@ public class UserRestController implements IUserRestController {
 	}
 
 	/**
-	 * @param User Object user
+	 * @param user Object user
 	 * @return String
 	 */
 	@RequestMapping(path = "user", method = RequestMethod.PUT)

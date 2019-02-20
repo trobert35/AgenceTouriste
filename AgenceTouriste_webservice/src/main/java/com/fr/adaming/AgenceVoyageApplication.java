@@ -11,14 +11,17 @@ import com.fr.adaming.restController.AdminRestController;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author Claire
+ *
+ */
 @SpringBootApplication
 @EnableSwagger2
 public class AgenceVoyageApplication {
-	/**
-	 * @author Claire
-	 * @param args
-	 */
 
+	/**
+	 * @param args arguments
+	 */
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(AgenceVoyageApplication.class, args);
 

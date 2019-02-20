@@ -8,7 +8,7 @@ import com.fr.adaming.entity.Prestation;
 /**
  * @author Thomas S
  *
- * @param <T>
+ * @param <T> objet de classe Object
  */
 public interface IProduitService<T> {
 

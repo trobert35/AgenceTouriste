@@ -41,7 +41,7 @@ public interface IActiviteService {
 	public String deleteActiviteById(Long id);
 
 	/**
-	 * @param nomPrestaAct
+	 * @param nomPrestaAct nom du prestataire de Logement
 	 * @return List des Activite lie a la Prestation
 	 */
 	public List<Activite> readActiviteByNomPrestaAct(String nomPrestaAct);
