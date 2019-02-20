@@ -1,9 +1,9 @@
 package com.fr.adaming.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.junit.After;
@@ -25,6 +25,10 @@ import com.fr.adaming.enumeration.typeTransEnum;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TransportServiceTest {
 
+	/***
+	 * @author Thomas S
+	 * */
+	
 	@Autowired
 	private ITransportService transService;
 
@@ -54,11 +58,11 @@ public class TransportServiceTest {
 	@Test
 	public void c_createTransportWithNullId() {
 		// Tester l'insertion d'un objet avec id = null
-		createdTransport2 = new Transport("prestaTrans2", "villeArriveeTrans2", "villeDepartTrans2",
+		createdTransport = new Transport("prestaTrans2", "villeArriveeTrans2", "villeDepartTrans2",
 				(double) 100, typeTransEnum.avion);
-		createdTransport2.setId(null);// pour bien enfoncer le clou et etre sur que l id est null
-		createdTransport2 = transService.createTransport(createdTransport2);
-		assertNotNull(createdTransport2);
+		createdTransport.setId(null);// pour etre sur que id = null
+		createdTransport = transService.createTransport(createdTransport);
+		assertNotNull(createdTransport);
 	}
 
 	@Test
@@ -66,7 +70,7 @@ public class TransportServiceTest {
 		// Tester l'insertion d'un objet avec id = 0
 		createdTransport = new Transport("prestaTrans3", "villeArriveeTrans3", "villeDepartTrans3",
 				(double) 100, typeTransEnum.avion);
-		createdTransport.setId(0L);// pour bien enfoncer le clou et etre sur que id = 0
+		createdTransport.setId(0L);// pour sur que id = 0
 		createdTransport = transService.createTransport(createdTransport);
 		assertNotNull(createdTransport);
 	}
@@ -75,60 +79,50 @@ public class TransportServiceTest {
 	public void e_createTransportNull() {
 		// Tester l'insertion d'un objet null
 		createdTransport = null;
-		createdTransport = transService.createTransport(createdTransport);
+		transService.createTransport(createdTransport);
 	}
 
 	// READ
-	@Test
+	@Test (expected = NoSuchElementException.class)
 	public void f_readTransportByIdValid() {
 		// Tester la lecture d'un objet valide
 		a_createValidTransport();
-		createdTransport = transService.readTransportById(createdTransport.getId());
-		assertNotNull(createdTransport);
+		createdTransport = transService.readTransportById(1L);
 	}
 
-	@Test (expected=NoSuchElementException.class)
+	@Test(expected=NoSuchElementException.class)
 	public void g_readTransportByUnknownId() {
-		// Tester la lecture d'un objet non existant
+		// Tester la lecture d'un objet avec id inexistant
 		a_createValidTransport();
-		Long i = createdTransport.getId();
-		createdTransport.setId(9999999L);
-		transService.readTransportById(createdTransport.getId());
-		createdTransport.setId(i);
+		transService.readTransportById(9999999L);
 	}
 
 	@Test (expected=InvalidDataAccessApiUsageException.class)
 	public void h_readTransportByIdNull() {
 		// Tester la lecture d'un objet avec id = null
 		a_createValidTransport();
-		createdTransport.setId(null);
-		createdTransport = transService.readTransportById(createdTransport.getId());
+		transService.readTransportById(null);
 	}
 
-	@Test (expected=NoSuchElementException.class)
+	@Test(expected=NoSuchElementException.class)
 	public void i_readTransportByIdEqualsToZero() {
 		// Tester la lecture d'un objet avec id = 0
 		a_createValidTransport();
-		Long i = createdTransport.getId();
-		createdTransport.setId(0L);
-		createdTransport = transService.readTransportById(createdTransport.getId());
-		createdTransport.setId(i);
-
+		transService.readTransportById(0L);
 	}
 
 	@Test
 	public void j_readAllTransportValid() {
 		// Tester la lecture d'une liste d'objets valides
-		List<Transport> listTrans = transService.readAllTransport();
-		assertNotNull(listTrans);
+		a_createValidTransport();
+		createdTransport = transService.readAllTransport().get(0);
+		assertNotNull(createdTransport);
 	}
 
-	@Test
+	@Test(expected = IndexOutOfBoundsException.class)
 	public void k_readAllTransportEmpty() {
 		// Tester la lecture d'une liste d'objets vide
-		List<Transport> listTrans2 = transService.readAllTransport();
-		
-
+		transService.readAllTransport().get(0);
 	}
 
 	// UPDATE
@@ -137,24 +131,24 @@ public class TransportServiceTest {
 		// Tester la modification d'un objet valide
 		a_createValidTransport();
 		createdTransport = transService.readAllTransport().get(0);
+		createdTransport.setPrestaTrans("prestaTransModifie");
 		createdTransport = transService.updateTransport(createdTransport);
 		assertNotNull(createdTransport);
 	}
 
-	@Test (expected=IndexOutOfBoundsException.class)
+	@Test 
 	public void m_updateUnknownTransport() {
 		// Tester la modification d'un objet inconnu
-		a_createValidTransport();
-		createdTransport = transService.readAllTransport().get(9999);
+		createdTransport = new Transport();
+		createdTransport.setId(999999999L);
 		createdTransport = transService.updateTransport(createdTransport);
-		assertNotNull(createdTransport);
+		assertNull(createdTransport);
 	}
 
 	@Test
 	public void n_updateTransportWithNullId() {
 		// Tester la modification d'un objet avec id = null
-		a_createValidTransport();
-		createdTransport = transService.readAllTransport().get(0);
+		createdTransport = new Transport();
 		createdTransport.setId(null);
 		createdTransport = transService.updateTransport(createdTransport);
 		assertNull(createdTransport);
@@ -163,8 +157,7 @@ public class TransportServiceTest {
 	@Test
 	public void o_updateTransportWithIdEqualsToZero() {
 		// Tester la modification d'un objet avec id = 0
-		a_createValidTransport();
-		createdTransport = transService.readAllTransport().get(0);
+		createdTransport = new Transport();
 		createdTransport.setId(0L);
 		createdTransport = transService.updateTransport(createdTransport);
 		assertNull(createdTransport);
@@ -189,35 +182,22 @@ public class TransportServiceTest {
 		
 	}
 
-	@Test (expected=NoSuchElementException.class)
+	@Test(expected = EmptyResultDataAccessException.class)
 	public void r_deleteUnknownTransport() {
 		// Tester la suppression d'un objet inconnu
-		a_createValidTransport();
-		createdTransport = transService.readAllTransport().get(0);
-		Long i = createdTransport.getId();
-		createdTransport.setId(99999L);
-		transService.deleteTransportById(createdTransport.getId());
-		createdTransport.setId(i);
+		transService.deleteTransportById(999999999L);
 	}
 
 	@Test (expected = InvalidDataAccessApiUsageException.class)
 	public void s_deleteTransportWithNullId() {
 		// Tester la suppression d'un objet avec id null
-		a_createValidTransport();
-		createdTransport = transService.readAllTransport().get(0);
-		createdTransport.setId(null);
-		transService.deleteTransportById(createdTransport.getId());
+		transService.deleteTransportById(null);
 	}
 
-	@Test (expected=NoSuchElementException.class)
+	@Test(expected = EmptyResultDataAccessException.class)
 	public void t_deleteTransportWithIdEqualsToZero() {
 		// Tester la suppression d'un objet avec id = 0
-		a_createValidTransport();
-		createdTransport = transService.readAllTransport().get(0);
-		Long i = createdTransport.getId();
-		createdTransport.setId(0L);
-		transService.deleteTransportById(createdTransport.getId());
-		createdTransport.setId(i);
+		transService.deleteTransportById(0L);
 	}
 
 	@Test (expected=NullPointerException.class)
@@ -227,76 +207,70 @@ public class TransportServiceTest {
 		transService.deleteTransportById(createdTransport.getId());
 	}
 
-	@Test (expected=NullPointerException.class)
+	@Test
 	public void va_readTransportByValidPrestaTrans() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
+		// Tester la suppression d'un objet avec prestaTrans valid
+		a_createValidTransport();
+		transService.readTransportByPrestaTrans(createdTransport.getPrestaTrans());
+		
 	}
 	
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public void vb_readTransportByUnknownPrestaTrans() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
+		// Tester la suppression d'un objet avec prestaTrans unKnown
+		assertThat(transService.readTransportByPrestaTrans("prestaTransInexistant")).isEmpty();;
 	}
 	
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public void vc_readTransportByNullPrestaTrans() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
+		// Tester la suppression d'un objet avec prestaTrans null
+		assertThat(transService.readTransportByPrestaTrans(null)).isEmpty();;
+
 	}
 	
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public void wa_readByValidPrix() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
+		// Tester la lecture d'un objet avec prix valide
+		a_createValidTransport();
+		transService.readByPrix(createdTransport.getPrix());
 	}
 	
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public void wb_readByUnknownPrix() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
+		// Tester la suppression d'un objet avec prix unKnown
+		assertThat(transService.readByPrix(8888888888888888888888888D)).isEmpty();;
 	}
 	
-	@Test (expected=NullPointerException.class)
+	@Test 
 	public void wc_readByNullPrix() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
+		// Tester la suppression d'un objet avec prix null
+		assertThat(transService.readByPrix(null)).isEmpty();;
 	}
 	
-	@Test (expected=NullPointerException.class)
-	public void xa_readByValidTypeTrans() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
-	}
-	
-	@Test (expected=NullPointerException.class)
-	public void xa_readByUnknownTypeTrans() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
-	}
-	
-	@Test (expected=NullPointerException.class)
-	public void xa_readByNullTypeTrans() {
-		// Tester la suppression d'un objet null
-		createdTransport = null;
-		transService.deleteTransportById(createdTransport.getId());
+	@Test 
+	public void ya_readByValidTypeTrans() {
+		// Tester la lecture d'un objet avec un typeTrans valide
+		a_createValidTransport();
+		transService.readByTypeTrans(createdTransport.getTypeTrans());
 	}
 	
 
+	
+	@Test
+	public void yb_readByNullTypeTrans() {
+		// Tester la lecture d'un objet avec un typeTrans null
+		assertThat(transService.readByTypeTrans(null)).isEmpty();;
+
+	}
 	
 	@After
 	public void after() {
 		System.out.println("********************* DEBUG TESTING afterMethod transport *********************");
 		if (createdTransport != null && createdTransport.getId() != null) {
 			transService.deleteTransportById(createdTransport.getId());
-		}
+			if (createdTransport2 != null && createdTransport2.getId() != null) {
+				transService.deleteTransportById(createdTransport2.getId());
+			}
+		}	
 	}
 }

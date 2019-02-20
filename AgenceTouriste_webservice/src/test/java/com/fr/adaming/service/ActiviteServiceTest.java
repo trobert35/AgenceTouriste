@@ -24,6 +24,9 @@ import com.fr.adaming.enumeration.typeActEnum;
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ActiviteServiceTest {
+	/**
+	 * @author Claire
+	 */
 
 	@Autowired
 	private IActiviteService actService;

@@ -27,6 +27,9 @@ import com.fr.adaming.entity.User;
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AdminServiceTest {
+	/**
+	 * @author Mohamed
+	 */
 
 	@Autowired
 	private IAdminService admService;

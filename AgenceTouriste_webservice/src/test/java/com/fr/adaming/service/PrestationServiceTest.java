@@ -26,6 +26,9 @@ import com.fr.adaming.entity.Prestation;
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PrestationServiceTest {
+	/**
+	 * @author Thomas R
+	 */
 
 	@Autowired
 	private IAdminService admService;
