@@ -36,7 +36,7 @@ public class UserService implements IUserService<User> {
 	public User readByNomAndPrenom(String nom, String prenom) {
 		try {
 			User u = dao.findByNomAndPrenom(nom, prenom);
-
+			log.info("Lecture du User de nom " + nom + " et prenom " + prenom + " SUCCESS");
 			return u;
 		} catch (Exception e) {
 			log.warn("Lecture du User de nom " + nom + " et prenom " + prenom + " FAILED");
@@ -68,11 +68,9 @@ public class UserService implements IUserService<User> {
 	 */
 	public User register(User user) {
 		if (user.getId() == null || user.getId() == 0 || !dao.existsById(user.getId())) {
-			System.out.println("User cree");
 			log.info("Enregistrement du User SUCCESS");
 			return dao.save(user);
 		} else {
-			System.out.println("User non cree car id null, id = 0 ou id deja existant");
 			log.warn("Enregistrement du User FAILED");
 			return null;
 		}
@@ -81,15 +79,13 @@ public class UserService implements IUserService<User> {
 	/**
 	 * @param user
 	 * @return un user si son id est null, égal à 0 ou s'il n'existe pas dans la BD;
-	 *         retourne null dans le cas contraire 
+	 *         retourne null dans le cas contraire
 	 */
 	public User create(User user) {
 		if (user.getId() == null || user.getId() == 0 || !dao.existsById(user.getId())) {
-			System.out.println("User cree");
 			log.info("Enregistrement du User SUCCESS");
 			return dao.save(user);
 		} else {
-			System.out.println("User non cree car id null, id = 0 ou id deja existant");
 			log.warn("Enregistrement du User FAILED");
 			return null;
 		}
@@ -97,16 +93,14 @@ public class UserService implements IUserService<User> {
 
 	/**
 	 * @param user
-	 * @return un user si son id est différent de null, n'est pas égal à 0 ou s'il existe dans la BD;
-	 *         retourne null dans le cas contraire
+	 * @return un user si son id est différent de null, n'est pas égal à 0 ou s'il
+	 *         existe dans la BD; retourne null dans le cas contraire
 	 */
 	public User update(User user) {
 		if (user.getId() != null && user.getId() != 0 && dao.existsById(user.getId())) {
-			System.out.println("User modifie");
-			log.warn("Modification du User SUCCESS");
+			log.info("Modification du User SUCCESS");
 			return dao.save(user);
 		} else {
-			System.out.println("User non modifie");
 			log.warn("Modification du User FAILED");
 			return null;
 		}
@@ -114,8 +108,7 @@ public class UserService implements IUserService<User> {
 
 	/**
 	 * @param id
-	 * @return un user s'il n'est pas null;
-	 *         renvoie un warning dans le cas contraire
+	 * @return un user s'il n'est pas null; renvoie un warning dans le cas contraire
 	 */
 	public User readById(Long id) {
 		User u = dao.findById(id).get();
@@ -129,8 +122,7 @@ public class UserService implements IUserService<User> {
 
 	/**
 	 * 
-	 * @return une liste de user
-	 * renvoie un warning si cette liste est vide
+	 * @return une liste de user renvoie un warning si cette liste est vide
 	 */
 	public List<User> readAll() {
 		List<User> lili = dao.findAll();
@@ -155,7 +147,8 @@ public class UserService implements IUserService<User> {
 	 * @param user
 	 * @param prestation
 	 * @return false si la prestation et/ou le user n'existent pas dans la BD;
-	 * renvoie true si l'user et la prestation ont bien été associés l'un à l'autre
+	 *         renvoie true si l'user et la prestation ont bien été associés l'un à
+	 *         l'autre
 	 */
 	public boolean bookPrestation(User user, Prestation prestation) {
 

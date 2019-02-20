@@ -13,8 +13,7 @@ import com.fr.adaming.entity.Admin;
 import com.fr.adaming.entity.User;
 
 @Service
-public class AdminService
-		implements IAdminService {
+public class AdminService implements IAdminService {
 	/**
 	 * @author Thomas S
 	 * @author Maxime
@@ -38,12 +37,10 @@ public class AdminService
 	 */
 	public Admin createAdmin(Admin admin) {
 		if (admin.getId() == null || admin.getId() == 0 || !daoU.existsById(admin.getId())) {
-			System.out.println("Admin cree");
 			log.info("Admin cree");
 			return daoU.save(admin);
 		} else {
 			log.warn("Attention l'ID de l'admin est null, zero ou existant");
-			System.out.println("Admin non cree car id null, id = 0 ou id deja existant");
 			return null;
 		}
 	}
@@ -59,12 +56,10 @@ public class AdminService
 	 */
 	public Admin updateAdmin(Admin admin) {
 		if (admin.getId() != null && admin.getId() != 0 && daoU.existsById(admin.getId())) {
-			System.out.println("Admin modifie");
 			log.info("Admin modifie");
 			return daoU.save(admin);
 		} else {
 			log.warn("Admin non existant, modification impossible");
-			System.out.println("Admin non modifie");
 			return null;
 		}
 	}
@@ -87,24 +82,24 @@ public class AdminService
 		}
 	}
 
-	
 	/**
 	 * Ressort un objet User (Admin) de la database si il existe
+	 * 
 	 * @param email
 	 * @param pwd
 	 * @return Null si l'email et le pwd n'existe pas, Admin si ils existent
 	 */
 	public User readAdminByEmailAndPwd(String email, String pwd) {
 		try {
-			Admin a =  (Admin) daoU.findByEmailAndPwd(email, pwd);
+			Admin a = (Admin) daoU.findByEmailAndPwd(email, pwd);
 			log.info("Recherche de l'admin avec l'email " + email + " SUCCESS");
 			return a;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			log.warn("L'Admin avec l'email " + email + " n'existe pas");
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Ressort la liste de tous les User de la database
 	 * 

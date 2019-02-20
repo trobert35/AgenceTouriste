@@ -15,12 +15,11 @@ import com.fr.adaming.entity.Prestation;
 @Service
 public class PrestationService implements IProduitService<Prestation> {
 
-	
-	
 	@Autowired
 	private IPrestationDao daoP;
-	
+
 	private Logger log = Logger.getLogger(PrestationService.class);
+
 	/**
 	 * Insere un objet Prestation dans la database s il est inexistant
 	 * 
@@ -31,13 +30,11 @@ public class PrestationService implements IProduitService<Prestation> {
 	 */
 	public Prestation createPrestation(Prestation obj) {
 		if (obj.getId() == null || obj.getId() == 0 || !daoP.existsById(obj.getId())) {
-			System.out.println("Prestation creee");
 			log.info("Creation de Prestation SUCCESS");
 			return daoP.save(obj);
 
 		} else {
-			log.warn("Creation de Prestation Failed");
-			System.out.println("Prestation non creee car id null, id = 0 ou id deja existant");
+			log.warn("Creation de Prestation FAILED");
 			return null;
 		}
 	}
@@ -53,11 +50,9 @@ public class PrestationService implements IProduitService<Prestation> {
 	 */
 	public Prestation updatePrestation(Prestation obj) {
 		if (obj.getId() != null && obj.getId() != 0 && daoP.existsById(obj.getId())) {
-			System.out.println("Prestation modifiee");
 			log.info("Modification de la Prestation SUCCESS");
 			return daoP.save(obj);
 		} else {
-			System.out.println("Prestation non modifiee");
 			log.warn("Modification de la Prestation FAILED");
 			return null;
 		}
@@ -102,14 +97,16 @@ public class PrestationService implements IProduitService<Prestation> {
 	 * @param id (Long) id de la prestation a supprimer, ne doit pas etre null
 	 * @return un String
 	 * @throws InvalidDataAccessApiUsageException si id est null
-	 * @throws EmptyResultDataAccessException     si prestation est inexistant
-	 *                                            dans la database
+	 * @throws EmptyResultDataAccessException     si prestation est inexistant dans
+	 *                                            la database
 	 */
 	public String deletePrestationById(Long id) {
 		if (id != null && daoP.findById(id).isPresent()) {
 			daoP.deleteById(id);
+			log.warn("Suppression de Prestation FAILED");
 			return "Prestation supprimee";
 		} else {
+			log.info("Suppression de Prestation SUCCESS");
 			return null;
 		}
 	}
@@ -135,31 +132,36 @@ public class PrestationService implements IProduitService<Prestation> {
 		return daoP.findByVilleDepartArriveeAndDestination(villeDepartArrivee, destination);
 	}
 
-	
-	/**Calcule le prix total de l'objet Prestation, grace aux prix d activite, de logement et de transport
+	/**
+	 * Calcule le prix total de l'objet Prestation, grace aux prix d activite, de
+	 * logement et de transport
 	 * 
-	 * @param prestation prend une instance de l objet Prestation en param, ne doit pas etre null
+	 * @param prestation prend une instance de l objet Prestation en param, ne doit
+	 *                   pas etre null
 	 * @return void
 	 * @throws NullPointerException si prestation est null
 	 */
 	public void calculPrixTotal(Prestation prestation) {
 		double prixActTot = 0, prixLogTot = 0, prixTraTot = 0;
-		
-		if(!prestation.getActivite().isEmpty()) {
-		for (int i = 0 ; i < prestation.getActivite().size() ; i++) {
-			prixActTot = prixActTot + prestation.getActivite().get(i).getPrix();
-		} }
-		
-		if(!prestation.getLogement().isEmpty()) {
-		for (int i = 0 ; i < prestation.getLogement().size() ; i++) {
-			prixLogTot = prixLogTot + prestation.getLogement().get(i).getPrix();
-		} }
-		
-		if(!prestation.getTransport().isEmpty()) {
-		for (int i = 0 ; i < prestation.getTransport().size() ; i++) {
-			prixTraTot = prixTraTot + prestation.getTransport().get(i).getPrix();
-		} }
-		
+
+		if (!prestation.getActivite().isEmpty()) {
+			for (int i = 0; i < prestation.getActivite().size(); i++) {
+				prixActTot = prixActTot + prestation.getActivite().get(i).getPrix();
+			}
+		}
+
+		if (!prestation.getLogement().isEmpty()) {
+			for (int i = 0; i < prestation.getLogement().size(); i++) {
+				prixLogTot = prixLogTot + prestation.getLogement().get(i).getPrix();
+			}
+		}
+
+		if (!prestation.getTransport().isEmpty()) {
+			for (int i = 0; i < prestation.getTransport().size(); i++) {
+				prixTraTot = prixTraTot + prestation.getTransport().get(i).getPrix();
+			}
+		}
+
 		prestation.setPrixTotal((prixActTot + prixLogTot + prixTraTot) * (1 + prestation.getCommission()));
 	}
 }
