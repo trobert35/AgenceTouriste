@@ -1,6 +1,5 @@
 package com.fr.adaming.service;
 
-import static org.assertj.core.api.Assertions.setRemoveAssertJRelatedElementsFromStackTrace;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -17,7 +16,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -25,7 +23,6 @@ import com.fr.adaming.entity.Activite;
 import com.fr.adaming.entity.Logement;
 import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.entity.Transport;
-import com.fr.adaming.entity.User;
 import com.fr.adaming.enumeration.pensionLogEnum;
 import com.fr.adaming.enumeration.qualiteLogEnum;
 import com.fr.adaming.enumeration.typeActEnum;
@@ -36,9 +33,6 @@ import com.fr.adaming.enumeration.typeTransEnum;
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PrestationServiceTest {
-
-	@Autowired
-	private IAdminService admService;
 	
 	@Autowired
 	private IProduitService<Prestation> prestaService;
