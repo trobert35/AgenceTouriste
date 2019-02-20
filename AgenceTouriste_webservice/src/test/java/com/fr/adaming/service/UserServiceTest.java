@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.validation.ConstraintViolationException;
@@ -24,8 +23,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.fr.adaming.entity.Admin;
-import com.fr.adaming.entity.Logement;
 import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.entity.User;
 
@@ -36,11 +33,11 @@ public class UserServiceTest {
 	/**
 	 * @author Maxime
 	 */
-	
+
 	@Autowired
 	private IUserService<User> userService;
 	@Autowired
-	private AdminService prestaService;
+	private PrestationService prestaService;
 
 	private User user, user2;
 	private Prestation presta;
@@ -73,7 +70,7 @@ public class UserServiceTest {
 		assertNotNull(user);
 
 	}
-	
+
 	@Test(expected = ConstraintViolationException.class)
 	public void acb_createUserWithWrongEmail() {
 		// Tester l'insertion d'un object avec un mauvais email
@@ -192,7 +189,7 @@ public class UserServiceTest {
 		userService.update(user);
 
 	}
-	
+
 	@Test(expected = DataIntegrityViolationException.class)
 	public void aq_updatePouvoirWithSameNom() {
 		// Tester la modification d'un élément existant en lui appliquant un alias déjà
@@ -234,7 +231,7 @@ public class UserServiceTest {
 		userService.deleteById(0L);
 
 	}
-	
+
 	// CREATE
 	@Test
 	public void av_registerValidUser() {
@@ -281,7 +278,7 @@ public class UserServiceTest {
 		userService.register(user);
 
 	}
-	
+
 	@Test
 	public void ba_readByNomAndPrenomValid() {
 		// Tester la lecture d'un objet valide par nom et prenom
@@ -289,28 +286,28 @@ public class UserServiceTest {
 		user = userService.readByNomAndPrenom(user.getNom(), user.getPrenom());
 		assertNotNull(user);
 	}
-	
+
 	@Test
 	public void bb_readByNomAndPrenomUnknown() {
 		// Tester la lecture d'un objet par nom et prenom inconnus
 		user = userService.readByNomAndPrenom("Jacky", "Moumoute");
 		assertNull(user);
 	}
-	
+
 	@Test
 	public void bc_readByNomAndPrenomWithNomNull() {
 		// Tester la lecture d'un objet par nom et prenom avec nom = null
 		userService.readByNomAndPrenom(null, "Jean");
 		assertNull(user);
 	}
-	
+
 	@Test
 	public void bd_readByNomAndPrenomWithPrenomNull() {
 		// Tester la lecture d'un objet par nom et prenom avec prenom = null
 		userService.readByNomAndPrenom("MICHEL", null);
 		assertNull(user);
 	}
-	
+
 	@Test
 	public void be_loginValid() {
 		// Tester le login d'un user valide
@@ -318,57 +315,55 @@ public class UserServiceTest {
 		user = userService.login(user.getEmail(), user.getPwd());
 		assertNotNull(user);
 	}
-	
+
 	@Test
 	public void bf_loginWithEmailAndPwdUnknown() {
 		// Tester le login d'un user inconnu
 		user = userService.login("hujn@hot.fr", "frere");
 		assertNull(user);
 	}
-	
+
 	@Test
 	public void bg_loginWithEmailNull() {
 		// Tester le login d'un user avec un email null
 		user = userService.login(null, "kaka");
 		assertNull(user);
 	}
-	
+
 	@Test
 	public void bh_loginWithPwdNull() {
 		// Tester le login d'un user avec un pwd null
 		user = userService.login("guigui@gmail.com", null);
 		assertNull(user);
 	}
-	
+
 	@Test
 	public void bi_bookPrestationValid() throws ParseException {
 		// Tester un book valide
 		aa_createValidUser();
 		presta = new Prestation("Campin", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
-				"Paris", "Marseille", 60, 100, null);
+				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"), "Paris", "Marseille", 60, 100, null);
 		prestaService.createPrestation(presta);
 		assertTrue(userService.bookPrestation(user, presta));
 		prestaService.deletePrestationById(presta.getId());
 	}
-	
+
 	@Test
 	public void bj_bookPrestationWithUserUnknown() {
 		// Tester un book par un user inconnu
 		user = new User("MICHEL2", "Jean", "guigui@gmail.com", "kiki");
 		assertFalse(userService.bookPrestation(user, presta));
 	}
-	
+
 	@Test
 	public void bk_bookPrestationWithPrestationUnknown() throws ParseException {
 		// Tester le book d'une prestation inconnue
 		aa_createValidUser();
 		presta = new Prestation("Camping", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
-				"Paris", "Marseille", 60, 100, null);
+				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"), "Paris", "Marseille", 60, 100, null);
 		assertFalse(userService.bookPrestation(user, presta));
 	}
-	
+
 	@Test
 	public void bl_bookPrestationWithIdUserNull() {
 		// Tester le book d'un user avec id null
@@ -378,7 +373,7 @@ public class UserServiceTest {
 		assertFalse(userService.bookPrestation(user, presta));
 		user.setId(i);
 	}
-	
+
 	@Test
 	public void bm_bookPrestationWithIdUserEqualsToZero() {
 		// Tester le book d'un user avec id égal à 0
@@ -388,41 +383,39 @@ public class UserServiceTest {
 		assertFalse(userService.bookPrestation(user, presta));
 		user.setId(i);
 	}
-	
+
 	@Test
 	public void bn_bookPrestationWithIdPrestationNull() throws ParseException {
 		// Tester le book d'une prestation avec id null
 		aa_createValidUser();
 		presta = new Prestation("Campong", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
-				"Paris", "Marseille", 60, 100, null);
+				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"), "Paris", "Marseille", 60, 100, null);
 		prestaService.createPrestation(presta);
 		long i = presta.getId();
 		presta.setId(null);
 		assertFalse(userService.bookPrestation(user, presta));
 		prestaService.deletePrestationById(i);
 	}
-	
+
 	@Test
 	public void bo_bookPrestationWithIdPrestationEqualsToZero() throws ParseException {
 		// Tester le book d'une prestation avec id égal à 0
 		aa_createValidUser();
 		presta = new Prestation("Campang", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"),
-				"Paris", "Marseille", 60, 100, null);
+				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"), "Paris", "Marseille", 60, 100, null);
 		prestaService.createPrestation(presta);
 		long i = presta.getId();
 		presta.setId(0L);
 		assertFalse(userService.bookPrestation(user, presta));
 		prestaService.deletePrestationById(i);
 	}
-	
+
 	@Test(expected = NullPointerException.class)
 	public void bp_bookPrestationWithUserNull() {
 		// Tester le book d'un user null
 		userService.bookPrestation(null, presta);
 	}
-	
+
 	@Test(expected = NullPointerException.class)
 	public void bq_bookPrestationWithPrestationNull() {
 		// Tester le book d'une prestation null
@@ -434,7 +427,7 @@ public class UserServiceTest {
 	public void after() {
 		if (user != null && user.getId() != null) {
 			userService.deleteById(user.getId());
-			if(user2 != null && user2.getId() != null) {
+			if (user2 != null && user2.getId() != null) {
 				userService.deleteById(user2.getId());
 			}
 		}

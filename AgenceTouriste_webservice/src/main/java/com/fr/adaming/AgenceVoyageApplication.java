@@ -11,7 +11,6 @@ import com.fr.adaming.restController.AdminRestController;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
 @SpringBootApplication
 @EnableSwagger2
 public class AgenceVoyageApplication {
@@ -22,16 +21,14 @@ public class AgenceVoyageApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(AgenceVoyageApplication.class, args);
-	
+
 		AdminRestController bean = context.getBean(AdminRestController.class);
-		
+
 		Prestation presta = new Prestation("presta1", new Date(), new Date(), "a", "b", 30, 0.0f, "c");
-		
+
 //		presta.set
 //		
 //		bean.createPrestation(presta);
-	
-	
-	}
 
+	}
 }
