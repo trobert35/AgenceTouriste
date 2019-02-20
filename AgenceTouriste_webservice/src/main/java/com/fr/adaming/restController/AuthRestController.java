@@ -13,6 +13,10 @@ import com.fr.adaming.dto.RegisterDTO;
 import com.fr.adaming.entity.User;
 import com.fr.adaming.service.IUserService;
 
+/**
+ * @author INTI
+ *
+ */
 @RestController
 @RequestMapping(path = "auth/")
 public class AuthRestController implements IAuthRestController {
@@ -20,6 +24,15 @@ public class AuthRestController implements IAuthRestController {
 	@Autowired
 	private IUserService<User> userService;
 
+	/**
+	 *@author Mohamed EL AGREBI
+	 *		  Thomas S 
+	 */
+	
+	/**
+	 * @param prend les caracteristiques  d un objet User necessaires a la connexion
+	 * @return String attestant de la connexion + identite de l utilisateur connecte
+	 */
 	@RequestMapping(path = "login", method = RequestMethod.POST)
 	public String loginRest(@Valid @RequestBody LoginDTO logDto) {
 		User user = new User();
@@ -29,6 +42,10 @@ public class AuthRestController implements IAuthRestController {
 		return "Bonjour " + user.getPrenom() + " " + user.getNom() + ", vous etes bien connecte";
 	}
 
+	/**
+	 * @param prend les caracteristiques  d un objet User necessaires a l isncription
+	 * @return String attestant de l inscription + identite de l utilisateur inscrit
+	 */
 	@RequestMapping(path = "register", method = RequestMethod.POST)
 	public String register(@Valid @RequestBody RegisterDTO regDto) {
 		User user = new User(regDto.getNom(), regDto.getPrenom(), regDto.getEmail(), regDto.getPwd());
@@ -36,6 +53,11 @@ public class AuthRestController implements IAuthRestController {
 		return " " + user1.getPrenom() + " " + user1.getNom() + " a ete correctement enregistre(e) ";
 	}
 
+	
+	/**
+	 * @param prend les caracteristiques d un objet User necessaires a la deconnexion
+	 * @return String attestant de la deconnexion + identite de l utilisateur deconnecte
+	 */
 //	@RequestMapping(path="disconnect")
 //	public String disconnect() {
 //		userService.;
