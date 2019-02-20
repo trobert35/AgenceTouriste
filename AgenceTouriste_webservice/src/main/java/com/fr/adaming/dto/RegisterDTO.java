@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class RegisterDTO {
 
 	private Long id;
@@ -18,5 +21,5 @@ public class RegisterDTO {
 	private Long numCartBank;
 	private Long crypto;
 	private Date dateExp;
-	
+
 }

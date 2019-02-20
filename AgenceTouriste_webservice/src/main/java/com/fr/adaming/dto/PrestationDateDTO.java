@@ -1,16 +1,15 @@
 package com.fr.adaming.dto;
 
-import java.util.Date;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class PrestationDateDTO {
-	
-	@ApiModelProperty(example="dd/mm/yyyy")
+
+	@ApiModelProperty(example = "dd/mm/yyyy")
 	private String debutPresta;
-	@ApiModelProperty(example="dd/mm/yyyy")
+	@ApiModelProperty(example = "dd/mm/yyyy")
 	private String finPresta;
 }

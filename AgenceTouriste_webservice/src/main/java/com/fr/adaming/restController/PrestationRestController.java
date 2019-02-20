@@ -13,17 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.PrestationCreateDTO;
-import com.fr.adaming.entity.Activite;
-import com.fr.adaming.entity.Logement;
 import com.fr.adaming.entity.Prestation;
-import com.fr.adaming.entity.Transport;
-import com.fr.adaming.enumeration.typeActEnum;
-import com.fr.adaming.enumeration.typeLogEnum;
-import com.fr.adaming.enumeration.typeTransEnum;
-import com.fr.adaming.service.IActiviteService;
-import com.fr.adaming.service.ILogementService;
 import com.fr.adaming.service.IProduitService;
-import com.fr.adaming.service.ITransportService;
 
 @RestController
 @RequestMapping(path = "api/")
@@ -32,23 +23,14 @@ public class PrestationRestController implements IPrestationRestController {
 	@Autowired
 	private IProduitService<Prestation> prestaService;
 
-	@Autowired
-	private ILogementService logementService;
-
-	@Autowired
-	private ITransportService transportService;
-
-	@Autowired
-	private IActiviteService activiteService;
-
 	@RequestMapping(path = "prestation", method = RequestMethod.POST)
 	public String createPrestation(@RequestBody PrestationCreateDTO dtoPresta) throws ParseException {
-		prestaService.createPrestation(new Prestation(dtoPresta.getNom(),
-				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getDebutPresta()),
-				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getFinPresta()),
-				dtoPresta.getVilleDepartArrivee(), dtoPresta.getDestination(),
-				dtoPresta.getNbPersonnesMax(), dtoPresta.getCommission(), dtoPresta.getAvis()));
-		return "Prestation cree : " + dtoPresta.getNom();
+		prestaService.createPrestation(
+				new Prestation(dtoPresta.getNom(), new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getDebutPresta()),
+						new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getFinPresta()),
+						dtoPresta.getVilleDepartArrivee(), dtoPresta.getDestination(), dtoPresta.getNbPersonnesMax(),
+						dtoPresta.getCommission(), dtoPresta.getAvis()));
+		return "Prestation creee : " + dtoPresta.getNom();
 	}
 
 	@RequestMapping(path = "prestation", method = RequestMethod.PUT)
@@ -76,28 +58,10 @@ public class PrestationRestController implements IPrestationRestController {
 		return "Prestation : " + presta;
 	}
 
-	@RequestMapping(path = "prestation/{ville}", method = RequestMethod.GET)
-	public String readByVille(@PathVariable String ville) {
-		List<Logement> listLogement = logementService.readByVille(ville);
-		return "Pour la ville de " + ville + ", voici les logements : \n" + listLogement;
-	}
-
-	@RequestMapping(path = "prestation/{typeLog}", method = RequestMethod.GET)
-	public String readByTypeOfLogement(@PathVariable typeLogEnum type) {
-		List<Logement> listLogement = logementService.readByTypeLog(type);
-		return "Pour le type " + type + ", voici les logements : \n" + listLogement;
-	}
-
-	@RequestMapping(path = "prestation/{prixLog}", method = RequestMethod.GET)
-	public String readByPrixLogement(@PathVariable Double prix) {
-		List<Logement> listLogement = logementService.readByPrixLogement(prix);
-		return "Pour la modique somme de " + prix + ", voici les logements : \n" + listLogement;
-	}
-
 	@RequestMapping(path = "prestation/{debut}/conf/{fin}", method = RequestMethod.GET)
 	public String readByDatesDePresta(@PathVariable("debut") Date debut, @PathVariable("fin") Date fin) {
 		List<Prestation> listPrestation = prestaService.readByDebutPrestaAndFinPresta(debut, fin);
-		return "Pour des dates comprises entre " + debut + " et " + fin + ", voici les prestations : \n"
+		return "Pour des dates comprises entre " + debut + " et " + fin + ", voici le(s) prestation(s) : \n"
 				+ listPrestation;
 	}
 
@@ -107,38 +71,15 @@ public class PrestationRestController implements IPrestationRestController {
 		List<Prestation> listPrestation = prestaService.readByVilleDepartArriveeAndDestination(villeResidence,
 				destination);
 		return "Pour votre ville de residence " + villeResidence + " pour " + destination
-				+ ", voici les prestations : \n" + listPrestation;
+				+ ", voici le(s) prestation(s) : \n" + listPrestation;
 	}
 
-	@RequestMapping(path = "prestation/{prixTrans}", method = RequestMethod.GET)
-	public String readByPrixTransport(@PathVariable Double prix) {
-		List<Transport> translist = transportService.readByPrix(prix);
-		return "Prestation avec des transports au prix de " + prix + " : \n" + translist;
-	}
-
-	@RequestMapping(path = "prestation/{typeTrans}", method = RequestMethod.GET)
-	public String readByTypeTransport(@PathVariable typeTransEnum type) {
-		List<Transport> translist = transportService.readByTypeTrans(type);
-		return "Prestation avec des transports de type " + type + " : \n" + translist;
-	}
-
-	@RequestMapping(path = "prestation/{prixAct}", method = RequestMethod.GET)
-	public String readByPrixActivite(@PathVariable Double prix) {
-		List<Activite> activiteList = activiteService.readActiviteByPrix(prix);
-		return "Prestation avec des activites au prix de " + prix + " : \n" + activiteList;
-	}
-
-	@RequestMapping(path = "prestation/{typeAct}", method = RequestMethod.GET)
-	public String readByTypeActivite(@PathVariable typeActEnum type) {
-		List<Activite> activiteList = activiteService.readActiviteByTypeAct(type);
-		return "Prestation avec des activites de type " + type + " : \n" + activiteList;
-	}
-
-	@RequestMapping(path= "prestation/{presta}", method = RequestMethod.POST)
+	@RequestMapping(path = "prestation/{presta}", method = RequestMethod.POST)
 	public String calculPrixTotal(@RequestBody PrestationCreateDTO dtoPresta) throws ParseException {
-		Prestation p = prestaService.readByDebutPrestaAndFinPresta(
-				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getDebutPresta()),
-				new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getFinPresta())).get(0);
+		Prestation p = prestaService
+				.readByDebutPrestaAndFinPresta(new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getDebutPresta()),
+						new SimpleDateFormat("dd/MM/yyyy").parse(dtoPresta.getFinPresta()))
+				.get(0);
 		prestaService.calculPrixTotal(p);
 		return Double.toString(p.getPrixTotal());
 	}

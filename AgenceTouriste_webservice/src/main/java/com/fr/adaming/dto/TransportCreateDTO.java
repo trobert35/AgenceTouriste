@@ -5,7 +5,8 @@ import com.fr.adaming.enumeration.typeTransEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class TransportCreateDTO {
 
 	private String prestaTrans;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.ActiviteCreateDTO;
 import com.fr.adaming.entity.Activite;
+import com.fr.adaming.enumeration.typeActEnum;
 import com.fr.adaming.service.IActiviteService;
 
 @RestController
@@ -26,7 +27,7 @@ public class ActiviteRestController {
 	public String createActivite(@RequestBody ActiviteCreateDTO act) {
 		Activite a = activiteService
 				.createActivite(new Activite(act.getPrix(), act.getTypeAct(), act.getNom(), act.getNomPrestaAct()));
-		return "Activite cree : " + a.getNom();
+		return "Activite creee : " + a.getNom();
 	}
 
 	@RequestMapping(path = "activite", method = RequestMethod.PUT)
@@ -55,9 +56,22 @@ public class ActiviteRestController {
 		return act.getNom() + " a ete supprimee";
 	}
 
+	@RequestMapping(path = "activite/{prixAct}", method = RequestMethod.GET)
+	public String readByPrixActivite(@PathVariable Double prix) {
+		List<Activite> activiteList = activiteService.readActiviteByPrix(prix);
+		return "Activite(s) au prix de " + prix + " : \n" + activiteList;
+	}
+
+	@RequestMapping(path = "activite/{typeAct}", method = RequestMethod.GET)
+	public String readByTypeActivite(@PathVariable typeActEnum type) {
+		List<Activite> activiteList = activiteService.readActiviteByTypeAct(type);
+		return "Activite(s) de type " + type + " : \n" + activiteList;
+	}
+	
 	@RequestMapping(path = "activite/{presta}", method = RequestMethod.GET)
 	public String readActiviteByPresta(@PathVariable String presta) {
 		List<Activite> listact = activiteService.readActiviteByNomPrestaAct(presta);
 		return "Activite(s) proposee(s) par " + presta + ":\n" + listact;
 	}
+
 }
