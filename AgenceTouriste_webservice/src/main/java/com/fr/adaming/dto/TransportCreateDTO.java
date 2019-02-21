@@ -5,6 +5,10 @@ import com.fr.adaming.enumeration.typeTransEnum;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Thomas R
+ *
+ */
 @Getter
 @Setter
 public class TransportCreateDTO {

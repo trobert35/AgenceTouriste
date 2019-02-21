@@ -7,6 +7,10 @@ import com.fr.adaming.enumeration.typeLogEnum;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Thomas R
+ *
+ */
 @Getter
 @Setter
 public class LogementCreateDTO {

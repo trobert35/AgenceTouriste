@@ -1,9 +1,9 @@
 package com.fr.adaming.restController;
 
 /**
- * @author Mohamed EL AGREBI
+ * @author Mohamed
  *
  */
-public interface IAdminRestController{
+public interface IAdminRestController {
 
 }

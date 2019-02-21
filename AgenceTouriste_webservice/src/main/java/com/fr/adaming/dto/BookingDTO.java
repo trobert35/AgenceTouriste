@@ -4,14 +4,19 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+/**
+ * @author Thomas R
+ *
+ */
+@Getter
+@Setter
 public class BookingDTO {
 
 	private String prenomUser;
 	private String nomUser;
-	
-	@ApiModelProperty(example="dd/mm/yyyy")
+
+	@ApiModelProperty(example = "dd/mm/yyyy")
 	private String debutPresta;
-	@ApiModelProperty(example="dd/mm/yyyy")
+	@ApiModelProperty(example = "dd/mm/yyyy")
 	private String finPresta;
 }

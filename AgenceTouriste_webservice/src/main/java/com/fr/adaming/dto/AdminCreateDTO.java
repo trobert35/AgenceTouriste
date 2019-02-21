@@ -6,6 +6,10 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Thomas R
+ *
+ */
 @Getter
 @Setter
 public class AdminCreateDTO {

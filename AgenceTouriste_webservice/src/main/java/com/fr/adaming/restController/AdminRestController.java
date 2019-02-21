@@ -18,7 +18,7 @@ import com.fr.adaming.entity.User;
 import com.fr.adaming.service.IAdminService;
 
 /**
- * @author Mohamed EL AGREBI
+ * @author Mohamed
  * @author Thomas S
  */
 @RestController

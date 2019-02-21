@@ -4,6 +4,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Mohamed
+ *
+ */
 @Getter
 @Setter
 public class PrestationDateDTO {

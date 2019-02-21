@@ -18,7 +18,7 @@ import com.fr.adaming.enumeration.typeActEnum;
 import com.fr.adaming.service.IActiviteService;
 
 /**
- * @author Mohamed EL AGREBI
+ * @author Mohamed
  * @author Thomas S
  */
 @RestController

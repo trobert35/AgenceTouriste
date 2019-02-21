@@ -20,7 +20,7 @@ import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.service.IProduitService;
 
 /**
- * @author Mohamed EL AGREBI
+ * @author Mohamed
  * @author Thomas S
  */
 @RestController
