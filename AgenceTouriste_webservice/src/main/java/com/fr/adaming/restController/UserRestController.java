@@ -7,10 +7,13 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.BookingDTO;
@@ -35,11 +38,13 @@ public class UserRestController implements IUserRestController {
 	@Autowired
 	private IProduitService<Prestation> prestaService;
 
+	private static final String FORMATDATE = "dd/MM/yyyy";
+
 	/**
 	 * @param regDto DTO pour enregistrer un user
 	 * @return String
 	 */
-	@RequestMapping(path = "user", method = RequestMethod.POST)
+	@PostMapping(path = "user")
 	public String register(@Valid @RequestBody RegisterDTO regDto) {
 		User user = new User(regDto.getNom(), regDto.getPrenom(), regDto.getEmail(), regDto.getPwd());
 		userService.register(user);
@@ -50,7 +55,7 @@ public class UserRestController implements IUserRestController {
 	 * @param logDto dto login
 	 * @return String
 	 */
-	@RequestMapping(path = "login", method = RequestMethod.POST)
+	@PostMapping(path = "login")
 	public String login(@Valid @RequestBody LoginDTO logDto) {
 		User user = userService.login(logDto.getEmail(), logDto.getPwd());
 		return "Bonjour " + user.getPrenom() + " " + user.getNom() + ", vous etes connecte";
@@ -59,17 +64,16 @@ public class UserRestController implements IUserRestController {
 	/**
 	 * @return List des User
 	 */
-	@RequestMapping(path = "user", method = RequestMethod.GET)
+	@GetMapping(path = "user")
 	public List<User> readAll() {
-		List<User> listUser = userService.readAll();
-		return listUser;
+		return userService.readAll();
 	}
 
 	/**
 	 * @param id id user
 	 * @return String
 	 */
-	@RequestMapping(path = "user/{id}", method = RequestMethod.GET)
+	@GetMapping(path = "user/{id}")
 	public String readById(@PathVariable Long id) {
 		User user = userService.readById(id);
 		return "Client : " + user;
@@ -80,17 +84,17 @@ public class UserRestController implements IUserRestController {
 	 * @param prenom prenom
 	 * @return User object
 	 */
-	@RequestMapping(path = "user/{nom}/conf/{prenom}", method = RequestMethod.GET)
+	@GetMapping(path = "user/{nom}/conf/{prenom}")
 	public User readByNomAndPrenom(@PathVariable String nom, @PathVariable String prenom) {
-		User user = userService.readByNomAndPrenom(nom, prenom);
-		return user;
+		return userService.readByNomAndPrenom(nom, prenom);
+
 	}
 
 	/**
 	 * @param user Object user
 	 * @return String
 	 */
-	@RequestMapping(path = "user", method = RequestMethod.PUT)
+	@PutMapping(path = "user")
 	public String update(@RequestBody User user) {
 		User user0 = userService.readById(user.getId());
 		User user1 = userService.update(user);
@@ -101,7 +105,7 @@ public class UserRestController implements IUserRestController {
 	 * @param id id user
 	 * @return user + String
 	 */
-	@RequestMapping(path = "user/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(path = "user/{id}")
 	public String delete(@PathVariable Long id) {
 		User user0 = userService.readById(id);
 		userService.deleteById(id);
@@ -113,12 +117,12 @@ public class UserRestController implements IUserRestController {
 	 * @return String
 	 * @throws ParseException parseException
 	 */
-	@RequestMapping(path = "user/PrestationToBook/conf/userToBook", method = RequestMethod.POST)
+	@PostMapping(path = "user/PrestationToBook/conf/userToBook")
 	public String book(@RequestBody BookingDTO dtoBook) throws ParseException {
 
 		Prestation p = prestaService
-				.readByDebutPrestaAndFinPresta(new SimpleDateFormat("dd/MM/yyyy").parse(dtoBook.getDebutPresta()),
-						new SimpleDateFormat("dd/MM/yyyy").parse(dtoBook.getFinPresta()))
+				.readByDebutPrestaAndFinPresta(new SimpleDateFormat(FORMATDATE).parse(dtoBook.getDebutPresta()),
+						new SimpleDateFormat(FORMATDATE).parse(dtoBook.getFinPresta()))
 				.get(0);
 
 		User u = userService.readByNomAndPrenom(dtoBook.getNomUser(), dtoBook.getPrenomUser());

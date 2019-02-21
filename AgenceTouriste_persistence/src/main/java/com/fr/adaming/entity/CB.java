@@ -9,6 +9,10 @@ import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Claire
+ *
+ */
 @Embeddable
 @Getter
 @Setter
@@ -17,9 +21,6 @@ public class CB implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @author Claire
-	 */
 
 	@Column(unique = true, nullable = true)
 	private Long numeroCarte; // numero de la carte bancaire

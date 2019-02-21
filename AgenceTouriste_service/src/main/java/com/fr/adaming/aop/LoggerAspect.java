@@ -21,7 +21,7 @@ public class LoggerAspect {
 	 *           consideree comme FATAL
 	 */
 	@AfterThrowing(pointcut = "execution(* com.fr.adaming.service.*(..))", throwing = "e")
-	public void LogError(JoinPoint jp, Throwable e) {
+	public void logError(JoinPoint jp, Throwable e) {
 
 		Logger log = Logger.getLogger(AdminService.class);
 

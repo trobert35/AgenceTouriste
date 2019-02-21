@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.fr.adaming.entity.Logement;
 import com.fr.adaming.enumeration.typeLogEnum;
 
+/**
+ * @author Claire
+ *
+ */
 public interface ILogementDao extends JpaRepository<Logement, Long> {
+
 	/**
-	 * @author Claire
-	 * 
 	 * @param prestaLog le nom du prestataire
 	 * @return une liste de logements selon le nom du prestataire
 	 */

@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.fr.adaming.entity.Activite;
 import com.fr.adaming.enumeration.typeActEnum;
 
+/**
+ * @author Claire
+ *
+ */
 public interface IActiviteDao extends JpaRepository<Activite, Long> {
+
 	/**
-	 * @author Claire
-	 * 
 	 * @param nomPrestaAct le nom du prestataire
 	 * @return une liste d'activités en fonction du nom du prestataire
 	 */

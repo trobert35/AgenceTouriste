@@ -7,12 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.fr.adaming.entity.Transport;
 import com.fr.adaming.enumeration.typeTransEnum;
 
+/**
+ * @author Claire
+ *
+ */
 public interface ITransportDao extends JpaRepository<Transport, Long> {
-	/**
-	 * @author Claire
-	 * @param prestaTrans
-	 * @return
-	 */
 
 	/**
 	 * @param prestaTrans nom du prestataire

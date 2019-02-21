@@ -42,6 +42,8 @@ public class UserServiceTest {
 	private User user, user2;
 	private Prestation presta;
 
+	private static final String FORMATDATE = "dd/MM/yyyy";
+
 	// CREATE
 	@Test
 	public void aa_createValidUser() {
@@ -344,8 +346,8 @@ public class UserServiceTest {
 	public void bi_bookPrestationValid() throws ParseException {
 		// Tester un book valide
 		aa_createValidUser();
-		presta = new Prestation("Campin", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"), "Paris", "Marseille", 60, 100, null);
+		presta = new Prestation("Campin", new SimpleDateFormat(FORMATDATE).parse("02/02/2019"),
+				new SimpleDateFormat(FORMATDATE).parse("20/02/2019"), "Paris", "Marseille", 60, 100);
 		prestaService.createPrestation(presta);
 		assertTrue(userService.bookPrestation(user, presta));
 		prestaService.deletePrestationById(presta.getId());
@@ -362,8 +364,8 @@ public class UserServiceTest {
 	public void bk_bookPrestationWithPrestationUnknown() throws ParseException {
 		// Tester le book d'une prestation inconnue
 		aa_createValidUser();
-		presta = new Prestation("Camping", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"), "Paris", "Marseille", 60, 100, null);
+		presta = new Prestation("Camping", new SimpleDateFormat(FORMATDATE).parse("02/02/2019"),
+				new SimpleDateFormat(FORMATDATE).parse("20/02/2019"), "Paris", "Marseille", 60, 100);
 		assertFalse(userService.bookPrestation(user, presta));
 	}
 
@@ -391,8 +393,8 @@ public class UserServiceTest {
 	public void bn_bookPrestationWithIdPrestationNull() throws ParseException {
 		// Tester le book d'une prestation avec id null
 		aa_createValidUser();
-		presta = new Prestation("Campong", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"), "Paris", "Marseille", 60, 100, null);
+		presta = new Prestation("Campong", new SimpleDateFormat(FORMATDATE).parse("02/02/2019"),
+				new SimpleDateFormat(FORMATDATE).parse("20/02/2019"), "Paris", "Marseille", 60, 100);
 		prestaService.createPrestation(presta);
 		long i = presta.getId();
 		presta.setId(null);
@@ -404,8 +406,8 @@ public class UserServiceTest {
 	public void bo_bookPrestationWithIdPrestationEqualsToZero() throws ParseException {
 		// Tester le book d'une prestation avec id égal à 0
 		aa_createValidUser();
-		presta = new Prestation("Campang", new SimpleDateFormat("dd/MM/yyyy").parse("02/02/2019"),
-				new SimpleDateFormat("dd/MM/yyyy").parse("20/02/2019"), "Paris", "Marseille", 60, 100, null);
+		presta = new Prestation("Campang", new SimpleDateFormat(FORMATDATE).parse("02/02/2019"),
+				new SimpleDateFormat(FORMATDATE).parse("20/02/2019"), "Paris", "Marseille", 60, 100);
 		prestaService.createPrestation(presta);
 		long i = presta.getId();
 		presta.setId(0L);

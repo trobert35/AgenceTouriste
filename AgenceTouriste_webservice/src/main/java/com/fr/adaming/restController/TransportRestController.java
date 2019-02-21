@@ -3,10 +3,13 @@ package com.fr.adaming.restController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.TransportCreateDTO;
@@ -16,7 +19,7 @@ import com.fr.adaming.service.ITransportService;
 
 /**
  * @author Mohamed EL AGREBI
- *		   Thomas S
+ * @author Thomas S
  */
 @RestController
 @RequestMapping(path = "api/")
@@ -26,11 +29,13 @@ public class TransportRestController {
 	@Autowired
 	private ITransportService transportService;
 
+	private static final String SAUT = " : \n";
+
 	/**
 	 * @param trans transportCreateDTO
 	 * @return String + attributs du dto
 	 */
-	@RequestMapping(path = "transport", method = RequestMethod.POST)
+	@PostMapping(path = "transport")
 	public String createTransport(@RequestBody TransportCreateDTO trans) {
 		transportService.createTransport(new Transport(trans.getPrestaTrans(), trans.getVilleArriveeTrans(),
 				trans.getVilleDepartTrans(), trans.getPrix(), trans.getTypeTrans()));
@@ -41,7 +46,7 @@ public class TransportRestController {
 	 * @param trans objet transport
 	 * @return String + objet
 	 */
-	@RequestMapping(path = "transport", method = RequestMethod.PUT)
+	@PutMapping(path = "transport")
 	public String updateTransport(@RequestBody Transport trans) {
 		trans = transportService.updateTransport(trans);
 		return "Transport modifie : " + trans;
@@ -50,7 +55,7 @@ public class TransportRestController {
 	/**
 	 * @return la liste de transports
 	 */
-	@RequestMapping(path = "transport", method = RequestMethod.GET)
+	@GetMapping(path = "transport")
 	public String readAllTransport() {
 		List<Transport> listtrans = transportService.readAllTransport();
 		return "Liste des Transports : " + listtrans;
@@ -60,7 +65,7 @@ public class TransportRestController {
 	 * @param id l'id du transport
 	 * @return le transport par id
 	 */
-	@RequestMapping(path = "transport/{id}", method = RequestMethod.GET)
+	@GetMapping(path = "transport/{id}")
 	public String readByIdTransport(@PathVariable Long id) {
 		Transport trans = transportService.readTransportById(id);
 		return "Transport : " + trans;
@@ -70,7 +75,7 @@ public class TransportRestController {
 	 * @param id l'id du transport
 	 * @return String
 	 */
-	@RequestMapping(path = "transport/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(path = "transport/{id}")
 	public String deleteTransport(@PathVariable Long id) {
 		Transport trans = transportService.readTransportById(id);
 		transportService.deleteTransportById(id);
@@ -81,30 +86,30 @@ public class TransportRestController {
 	 * @param prix prix du transport
 	 * @return String + liste des transports
 	 */
-	@RequestMapping(path = "transport/{prixTrans}", method = RequestMethod.GET)
+	@GetMapping(path = "transport/{prixTrans}")
 	public String readByPrixTransport(@PathVariable Double prix) {
 		List<Transport> translist = transportService.readByPrix(prix);
-		return "Transport(s) au prix de " + prix + " : \n" + translist;
+		return "Transport(s) au prix de " + prix + SAUT + translist;
 	}
 
 	/**
 	 * @param type type de transport
 	 * @return String + liste des transports
 	 */
-	@RequestMapping(path = "transport/{typeTrans}", method = RequestMethod.GET)
+	@GetMapping(path = "transport/{typeTrans}")
 	public String readByTypeTransport(@PathVariable typeTransEnum type) {
 		List<Transport> translist = transportService.readByTypeTrans(type);
-		return "Transport(s) de type " + type + " : \n" + translist;
+		return "Transport(s) de type " + type + SAUT + translist;
 	}
 
 	/**
 	 * @param presta nom de la prestation
 	 * @return String + liste de transports selon la prestation recherchee
 	 */
-	@RequestMapping(path = "transport/{presta}", method = RequestMethod.GET)
+	@GetMapping(path = "transport/{presta}")
 	public String readTransportByPresta(@PathVariable String presta) {
 		List<Transport> listtrans = transportService.readTransportByPrestaTrans(presta);
-		return "Transport(s) de " + presta + " : \n" + listtrans;
+		return "Transport(s) de " + presta + SAUT + listtrans;
 	}
 
 }

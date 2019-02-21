@@ -39,8 +39,8 @@ public class LogementServiceTest {
 	@Test
 	public void a_createValidLogement() {
 		// Tester l'insertion d'un objet valide
-		logement = new Logement("Michel et Jacqueline", "Les Flots Bleus", "Saint-Marc", 60d, typeLogEnum.camping,
-				pensionLogEnum.petitDejeuner, qualiteLogEnum.deux);
+		logement = new Logement("Michel et Jacqueline", "Les Flots Bleus", "Saint-Marc", 60d, typeLogEnum.CAMPING,
+				pensionLogEnum.PETITDEJEUNER, qualiteLogEnum.DEUX);
 		logement = logService.createLogement(logement);
 		assertNotNull(logement);
 	}

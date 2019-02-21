@@ -151,7 +151,9 @@ public class PrestationService implements IProduitService<Prestation> {
 	 * @throws NullPointerException si prestation est null
 	 */
 	public void calculPrixTotal(Prestation prestation) {
-		double prixActTot = 0, prixLogTot = 0, prixTraTot = 0;
+		double prixActTot = 0;
+		double prixLogTot = 0;
+		double prixTraTot = 0;
 
 		if (!prestation.getActivite().isEmpty()) {
 			for (int i = 0; i < prestation.getActivite().size(); i++) {

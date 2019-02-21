@@ -38,7 +38,7 @@ public class TransportServiceTest {
 	public void a_createValidTransport() {
 		// Tester l'insertion d'un objet valide
 		createdTransport = new Transport("prestaTrans1", "villeArriveeTrans1", "villeDepartTrans1", 100d,
-				typeTransEnum.avion);
+				typeTransEnum.AVION);
 		createdTransport = transService.createTransport(createdTransport);
 		assertNotNull(createdTransport);
 
@@ -58,7 +58,7 @@ public class TransportServiceTest {
 	public void c_createTransportWithNullId() {
 		// Tester l'insertion d'un objet avec id = null
 		createdTransport = new Transport("prestaTrans2", "villeArriveeTrans2", "villeDepartTrans2", (double) 100,
-				typeTransEnum.avion);
+				typeTransEnum.AVION);
 		createdTransport.setId(null);// pour etre sur que id = null
 		createdTransport = transService.createTransport(createdTransport);
 		assertNotNull(createdTransport);
@@ -68,7 +68,7 @@ public class TransportServiceTest {
 	public void d_createTransportWithIdEqualsToZero() {
 		// Tester l'insertion d'un objet avec id = 0
 		createdTransport = new Transport("prestaTrans3", "villeArriveeTrans3", "villeDepartTrans3", (double) 100,
-				typeTransEnum.avion);
+				typeTransEnum.AVION);
 		createdTransport.setId(0L);// pour sur que id = 0
 		createdTransport = transService.createTransport(createdTransport);
 		assertNotNull(createdTransport);

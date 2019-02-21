@@ -2,17 +2,18 @@ package com.fr.adaming.enumeration;
 
 import lombok.Getter;
 
+/**
+ * @author Claire
+ *
+ */
 @Getter
 public enum typeLogEnum {
-	/**
-	 * @author Claire
-	 */
 
 	// L agence definit les types de logements disponibles pour chaque instance de
 	// logement.
 
-	hotel("hotel"), auberge("auberge"), gite("gite"), camping("camping"), palace("palace"), chambre("chambre"),
-	appartement("appartement");
+	HOTEL("hotel"), AUBERGE("auberge"), GITE("gite"), CAMPING("camping"), PALACE("palace"), CHAMBRE("chambre"),
+	APPARTEMENT("appartement");
 
 	private String typeLog = "";
 

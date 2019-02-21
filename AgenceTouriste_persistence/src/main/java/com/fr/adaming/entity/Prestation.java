@@ -19,6 +19,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author Claire
+ * @author Maxime
+ *
+ */
 @Entity
 @Getter
 @Setter
@@ -29,11 +34,6 @@ public class Prestation implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @author Claire
-	 * @author Maxime
-	 *
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,7 +82,7 @@ public class Prestation implements Serializable {
 	 */
 
 	public Prestation(String nom, Date debutPresta, Date finPresta, String villeDepartArrivee, String destination,
-			int nbPersonnesMax, double commission, String avis) {
+			int nbPersonnesMax, double commission) {
 		super();
 		this.nom = nom;
 		this.debutPresta = debutPresta;
@@ -91,11 +91,10 @@ public class Prestation implements Serializable {
 		this.destination = destination;
 		this.nbPersonnesMax = nbPersonnesMax;
 		this.commission = commission;
-		this.avis = avis;
-		this.users = new ArrayList<User>();
-		this.activite = new ArrayList<Activite>();
-		this.logement = new ArrayList<Logement>();
-		this.transport = new ArrayList<Transport>();
+		this.users = new ArrayList<>();
+		this.activite = new ArrayList<>();
+		this.logement = new ArrayList<>();
+		this.transport = new ArrayList<>();
 	}
 
 }

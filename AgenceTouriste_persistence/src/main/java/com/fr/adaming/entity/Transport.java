@@ -14,6 +14,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author Claire
+ * @author Maxime
+ *
+ */
 @Entity
 @Getter
 @Setter
@@ -24,10 +29,6 @@ public class Transport implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @author Claire
-	 * @author Maxime
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

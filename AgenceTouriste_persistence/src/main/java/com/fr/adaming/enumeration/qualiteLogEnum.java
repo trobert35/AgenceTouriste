@@ -2,15 +2,16 @@ package com.fr.adaming.enumeration;
 
 import lombok.Getter;
 
+/**
+ * @author Claire
+ *
+ */
 @Getter
 public enum qualiteLogEnum {
-	/**
-	 * @author Claire
-	 */
 
 	// L agence definit la qualite du logement pour chaque instance de logement.
 
-	un("1"), deux("2"), trois("3"), quatre("4"), cinq("5");
+	UN("1"), DEUX("2"), TROIS("3"), QUATRE("4"), CINQ("5");
 
 	private String qualLog = "";
 

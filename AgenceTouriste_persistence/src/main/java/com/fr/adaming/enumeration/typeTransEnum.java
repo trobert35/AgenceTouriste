@@ -2,15 +2,16 @@ package com.fr.adaming.enumeration;
 
 import lombok.Getter;
 
+/**
+ * @author Claire
+ *
+ */
 @Getter
 public enum typeTransEnum {
-	/**
-	 * @author Claire
-	 * 
-	 */
+
 // L agence de voyage peut definir de quel type de transport il s agit pour chaque instance de transport creee
 
-	avion("avion"), train("train"), car("car"), bateau("bateau");
+	AVION("avion"), TRAIN("train"), CAR("car"), BATEAU("bateau");
 
 	private String typeTrans = "";
 

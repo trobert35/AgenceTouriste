@@ -2,15 +2,16 @@ package com.fr.adaming.enumeration;
 
 import lombok.Getter;
 
+/**
+ * @author Claire
+ *
+ */
 @Getter
 public enum pensionLogEnum {
-	/**
-	 * @author Claire
-	 */
 
 	// L agence definit le type de pension pour chaque instance de logement.
 
-	demiPension("demiPension"), pensionComplete("pensionComp"), toutInclus("toutInclus"), petitDejeuner("petitDej");
+	DEMIPENSION("demiPension"), PENSIONCOMPLETE("pensionComp"), TOUTINCLUS("toutInclus"), PETITDEJEUNER("petitDej");
 
 	private String pensionLog = "";
 

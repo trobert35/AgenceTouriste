@@ -25,9 +25,12 @@ public class TransportService implements ITransportService {
 	private ITransportDao daoT;
 	private Logger log = Logger.getLogger(TransportService.class);
 
+	private static final String SUCCESS = " SUCCESS";
+	private static final String FAILED = " FAILED";
+
 	// Methodes CRUD Transport + readTransportByPrestaTrans + readByPrix +
 	// readByTypeTrans
-	
+
 	/**
 	 * Insere un objet Transport dans la database si transport y est inexistant
 	 * 
@@ -91,10 +94,10 @@ public class TransportService implements ITransportService {
 	public Transport readTransportById(Long id) {
 		Optional<Transport> optTra = daoT.findById(id);
 		if (!optTra.isPresent()) {
-			log.warn("Lecture du Transport avec l'id " + id + " FAILED");
+			log.warn("Lecture du Transport avec l'id " + id + FAILED);
 			return null;
 		} else {
-			log.info("Lecture du Transport avec l'id " + id + " SUCCESS");
+			log.info("Lecture du Transport avec l'id " + id + SUCCESS);
 			return optTra.get();
 		}
 	}
@@ -123,9 +126,9 @@ public class TransportService implements ITransportService {
 	public List<Transport> readTransportByPrestaTrans(String prestaTrans) {
 		List<Transport> lili = daoT.findByPrestaTrans(prestaTrans);
 		if (lili.isEmpty()) {
-			log.warn("Lecture de la liste des Transport concernant " + prestaTrans + " FAILED");
+			log.warn("Lecture de la liste des Transport concernant " + prestaTrans + FAILED);
 		} else {
-			log.info("Lecture de la liste des Transport concernant " + prestaTrans + " FAILED");
+			log.info("Lecture de la liste des Transport concernant " + prestaTrans + SUCCESS);
 
 		}
 		return lili;

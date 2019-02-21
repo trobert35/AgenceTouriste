@@ -16,6 +16,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author Claire
+ *
+ */
 @Entity
 @Getter
 @Setter
@@ -26,9 +30,6 @@ public class Logement implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @author Claire
-	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

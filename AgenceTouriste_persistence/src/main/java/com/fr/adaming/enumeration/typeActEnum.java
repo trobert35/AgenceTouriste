@@ -2,17 +2,18 @@ package com.fr.adaming.enumeration;
 
 import lombok.Getter;
 
+/**
+ * @author Claire
+ *
+ */
 @Getter
 public enum typeActEnum {
-	/**
-	 * @author Claire
-	 */
 
 	// L agence definit le type d'activites disponibles pour chaque instance
 	// d activite.
 
-	escalade("escalade"), plage("plage"), monument("monument"), musee("musee"), spa("spa"), randonnee("randonnee"),
-	croisiere("croisiere"), golf("golf"), plongee("plongee"), safari("safari"), tour("tour");
+	ESCALADE("escalade"), PLAGE("plage"), MONUMENT("monument"), MUSEE("musee"), SPA("spa"), RANDONNEE("randonnee"),
+	CROISIERE("croisiere"), GOLF("golf"), PLONGEE("plongee"), SAFARI("safari"), TOUR("tour");
 
 	private String typeAct = "";
 

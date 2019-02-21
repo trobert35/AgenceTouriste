@@ -37,7 +37,7 @@ public class ActiviteServiceTest {
 	@Test
 	public void a_createValidActivite() {
 		// Tester l'insertion d'un objet valide
-		activite = new Activite(120d, typeActEnum.croisiere, "Croisiere sur le Nil", "MSC Croisiere");
+		activite = new Activite(120d, typeActEnum.CROISIERE, "Croisiere sur le Nil", "MSC Croisiere");
 		assertNotNull(actService.createActivite(activite));
 	}
 
@@ -190,7 +190,7 @@ public class ActiviteServiceTest {
 	@Test
 	public void v_readActiviteByValidNomPrestAct() {
 		// Tester la lecture d'un objet avec nomPrestaAct valide
-		activite = new Activite(90d, typeActEnum.golf, "Le mini golf du trou", "Mr Balle");
+		activite = new Activite(90d, typeActEnum.GOLF, "Le mini golf du trou", "Mr Balle");
 		actService.readActiviteByNomPrestaAct(activite.getNomPrestaAct());
 		assertNotNull(activite);
 	}

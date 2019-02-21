@@ -28,6 +28,9 @@ public class UserService implements IUserService<User> {
 
 	private Logger log = Logger.getLogger(UserService.class);
 
+	private static final String SUCCESS = " SUCCESS";
+	private static final String FAILED = " FAILED";
+
 	/**
 	 * @param nom    nom du User
 	 * @param prenom prenom du User
@@ -36,10 +39,10 @@ public class UserService implements IUserService<User> {
 	public User readByNomAndPrenom(String nom, String prenom) {
 		try {
 			User u = dao.findByNomAndPrenom(nom, prenom);
-			log.info("Lecture du User de nom " + nom + " et prenom " + prenom + " SUCCESS");
+			log.info("Lecture du User de nom " + nom + " et prenom " + prenom + SUCCESS);
 			return u;
 		} catch (Exception e) {
-			log.warn("Lecture du User de nom " + nom + " et prenom " + prenom + " FAILED");
+			log.warn("Lecture du User de nom " + nom + " et prenom " + prenom + FAILED);
 			return null;
 		}
 	}
@@ -53,10 +56,10 @@ public class UserService implements IUserService<User> {
 	public User login(String email, String pwd) {
 		try {
 			User u = dao.findByEmailAndPwd(email, pwd);
-			log.info("Login du User de mail " + email + " et PWD " + pwd + " SUCCESS");
+			log.info("Login du User de mail " + email + " et PWD " + pwd + SUCCESS);
 			return u;
 		} catch (Exception e) {
-			log.warn("Login du User de mail " + email + " et PWD " + pwd + " SUCCESS");
+			log.warn("Login du User de mail " + email + " et PWD " + pwd + FAILED);
 			return null;
 		}
 	}
@@ -113,10 +116,10 @@ public class UserService implements IUserService<User> {
 	public User readById(Long id) {
 		Optional<User> optUser = dao.findById(id);
 		if (!optUser.isPresent()) {
-			log.warn("Lecture du User avec l'id " + id + " FAILED");
+			log.warn("Lecture du User avec l'id " + id + FAILED);
 			return null;
 		} else {
-			log.info("Lecture du User avec l'id " + id + " SUCCESS");
+			log.info("Lecture du User avec l'id " + id + SUCCESS);
 			return optUser.get();
 		}
 	}
@@ -165,7 +168,7 @@ public class UserService implements IUserService<User> {
 			prestation.setUsers(midUserList);
 			prestation.setNbPersonnes(midUserList.size());
 			log.info("RESERVATION pour l'Utilisateur " + user.getNom() + " et la Prestation " + prestation.getNom()
-					+ " SUCCESS");
+					+ SUCCESS);
 			return true;
 		}
 
