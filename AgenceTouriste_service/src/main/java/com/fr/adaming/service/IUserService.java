@@ -3,47 +3,48 @@ package com.fr.adaming.service;
 import java.util.List;
 
 import com.fr.adaming.entity.Prestation;
+import com.fr.adaming.entity.User;
 
 /**
  * @author Thomas S
  *
- * @param <User> objet de la classe User
+ * @param <T> objet de la classe Object
  */
-public interface IUserService<User> {
+public interface IUserService<T> {
 
-	public User login(String email, String pwd);
+	public T login(String email, String pwd);
 
-	public User register(User user);
+	public T register(User user);
 
 	/**
 	 * @param nom    nom du User
 	 * @param prenom prenom du User
 	 * @return un objet de la classe User
 	 */
-	public User readByNomAndPrenom(String nom, String prenom);
+	public T readByNomAndPrenom(String nom, String prenom);
 
 	/**
 	 * @param user objet de classe User
 	 * @return un objet de la classe User
 	 */
-	public User create(User user);
+	public T create(User user);
 
 	/**
 	 * @param user objet de classe User
 	 * @return un objet de la classe User
 	 */
-	public User update(User user);
+	public T update(User user);
 
 	/**
 	 * @param id id du User
 	 * @return un objet de la classe User
 	 */
-	public User readById(Long id);
+	public T readById(Long id);
 
 	/**
 	 * @return une List de User
 	 */
-	public List<User> readAll();
+	public List<T> readAll();
 
 	/**
 	 * @param id id du User

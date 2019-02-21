@@ -1,4 +1,4 @@
-package com.fr.adaming.restController;
+package com.fr.adaming.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
