@@ -78,7 +78,6 @@ public class Prestation implements Serializable {
 	 * @param nbPersonnesMax     le nombre de personnes maximal pour cette
 	 *                           prestation
 	 * @param commission         la commission due a l'agence de voyage
-	 * @param avis               l'avis des clients sur cette prestation
 	 */
 
 	public Prestation(String nom, Date debutPresta, Date finPresta, String villeDepartArrivee, String destination,
