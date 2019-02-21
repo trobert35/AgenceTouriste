@@ -95,8 +95,9 @@ public class LogementService implements ILogementService {
 			return null;
 		} else {
 			log.info("Lecture du Logement avec l'id " + id + " SUCCESS");
+			return optLog.get();
 		}
-		return optLog.get();
+		
 	}
 
 	/**
