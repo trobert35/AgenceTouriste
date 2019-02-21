@@ -4,8 +4,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.NoSuchElementException;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -89,7 +87,7 @@ public class AdminServiceTest {
 
 	}
 
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void g_readByUnknownId() {
 		// Tester la lecture d'un objet non existant
 		admin = (Admin) admService.readAdminById(999999L);
@@ -104,7 +102,7 @@ public class AdminServiceTest {
 		admService.readAdminById(null);
 	}
 
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void i_readByIdEqualsToZero() {
 		// Tester la lecture d'un objet avec id = 0
 		admin = (Admin) admService.readAdminById(0L);
@@ -209,7 +207,7 @@ public class AdminServiceTest {
 		System.out.println("********************* DEBUG TESTING afterMethod *********************");
 		if (admin != null && admin.getId() != null) {
 			admService.deleteAdminById(admin.getId());
-			if(admin2 != null && admin2.getId() != null){
+			if (admin2 != null && admin2.getId() != null) {
 				admService.deleteAdminById(admin2.getId());
 			}
 		}

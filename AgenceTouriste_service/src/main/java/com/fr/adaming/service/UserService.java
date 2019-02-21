@@ -1,6 +1,7 @@
 package com.fr.adaming.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,13 +111,14 @@ public class UserService implements IUserService<User> {
 	 * @return un user s'il n'est pas null, renvoie un warning dans le cas contraire
 	 */
 	public User readById(Long id) {
-		User u = dao.findById(id).get();
-		if (u == null) {
+		Optional<User> optUser = dao.findById(id);
+		if (!optUser.isPresent()) {
 			log.warn("Lecture du User avec l'id " + id + " FAILED");
+			return null;
 		} else {
 			log.info("Lecture du User avec l'id " + id + " SUCCESS");
+			return optUser.get();
 		}
-		return u;
 	}
 
 	/**

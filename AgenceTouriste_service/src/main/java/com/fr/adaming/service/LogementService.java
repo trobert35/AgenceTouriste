@@ -1,6 +1,7 @@
 package com.fr.adaming.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,13 +89,14 @@ public class LogementService implements ILogementService {
 	 * @throws InvalidDataAccessApiUsageException si id est null
 	 */
 	public Logement readLogementById(Long id) {
-		Logement l = daoL.findById(id).get();
-		if (l == null) {
+		Optional<Logement> optLog = daoL.findById(id);
+		if (!optLog.isPresent()) {
 			log.warn("Lecture du Logement avec l'id " + id + " FAILED");
+			return null;
 		} else {
 			log.info("Lecture du Logement avec l'id " + id + " SUCCESS");
 		}
-		return l;
+		return optLog.get();
 	}
 
 	/**

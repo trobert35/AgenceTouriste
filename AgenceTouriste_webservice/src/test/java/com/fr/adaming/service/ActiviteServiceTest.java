@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import java.util.NoSuchElementException;
-
 import org.junit.After;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -20,13 +18,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.fr.adaming.entity.Activite;
 import com.fr.adaming.enumeration.typeActEnum;
 
+/**
+ * @author Claire
+ * @author Maxime
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ActiviteServiceTest {
-	/**
-	 * @author Claire
-	 */
 
 	@Autowired
 	private IActiviteService actService;
@@ -38,8 +38,7 @@ public class ActiviteServiceTest {
 	public void a_createValidActivite() {
 		// Tester l'insertion d'un objet valide
 		activite = new Activite(120d, typeActEnum.croisiere, "Croisiere sur le Nil", "MSC Croisiere");
-		activite = actService.createActivite(activite);
-		assertNotNull(activite);
+		assertNotNull(actService.createActivite(activite));
 	}
 
 	@Test
@@ -48,8 +47,7 @@ public class ActiviteServiceTest {
 		a_createValidActivite();
 		Activite activite1 = new Activite();
 		activite1 = actService.readAllActivite().get(0);
-		activite1 = actService.createActivite(activite1);
-		assertNull(activite1);
+		assertNull(actService.createActivite(activite1));
 	}
 
 	@Test
@@ -57,8 +55,7 @@ public class ActiviteServiceTest {
 		// Tester l'insertion d'un objet avec id = null
 		activite = new Activite();
 		activite.setId(null);
-		activite = actService.createActivite(activite);
-		assertNotNull(activite);
+		assertNotNull(actService.createActivite(activite));
 
 	}
 
@@ -74,51 +71,46 @@ public class ActiviteServiceTest {
 	@Test(expected = NullPointerException.class)
 	public void e_createActiviteNull() {
 		// Tester l'insertion d'un objet null
-		activite = null;
-		actService.createActivite(activite);
+		actService.createActivite(null);
 	}
 
 	// READ
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void f_readActiviteByIdValid() {
 		// Tester la lecture d'un objet valide
 		a_createValidActivite();
-		activite = actService.readActiviteById(1L);
+		assertNotNull(actService.readActiviteById(activite.getId()));
 	}
 
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void g_readActiviteByUnknownId() {
 		// Tester la lecture d'un objet non existant
-		a_createValidActivite();
-		activite = actService.readActiviteById(999999999L);
+		assertNull(actService.readActiviteById(999999999L));
 	}
 
 	@Test(expected = InvalidDataAccessApiUsageException.class)
 	public void h_readActiviteByIdNull() {
 		// Tester la lecture d'un objet avec id = null
-		a_createValidActivite();
-		activite = actService.readActiviteById(null);
+		actService.readActiviteById(null);
 	}
 
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void i_readActiviteByIdEqualsToZero() {
 		// Tester la lecture d'un objet avec id = 0
-		a_createValidActivite();
-		activite = actService.readActiviteById(0L);
+		assertNull(actService.readActiviteById(0L));
 	}
 
 	@Test
 	public void j_readAllActiviteValid() {
 		// Tester la lecture d'une liste d'objets valides
 		a_createValidActivite();
-		activite = actService.readAllActivite().get(0);
-		assertNotNull(activite);
+		assertNotNull(actService.readAllActivite().get(0));
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void k_readAllActiviteEmpty() {
 		// Tester la lecture d'une liste d'objets vide
-		activite = actService.readAllActivite().get(0);
+		actService.readAllActivite().get(0);
 	}
 
 	// UPDATE
@@ -128,16 +120,14 @@ public class ActiviteServiceTest {
 		a_createValidActivite();
 		activite = actService.readAllActivite().get(0);
 		activite.setNom("nomModifie");
-		activite = actService.updateActivite(activite);
-		assertNotNull(activite);
+		assertNotNull(actService.updateActivite(activite));
 	}
 
 	@Test
 	public void m_updateUnknownActivite() {
 		// Tester la modification d'un objet inconnu
 		activite = new Activite();
-		activite = actService.updateActivite(activite);
-		assertNull(activite);
+		assertNull(actService.updateActivite(activite));
 	}
 
 	@Test
@@ -145,8 +135,7 @@ public class ActiviteServiceTest {
 		// Tester la modification d'un objet avec id = null
 		activite = new Activite();
 		activite.setId(null);
-		activite = actService.updateActivite(activite);
-		assertNull(activite);
+		assertNull(actService.updateActivite(activite));
 	}
 
 	@Test
@@ -161,8 +150,7 @@ public class ActiviteServiceTest {
 	@Test(expected = NullPointerException.class)
 	public void p_updateActiviteNull() {
 		// Tester la modification d'un objet null
-		activite = null;
-		activite = actService.updateActivite(activite);
+		actService.updateActivite(null);
 	}
 
 	// DELETE
@@ -224,7 +212,6 @@ public class ActiviteServiceTest {
 		// Tester la lecture d'un objet avec prix valide
 		activite = new Activite();
 		actService.readActiviteByPrix(activite.getPrix());
-		assertNotNull(activite);
 	}
 
 	@Test
@@ -244,7 +231,6 @@ public class ActiviteServiceTest {
 		// Tester la lecture d'un objet avec typeAct valide
 		activite = new Activite();
 		actService.readActiviteByTypeAct(activite.getTypeAct());
-		assertNotNull(activite);
 	}
 
 	@Test

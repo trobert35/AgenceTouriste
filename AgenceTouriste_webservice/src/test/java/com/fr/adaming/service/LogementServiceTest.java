@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import java.util.NoSuchElementException;
-
 import org.junit.After;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -22,13 +20,15 @@ import com.fr.adaming.enumeration.pensionLogEnum;
 import com.fr.adaming.enumeration.qualiteLogEnum;
 import com.fr.adaming.enumeration.typeLogEnum;
 
+/**
+ * @author Claire
+ * @author Maxime
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LogementServiceTest {
-	/**
-	 * @author Claire
-	 */
 
 	@Autowired
 	private ILogementService logService;
@@ -82,32 +82,32 @@ public class LogementServiceTest {
 	}
 
 	// READ
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void f_readLogementByIdValid() {
 		// Tester la lecture d'un objet valide
 		a_createValidLogement();
-		logement = logService.readLogementById(1L);
+		logement = logService.readLogementById(logement.getId());
+		assertNotNull(logement);
 	}
 
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void g_readLogementByUnknownId() {
 		// Tester la lecture d'un objet non existant
-		a_createValidLogement();
 		logement = logService.readLogementById(999999999L);
+		assertNull(logement);
 	}
 
 	@Test(expected = InvalidDataAccessApiUsageException.class)
 	public void h_readLogementByIdNull() {
 		// Tester la lecture d'un objet avec id = null
-		a_createValidLogement();
 		logement = logService.readLogementById(null);
 	}
 
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void i_readLogementByIdEqualsToZero() {
 		// Tester la lecture d'un objet avec id = 0
-		a_createValidLogement();
 		logement = logService.readLogementById(0L);
+		assertNull(logement);
 	}
 
 	@Test
@@ -236,7 +236,7 @@ public class LogementServiceTest {
 		assertThat(logService.readByPrixLogement(88888888888888888888888888888d)).isEmpty();
 	}
 
-	@Test(expected=NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public void za_readLogementByNullPrix() {
 		// Tester la lecture d'un objet avec prix = null
 		logService.readByPrixLogement(null);

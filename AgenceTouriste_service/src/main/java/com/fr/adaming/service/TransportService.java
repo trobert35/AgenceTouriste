@@ -1,6 +1,7 @@
 package com.fr.adaming.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,13 +89,14 @@ public class TransportService implements ITransportService {
 	 * @throws InvalidDataAccessApiUsageException si id est null
 	 */
 	public Transport readTransportById(Long id) {
-		Transport t = daoT.findById(id).get();
-		if (t == null) {
+		Optional<Transport> optTra = daoT.findById(id);
+		if (!optTra.isPresent()) {
 			log.warn("Lecture du Transport avec l'id " + id + " FAILED");
+			return null;
 		} else {
 			log.info("Lecture du Transport avec l'id " + id + " SUCCESS");
+			return optTra.get();
 		}
-		return t;
 	}
 
 	/**

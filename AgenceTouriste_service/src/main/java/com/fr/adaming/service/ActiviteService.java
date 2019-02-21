@@ -1,6 +1,7 @@
 package com.fr.adaming.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class ActiviteService implements IActiviteService {
 	 * @throws NullPointerException si activite est null
 	 */
 	public Activite createActivite(Activite activite) {
-		if (activite.getId() == null || activite.getId() == 0 || !daoA.existsById(activite.getId())) {
+		if (activite.getId() == null || activite.getId() == 0L || !daoA.existsById(activite.getId())) {
 			log.info("Creation de l'Activite SUCCESS");
 			return daoA.save(activite);
 		} else {
@@ -90,13 +91,14 @@ public class ActiviteService implements IActiviteService {
 	 * @throws InvalidDataAccessApiUsageException si id est null
 	 */
 	public Activite readActiviteById(Long id) {
-		Activite a = daoA.findById(id).get();
-		if (a == null) {
+		Optional<Activite> optAct = daoA.findById(id); 
+		if (!optAct.isPresent()) {
 			log.warn("Lecture de l'Activite avec l'id " + id + " FAILED");
+			return null;
 		} else {
 			log.info("Lecture de l'Activite avec l'id " + id + " SUCCESS");
+			return optAct.get();
 		}
-		return a;
 	}
 
 	/**

@@ -2,6 +2,7 @@ package com.fr.adaming.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,13 +73,14 @@ public class PrestationService implements IProduitService<Prestation> {
 	 * @throws InvalidDataAccessApiUsageException si id est null
 	 */
 	public Prestation readPrestationById(Long id) {
-		Prestation p = daoP.findById(id).get();
-		if (p == null) {
+		Optional<Prestation> optPres = daoP.findById(id);
+		if (!optPres.isPresent()) {
 			log.warn("Lecture de la Prestation avec l'id " + id + " FAILED");
+			return null;
 		} else {
 			log.info("Lecture de la Prestation avec l'id " + id + " SUCCESS");
+			return optPres.get();
 		}
-		return p;
 	}
 
 	/**

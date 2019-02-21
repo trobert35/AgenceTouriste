@@ -1,6 +1,7 @@
 package com.fr.adaming.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class AdminService implements IAdminService {
 	private Logger log = Logger.getLogger(AdminService.class);
 
 	// Methodes CRUD Admin
-	
+
 	/**
 	 * Insere un objet Admin dans la database si admin y est inexistant
 	 * 
@@ -74,13 +75,13 @@ public class AdminService implements IAdminService {
 	 * @throws InvalidDataAccessApiUsageException si id est null
 	 */
 	public User readAdminById(Long id) { // on considere un admin comme etant un user, car classe heritee de user
-		User u = daoU.findById(id).get();
-		if (u == null) {
+		Optional<User> optAdm = daoU.findById(id);
+		if (!optAdm.isPresent()) {
 			log.warn("L'Admin avec l'id " + id + " n'existe pas");
 			return null;
 		} else {
 			log.info("Recherche de l'admin avec l'id " + id + " SUCCESS");
-			return u;
+			return optAdm.get();
 		}
 	}
 

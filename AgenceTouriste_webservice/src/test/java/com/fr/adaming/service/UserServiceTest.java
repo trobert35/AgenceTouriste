@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.NoSuchElementException;
 
 import javax.validation.ConstraintViolationException;
 
@@ -26,13 +25,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.entity.User;
 
+/**
+ * @author Maxime
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserServiceTest {
-	/**
-	 * @author Maxime
-	 */
 
 	@Autowired
 	private IUserService<User> userService;
@@ -101,14 +101,16 @@ public class UserServiceTest {
 	public void af_readUserByIdValid() {
 		// Tester la lecture d'un objet valide
 		aa_createValidUser();
-		userService.readById(user.getId());
+		user = userService.readById(user.getId());
+		assertNotNull(user);
 
 	}
 
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void ag_readUserByUnknownId() {
 		// Tester la lecture d'un objet non existant
-		userService.readById(7L);
+		user = userService.readById(7L);
+		assertNull(user);
 
 	}
 
@@ -119,10 +121,11 @@ public class UserServiceTest {
 
 	}
 
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void ai_readUserByIdEqualsToZero() {
 		// Tester la lecture d'un objet avec id = 0
 		user = userService.readById(0L);
+		assertNull(user);
 
 	}
 
