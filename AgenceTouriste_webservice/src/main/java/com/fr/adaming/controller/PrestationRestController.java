@@ -80,7 +80,7 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @param id id de la prestation
 	 * @return String + prestation
 	 */
-	@GetMapping(path = "prestation/{idPresta}")
+	@GetMapping(path = "prestation/{id}")
 	public String readById(@PathVariable Long id) {
 		Prestation presta = prestaService.readPrestationById(id);
 		return "Prestation : " + presta;
@@ -90,10 +90,13 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @param debut date de debut de la presta
 	 * @param fin   date de fin de la presta
 	 * @return String + liste de prestation
+	 * @throws ParseException
 	 */
 	@GetMapping(path = "prestation/{debut}/conf/{fin}")
-	public String readByDatesDePresta(@PathVariable("debut") Date debut, @PathVariable("fin") Date fin) {
-		List<Prestation> listPrestation = prestaService.readByDebutPrestaAndFinPresta(debut, fin);
+	public String readByDatesDePresta(@PathVariable("debut") String debut, @PathVariable("fin") String fin)
+			throws ParseException {
+		List<Prestation> listPrestation = prestaService.readByDebutPrestaAndFinPresta(
+				new SimpleDateFormat(FORMATDATE).parse(debut), new SimpleDateFormat(FORMATDATE).parse(fin));
 		return "Pour des dates comprises entre " + debut + " et " + fin + ", voici le(s) prestation(s) : \n"
 				+ listPrestation;
 	}
@@ -113,16 +116,16 @@ public class PrestationRestController implements IPrestationRestController {
 	}
 
 	/**
-	 * @param dtoPresta dto presta
+	 * @param presta dto presta
 	 * @return le prix total combine entre le prix transport + logement + activite
 	 *         et en comptant la commission de l'agence
 	 * @throws ParseException parseException
 	 */
 	@PostMapping(path = "prestation/{presta}")
-	public String calculPrixTotal(@RequestBody PrestationCreateDTO dtoPresta) throws ParseException {
+	public String calculPrixTotal(@RequestBody PrestationCreateDTO presta) throws ParseException {
 		Prestation p = prestaService
-				.readByDebutPrestaAndFinPresta(new SimpleDateFormat(FORMATDATE).parse(dtoPresta.getDebutPresta()),
-						new SimpleDateFormat(FORMATDATE).parse(dtoPresta.getFinPresta()))
+				.readByDebutPrestaAndFinPresta(new SimpleDateFormat(FORMATDATE).parse(presta.getDebutPresta()),
+						new SimpleDateFormat(FORMATDATE).parse(presta.getFinPresta()))
 				.get(0);
 		prestaService.calculPrixTotal(p);
 		return Double.toString(p.getPrixTotal());
