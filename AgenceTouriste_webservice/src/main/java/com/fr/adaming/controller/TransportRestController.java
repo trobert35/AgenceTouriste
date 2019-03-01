@@ -58,9 +58,9 @@ public class TransportRestController {
 	 * @return la liste de transports
 	 */
 	@GetMapping(path = "transport")
-	public String readAllTransport() {
+	public List<Transport> readAllTransport() {
 		List<Transport> listtrans = transportService.readAllTransport();
-		return "Liste des Transports : " + listtrans;
+		return listtrans;
 	}
 
 	/**
@@ -68,9 +68,9 @@ public class TransportRestController {
 	 * @return le transport par id
 	 */
 	@GetMapping(path = "transport/{id}")
-	public String readByIdTransport(@PathVariable Long id) {
-		Transport trans = transportService.readTransportById(id);
-		return "Transport : " + trans;
+	public Transport readByIdTransport(@PathVariable Long id) {
+		
+		return transportService.readTransportById(id);
 	}
 
 	/**
@@ -89,9 +89,9 @@ public class TransportRestController {
 	 * @return String + liste des transports
 	 */
 	@GetMapping(path = "transport/{prixTrans}")
-	public String readByPrixTransport(@PathVariable Double prix) {
-		List<Transport> translist = transportService.readByPrix(prix);
-		return "Transport(s) au prix de " + prix + SAUT + translist;
+	public List<Transport> readByPrixTransport(@PathVariable Double prix) {
+
+		return transportService.readByPrix(prix);
 	}
 
 	/**
@@ -99,9 +99,9 @@ public class TransportRestController {
 	 * @return String + liste des transports
 	 */
 	@GetMapping(path = "transport/{typeTrans}")
-	public String readByTypeTransport(@PathVariable typeTransEnum type) {
-		List<Transport> translist = transportService.readByTypeTrans(type);
-		return "Transport(s) de type " + type + SAUT + translist;
+	public List<Transport> readByTypeTransport(@PathVariable typeTransEnum type) {
+		
+		return transportService.readByTypeTrans(type);
 	}
 
 	/**
@@ -109,9 +109,9 @@ public class TransportRestController {
 	 * @return String + liste de transports selon la prestation recherchee
 	 */
 	@GetMapping(path = "transport/{presta}")
-	public String readTransportByPresta(@PathVariable String presta) {
-		List<Transport> listtrans = transportService.readTransportByPrestaTrans(presta);
-		return "Transport(s) de " + presta + SAUT + listtrans;
+	public List<Transport> readTransportByPresta(@PathVariable String presta) {
+ 
+		return transportService.readTransportByPrestaTrans(presta);
 	}
 
 }

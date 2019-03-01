@@ -2,7 +2,6 @@ package com.fr.adaming.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +49,13 @@ public class PrestationRestController implements IPrestationRestController {
 	/**
 	 * @param presta un objet prestation
 	 * @return String + l'objet prestation
+	 * @throws ParseException
 	 */
 	@PutMapping(path = "prestation")
-	public String updatePrestation(@RequestBody Prestation presta) {
+	public String updatePrestation(@RequestBody Prestation presta, String datedebut, String datefin)
+			throws ParseException {
+		presta.setDebutPresta(new SimpleDateFormat(FORMATDATE).parse(datedebut));
+		presta.setFinPresta(new SimpleDateFormat(FORMATDATE).parse(datefin));
 		presta = prestaService.updatePrestation(presta);
 		return "Prestation modifiee : " + presta;
 	}
@@ -81,9 +84,8 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @return String + prestation
 	 */
 	@GetMapping(path = "prestation/{id}")
-	public String readById(@PathVariable Long id) {
-		Prestation presta = prestaService.readPrestationById(id);
-		return "Prestation : " + presta;
+	public Prestation readById(@PathVariable Long id) {
+		return prestaService.readPrestationById(id);
 	}
 
 	/**
@@ -92,13 +94,12 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @return String + liste de prestation
 	 * @throws ParseException
 	 */
-	@GetMapping(path = "prestation/{debut}/conf/{fin}")
-	public String readByDatesDePresta(@PathVariable("debut") String debut, @PathVariable("fin") String fin)
-			throws ParseException {
+	@PostMapping(path = "prestation/{prestadto}")
+	public List<Prestation> readByDatesDePresta(@RequestBody PrestationCreateDTO prestadto) throws ParseException {
 		List<Prestation> listPrestation = prestaService.readByDebutPrestaAndFinPresta(
-				new SimpleDateFormat(FORMATDATE).parse(debut), new SimpleDateFormat(FORMATDATE).parse(fin));
-		return "Pour des dates comprises entre " + debut + " et " + fin + ", voici le(s) prestation(s) : \n"
-				+ listPrestation;
+				new SimpleDateFormat(FORMATDATE).parse(prestadto.getDebutPresta()),
+				new SimpleDateFormat(FORMATDATE).parse(prestadto.getFinPresta()));
+		return listPrestation;
 	}
 
 	/**
@@ -107,12 +108,10 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @return String + liste de prestations
 	 */
 	@GetMapping(path = "prestation/{villeResidence}/conf/{destination}")
-	public String readByResidenceAndDestinationPresta(@PathVariable("villeResidence") String villeResidence,
-			@PathVariable("destination") String destination) {
-		List<Prestation> listPrestation = prestaService.readByVilleDepartArriveeAndDestination(villeResidence,
+	public List<Prestation> readByResidenceAndDestinationPresta(@PathVariable("villeResidence") String villeResidence,
+			@PathVariable("destination") String destination) { 
+		return prestaService.readByVilleDepartArriveeAndDestination(villeResidence,
 				destination);
-		return "Pour votre ville de residence " + villeResidence + " pour " + destination
-				+ ", voici le(s) prestation(s) : \n" + listPrestation;
 	}
 
 	/**

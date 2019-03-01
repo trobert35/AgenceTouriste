@@ -76,9 +76,9 @@ public class UserRestController implements IUserRestController {
 	 * @return String
 	 */
 	@GetMapping(path = "user/{id}")
-	public String readById(@PathVariable Long id) {
-		User user = userService.readById(id);
-		return "Client : " + user;
+	public User readById(@PathVariable Long id) {
+
+		return userService.readById(id);
 	}
 
 	/**

@@ -32,17 +32,17 @@ public class ActiviteRestController {
 	@Autowired
 	private IActiviteService activiteService;
 
-	private static final String SAUT = ": \n";
-
+	
 	/**
 	 * @param act correspond aux caracs necessaires a la creation d une activite
 	 * @return String retournant le nom de l activite creee
 	 */
 	@PostMapping(path = "activite")
 	public String createActivite(@RequestBody ActiviteCreateDTO act) {
-		Activite a = activiteService
-				.createActivite(new Activite(act.getPrix(), act.getTypeAct(), act.getNom(), act.getNomPrestaAct()));
-		return "Activite creee : " + a.getNom();
+		activiteService
+		.createActivite(new Activite(act.getPrix(), act.getTypeAct(), act.getNom(), act.getNomPrestaAct()));
+		return "Creation Activite SUCCESS";
+		
 	}
 
 	/**
@@ -52,18 +52,17 @@ public class ActiviteRestController {
 	 */
 	@PutMapping(path = "activite")
 	public String updateActivite(@RequestBody Activite act) {
-		act = activiteService.updateActivite(act);
+		activiteService.updateActivite(act);
+		return "Mise a jour de l'Activite SUCCESS";
 
-		return "Activite modifiee : " + act;
 	}
 
 	/**
 	 * @return la liste des activites
 	 */
 	@GetMapping(path = "activite")
-	public String readAllActivite() {
-		List<Activite> listact = activiteService.readAllActivite();
-		return "Liste activite(s) : " + listact;
+	public List<Activite> readAllActivite() {
+		return (activiteService.readAllActivite());
 	}
 
 	/**
@@ -71,9 +70,8 @@ public class ActiviteRestController {
 	 * @return String retournant les details de l activite recherchee
 	 */
 	@GetMapping(path = "activite/{id}")
-	public String readByIdActivite(@PathVariable Long id) {
-		Activite act = activiteService.readActiviteById(id);
-		return "Activite : " + act;
+	public Activite readByIdActivite(@PathVariable Long id) {
+		return (activiteService.readActiviteById(id));
 	}
 
 	/**
@@ -82,10 +80,9 @@ public class ActiviteRestController {
 	 * @return String retournant le nom de l activite supprimee
 	 */
 	@DeleteMapping(path = "activite/{id}")
-	public String deleteActivite(@PathVariable Long id) {
-		Activite act = activiteService.readActiviteById(id);
+	public void deleteActivite(@PathVariable Long id) {
+		activiteService.readActiviteById(id);
 		activiteService.deleteActiviteById(id);
-		return act.getNom() + " a ete supprimee";
 	}
 
 	/**
@@ -93,9 +90,8 @@ public class ActiviteRestController {
 	 * @return String + liste des activites correspondant au prix recherche
 	 */
 	@GetMapping(path = "activite/{prixAct}")
-	public String readByPrixActivite(@PathVariable Double prix) {
-		List<Activite> activiteList = activiteService.readActiviteByPrix(prix);
-		return "Activite(s) au prix de " + prix + SAUT + activiteList;
+	public List<Activite> readByPrixActivite(@PathVariable Double prix) {
+		return activiteService.readActiviteByPrix(prix);
 	}
 
 	/**
@@ -103,9 +99,8 @@ public class ActiviteRestController {
 	 * @return String + liste d activites correspondant au type recherche
 	 */
 	@GetMapping(path = "activite/{typeAct}")
-	public String readByTypeActivite(@PathVariable typeActEnum type) {
-		List<Activite> activiteList = activiteService.readActiviteByTypeAct(type);
-		return "Activite(s) de type " + type + SAUT + activiteList;
+	public List<Activite> readByTypeActivite(@PathVariable typeActEnum type) {
+		return activiteService.readActiviteByTypeAct(type);
 	}
 
 	/**
@@ -113,9 +108,8 @@ public class ActiviteRestController {
 	 * @return String renvoyant les activites liees a la prrestation recherchee
 	 */
 	@GetMapping(path = "activite/{presta}")
-	public String readActiviteByPresta(@PathVariable String presta) {
-		List<Activite> listact = activiteService.readActiviteByNomPrestaAct(presta);
-		return "Activite(s) proposee(s) par " + presta + SAUT + listact;
+	public List<Activite>  readActiviteByPresta(@PathVariable String presta) {
+		return activiteService.readActiviteByNomPrestaAct(presta);
 	}
 
 }
