@@ -124,13 +124,36 @@ public class PrestationRestController implements IPrestationRestController {
 	 *         et en comptant la commission de l'agence
 	 * @throws ParseException parseException
 	 */
-	@PostMapping(path = "prestation/{presta}")
+	@PostMapping(path = "prestation/calcul/{presta}")
 	public String calculPrixTotal(@RequestBody PrestationCreateDTO presta) throws ParseException {
+		if (presta.getDebutPresta().charAt(2) != '/' && presta.getFinPresta().charAt(2) != '/') {
+			String jd = presta.getDebutPresta().substring(8, 10);
+			int a = Integer.parseInt(jd) + 1;
+			if (a < 1) {
+				jd = "0" + Integer.toString(a);
+			} else {
+				jd = Integer.toString(a);
+			}
+			String md = presta.getDebutPresta().substring(5, 7);
+			String yd = presta.getDebutPresta().substring(0, 4);
+			String jf = presta.getFinPresta().substring(8, 10);
+			a = Integer.parseInt(jf) + 1;
+			if (a < 1) {
+				jf = "0" + Integer.toString(a);
+			} else {
+				jf = Integer.toString(a);
+			}
+			String mf = presta.getFinPresta().substring(5, 7);
+			String yf = presta.getFinPresta().substring(0, 4);
+			presta.setDebutPresta(jd + "/" + md + "/" + yd);
+			presta.setFinPresta(jf + "/" + mf + "/" + yf);
+		}
 		Prestation p = prestaService
 				.readByDebutPrestaAndFinPresta(new SimpleDateFormat(FORMATDATE).parse(presta.getDebutPresta()),
 						new SimpleDateFormat(FORMATDATE).parse(presta.getFinPresta()))
 				.get(0);
 		prestaService.calculPrixTotal(p);
+		prestaService.updatePrestation(p);
 		return Double.toString(p.getPrixTotal());
 	}
 }
