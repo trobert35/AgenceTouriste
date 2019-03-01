@@ -52,7 +52,7 @@ public class AdminRestController implements IAdminRestController {
 	public String updateAdmin(@RequestBody AdminCreateDTO admin) {
 		User a = adminService.readAdminByEmailAndPwd(admin.getEmail(), admin.getPwd());
 		return a.getNom() + " est un admin correctement modifie";
-	}
+	}//Comment choisir l'admin a modifier
 
 	/**
 	 * @param id objet Long, prend l id de l admin recherche
@@ -69,7 +69,7 @@ public class AdminRestController implements IAdminRestController {
 	@GetMapping(path = "admin")
 	public List<User> readAllAdmin() {
 		return adminService.readAllAdmin();
-	}
+	}//Attention retourne tous les users en plus des admins avec Swagger
 
 	/**
 	 * @param id prend un objet Long correpondant a l id de l admin que l on
