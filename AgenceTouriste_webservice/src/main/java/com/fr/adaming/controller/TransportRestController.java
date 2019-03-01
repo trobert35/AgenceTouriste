@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.TransportCreateDTO;
@@ -41,7 +42,7 @@ public class TransportRestController {
 	public String createTransport(@RequestBody TransportCreateDTO trans) {
 		transportService.createTransport(new Transport(trans.getPrestaTrans(), trans.getVilleArriveeTrans(),
 				trans.getVilleDepartTrans(), trans.getPrix(), trans.getTypeTrans()));
-		return "Transport cree : " + trans;
+		return "Transport cree : " + trans.toString();
 	}
 
 	/**
@@ -58,19 +59,19 @@ public class TransportRestController {
 	 * @return la liste de transports
 	 */
 	@GetMapping(path = "transport")
-	public String readAllTransport() {
-		List<Transport> listtrans = transportService.readAllTransport();
-		return "Liste des Transports : " + listtrans;
+	public List<Transport> readAllTransport() {
+
+		return transportService.readAllTransport();
 	}
 
 	/**
 	 * @param id l'id du transport
 	 * @return le transport par id
 	 */
-	@GetMapping(path = "transport/{id}")
-	public String readByIdTransport(@PathVariable Long id) {
-		Transport trans = transportService.readTransportById(id);
-		return "Transport : " + trans;
+	@GetMapping(path = "transport/id/{id}")
+	public Transport readByIdTransport(@PathVariable Long id) {
+		
+		return transportService.readTransportById(id);
 	}
 
 	/**
@@ -89,9 +90,9 @@ public class TransportRestController {
 	 * @return String + liste des transports
 	 */
 	@GetMapping(path = "transport/{prixTrans}")
-	public String readByPrixTransport(@PathVariable Double prix) {
-		List<Transport> translist = transportService.readByPrix(prix);
-		return "Transport(s) au prix de " + prix + SAUT + translist;
+	public List<Transport> readByPrixTransport(@RequestParam(value="prixTrans") Double prix) {
+
+		return transportService.readByPrix(prix);
 	}
 
 	/**
@@ -99,19 +100,19 @@ public class TransportRestController {
 	 * @return String + liste des transports
 	 */
 	@GetMapping(path = "transport/{typeTrans}")
-	public String readByTypeTransport(@PathVariable typeTransEnum type) {
-		List<Transport> translist = transportService.readByTypeTrans(type);
-		return "Transport(s) de type " + type + SAUT + translist;
+	public List<Transport> readByTypeTransport(@RequestParam(value="typeTrans") typeTransEnum type) {
+		
+		return transportService.readByTypeTrans(type);
 	}
 
 	/**
 	 * @param presta nom de la prestation
 	 * @return String + liste de transports selon la prestation recherchee
 	 */
-	@GetMapping(path = "transport/{presta}")
-	public String readTransportByPresta(@PathVariable String presta) {
-		List<Transport> listtrans = transportService.readTransportByPrestaTrans(presta);
-		return "Transport(s) de " + presta + SAUT + listtrans;
+	@GetMapping(path = "transport/prestataire/{presta}")
+	public List<Transport> readTransportByPresta(@PathVariable String presta) {
+ 
+		return transportService.readTransportByPrestaTrans(presta);
 	}
 
 }

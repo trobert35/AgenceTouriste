@@ -84,9 +84,8 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @return String + prestation
 	 */
 	@GetMapping(path = "prestation/{id}")
-	public String readById(@PathVariable Long id) {
-		Prestation presta = prestaService.readPrestationById(id);
-		return "Prestation : " + presta;
+	public Prestation readById(@PathVariable Long id) {
+		return prestaService.readPrestationById(id);
 	}
 
 	/**
@@ -96,12 +95,11 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @throws ParseException
 	 */
 	@PostMapping(path = "prestation/{prestadto}")
-	public String readByDatesDePresta(@RequestBody PrestationCreateDTO prestadto) throws ParseException {
+	public List<Prestation> readByDatesDePresta(@RequestBody PrestationCreateDTO prestadto) throws ParseException {
 		List<Prestation> listPrestation = prestaService.readByDebutPrestaAndFinPresta(
 				new SimpleDateFormat(FORMATDATE).parse(prestadto.getDebutPresta()),
 				new SimpleDateFormat(FORMATDATE).parse(prestadto.getFinPresta()));
-		return "Pour des dates comprises entre " + prestadto.getDebutPresta() + " et " + prestadto.getFinPresta()
-				+ ", voici le(s) prestation(s) : \n" + listPrestation;
+		return listPrestation;
 	}
 
 	/**
@@ -110,12 +108,10 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @return String + liste de prestations
 	 */
 	@GetMapping(path = "prestation/{villeResidence}/conf/{destination}")
-	public String readByResidenceAndDestinationPresta(@PathVariable("villeResidence") String villeResidence,
-			@PathVariable("destination") String destination) {
-		List<Prestation> listPrestation = prestaService.readByVilleDepartArriveeAndDestination(villeResidence,
+	public List<Prestation> readByResidenceAndDestinationPresta(@PathVariable("villeResidence") String villeResidence,
+			@PathVariable("destination") String destination) { 
+		return prestaService.readByVilleDepartArriveeAndDestination(villeResidence,
 				destination);
-		return "Pour votre ville de residence " + villeResidence + " pour " + destination
-				+ ", voici le(s) prestation(s) : \n" + listPrestation;
 	}
 
 	/**

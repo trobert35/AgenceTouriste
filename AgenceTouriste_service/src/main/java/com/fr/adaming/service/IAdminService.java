@@ -39,7 +39,7 @@ public interface IAdminService {
 	/**
 	 * @return une List de User
 	 */
-	public List<User> readAllAdmin();
+	public List<Admin> readAllAdmin();
 
 	/**
 	 * @param id id de l Admin

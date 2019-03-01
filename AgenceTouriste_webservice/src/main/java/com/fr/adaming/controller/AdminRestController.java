@@ -50,9 +50,11 @@ public class AdminRestController implements IAdminRestController {
 	 */
 	@PutMapping(path = "admin")
 	public String updateAdmin(@RequestBody AdminCreateDTO admin) {
-		User a = adminService.readAdminByEmailAndPwd(admin.getEmail(), admin.getPwd());
+		Admin a = new Admin(admin.getNom(), admin.getPrenom(), admin.getEmail(), admin.getPwd(), admin.getRemise());
+		a.setId(admin.getId());
+		adminService.updateAdmin(a);
 		return a.getNom() + " est un admin correctement modifie";
-	}
+	}//Comment choisir l'admin a modifier
 
 	/**
 	 * @param id objet Long, prend l id de l admin recherche
@@ -67,9 +69,9 @@ public class AdminRestController implements IAdminRestController {
 	 * @return la liste des utilisateurs
 	 */
 	@GetMapping(path = "admin")
-	public List<User> readAllAdmin() {
+	public List<Admin> readAllAdmin() {
 		return adminService.readAllAdmin();
-	}
+	}//Attention retourne tous les users en plus des admins avec Swagger
 
 	/**
 	 * @param id prend un objet Long correpondant a l id de l admin que l on

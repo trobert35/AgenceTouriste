@@ -19,7 +19,7 @@ import com.fr.adaming.service.IUserService;
  * @author Thomas S
  */
 @RestController
-@RequestMapping(path = "auth/")
+@RequestMapping(path = "api/auth/")
 @CrossOrigin
 public class AuthRestController implements IAuthRestController {
 

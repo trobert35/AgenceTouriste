@@ -9,6 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 
+import com.fr.adaming.dao.IAdminDao;
 import com.fr.adaming.dao.IUserDao;
 import com.fr.adaming.entity.Admin;
 import com.fr.adaming.entity.User;
@@ -23,7 +24,7 @@ import com.fr.adaming.entity.User;
 public class AdminService implements IAdminService {
 
 	@Autowired
-	private IUserDao daoU;
+	private IAdminDao daoU;
 
 	private Logger log = Logger.getLogger(AdminService.class);
 
@@ -75,7 +76,7 @@ public class AdminService implements IAdminService {
 	 * @throws InvalidDataAccessApiUsageException si id est null
 	 */
 	public User readAdminById(Long id) { // on considere un admin comme etant un user, car classe heritee de user
-		Optional<User> optAdm = daoU.findById(id);
+		Optional<Admin> optAdm = daoU.findById(id);
 		if (!optAdm.isPresent()) {
 			log.warn("L'Admin avec l'id " + id + " n'existe pas");
 			return null;
@@ -108,8 +109,8 @@ public class AdminService implements IAdminService {
 	 * 
 	 * @return une List de User
 	 */
-	public List<User> readAllAdmin() {
-		List<User> lili = daoU.findAll();
+	public List<Admin> readAllAdmin() {
+		List<Admin> lili = daoU.findAll();
 		if (lili.isEmpty()) {
 			log.warn("La liste des Admin est vide");
 		} else {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.LogementCreateDTO;
@@ -66,10 +67,10 @@ public class LogementRestController {
 	 * @param id id logement
 	 * @return String + logement
 	 */
-	@GetMapping(path = "logement/{id}")
-	public String readByIdLogement(@PathVariable Long id) {
-		Logement logement = logementService.readLogementById(id);
-		return "Logement : " + logement;
+	@GetMapping(path = "logement/id/{id}")
+	public Logement readByIdLogement(@PathVariable Long id) {
+		
+		return logementService.readLogementById(id);
 	}
 
 	/**
@@ -87,20 +88,19 @@ public class LogementRestController {
 	 * @param prestaLog nom prestataire
 	 * @return String + liste logements
 	 */
-	@GetMapping(path = "logement/{prestaLog}")
-	public String readLogementByPresta(@PathVariable String prestaLog) {
-		List<Logement> listlogement = logementService.readLogementByPrestaLog(prestaLog);
-		return "Logement(s) fourni(s) par " + prestaLog + " :\n" + listlogement;
+	@GetMapping(path = "logement/prestataire/{prestaLog}")
+	public List<Logement> readLogementByPresta(@PathVariable String prestaLog) {
+		return logementService.readLogementByPrestaLog(prestaLog);
 	}
 
 	/**
 	 * @param ville ville logement
 	 * @return String + liste logement
 	 */
-	@GetMapping(path = "logement/{ville}")
-	public String readByVille(@PathVariable String ville) {
-		List<Logement> listLogement = logementService.readByVille(ville);
-		return "Pour la ville de " + ville + STRING + listLogement;
+	@GetMapping(path = "logement/ville/{ville}")
+	public List<Logement> readByVille(@PathVariable String ville) {
+		
+		return logementService.readByVille(ville);
 	}
 
 	/**
@@ -108,9 +108,9 @@ public class LogementRestController {
 	 * @return String + liste de logements
 	 */
 	@GetMapping(path = "logement/{typeLog}")
-	public String readByTypeOfLogement(@PathVariable typeLogEnum type) {
-		List<Logement> listLogement = logementService.readByTypeLog(type);
-		return "Pour le type " + type + STRING + listLogement;
+	public List<Logement> readByTypeOfLogement(@RequestParam(value="typeLog") typeLogEnum type) {
+		 
+		return logementService.readByTypeLog(type);
 	}
 
 	/**
@@ -118,9 +118,9 @@ public class LogementRestController {
 	 * @return String + liste logements
 	 */
 	@GetMapping(path = "logement/{prixLog}")
-	public String readByPrixLogement(@PathVariable Double prix) {
-		List<Logement> listLogement = logementService.readByPrixLogement(prix);
-		return "Pour la modique somme de " + prix + STRING + listLogement;
+	public List<Logement> readByPrixLogement(@RequestParam(value="prixLog") Double prix) {
+		
+		return logementService.readByPrixLogement(prix);
 	}
 
 }

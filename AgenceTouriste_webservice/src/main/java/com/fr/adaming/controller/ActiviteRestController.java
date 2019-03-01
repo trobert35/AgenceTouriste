@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.ActiviteCreateDTO;
@@ -32,17 +34,17 @@ public class ActiviteRestController {
 	@Autowired
 	private IActiviteService activiteService;
 
-	private static final String SAUT = ": \n";
-
+	
 	/**
 	 * @param act correspond aux caracs necessaires a la creation d une activite
 	 * @return String retournant le nom de l activite creee
 	 */
 	@PostMapping(path = "activite")
 	public String createActivite(@RequestBody ActiviteCreateDTO act) {
-		Activite a = activiteService
-				.createActivite(new Activite(act.getPrix(), act.getTypeAct(), act.getNom(), act.getNomPrestaAct()));
-		return "Activite creee : " + a.getNom();
+		activiteService
+		.createActivite(new Activite(act.getPrix(), act.getTypeAct(), act.getNom(), act.getNomPrestaAct()));
+		return "Creation Activite SUCCESS";
+		
 	}
 
 	/**
@@ -52,28 +54,26 @@ public class ActiviteRestController {
 	 */
 	@PutMapping(path = "activite")
 	public String updateActivite(@RequestBody Activite act) {
-		act = activiteService.updateActivite(act);
+		activiteService.updateActivite(act);
+		return "Mise a jour de l'Activite SUCCESS";
 
-		return "Activite modifiee : " + act;
 	}
 
 	/**
 	 * @return la liste des activites
 	 */
 	@GetMapping(path = "activite")
-	public String readAllActivite() {
-		List<Activite> listact = activiteService.readAllActivite();
-		return "Liste activite(s) : " + listact;
+	public List<Activite> readAllActivite() {
+		return (activiteService.readAllActivite());
 	}
 
 	/**
 	 * @param id objet Long, prend l id de l activite recherchee
 	 * @return String retournant les details de l activite recherchee
 	 */
-	@GetMapping(path = "activite/{id}")
-	public String readByIdActivite(@PathVariable Long id) {
-		Activite act = activiteService.readActiviteById(id);
-		return "Activite : " + act;
+	@GetMapping(path = "activite/id/{id}")
+	public Activite readByIdActivite(@PathVariable Long id) {
+		return activiteService.readActiviteById(id);
 	}
 
 	/**
@@ -82,20 +82,18 @@ public class ActiviteRestController {
 	 * @return String retournant le nom de l activite supprimee
 	 */
 	@DeleteMapping(path = "activite/{id}")
-	public String deleteActivite(@PathVariable Long id) {
-		Activite act = activiteService.readActiviteById(id);
+	public void deleteActivite(@PathVariable Long id) {
+		activiteService.readActiviteById(id);
 		activiteService.deleteActiviteById(id);
-		return act.getNom() + " a ete supprimee";
 	}
 
 	/**
 	 * @param prix objet Double, correspond au prix des activites recherchees
 	 * @return String + liste des activites correspondant au prix recherche
 	 */
-	@GetMapping(path = "activite/{prixAct}")
-	public String readByPrixActivite(@PathVariable Double prix) {
-		List<Activite> activiteList = activiteService.readActiviteByPrix(prix);
-		return "Activite(s) au prix de " + prix + SAUT + activiteList;
+	@GetMapping(path = "activite/prix/{prixAct}")
+	public List<Activite> readByPrixActivite(@PathVariable Double prixAct) {
+		return activiteService.readActiviteByPrix(prixAct);
 	}
 
 	/**
@@ -103,19 +101,19 @@ public class ActiviteRestController {
 	 * @return String + liste d activites correspondant au type recherche
 	 */
 	@GetMapping(path = "activite/{typeAct}")
-	public String readByTypeActivite(@PathVariable typeActEnum type) {
-		List<Activite> activiteList = activiteService.readActiviteByTypeAct(type);
-		return "Activite(s) de type " + type + SAUT + activiteList;
+	public List<Activite> readByTypeActivite(@RequestParam(value="typeAct") typeActEnum type) {
+		return activiteService.readActiviteByTypeAct(type);
 	}
+
 
 	/**
 	 * @param presta String, permet de chercher les activites liees a une prestation
 	 * @return String renvoyant les activites liees a la prrestation recherchee
 	 */
 	@GetMapping(path = "activite/{presta}")
-	public String readActiviteByPresta(@PathVariable String presta) {
-		List<Activite> listact = activiteService.readActiviteByNomPrestaAct(presta);
-		return "Activite(s) proposee(s) par " + presta + SAUT + listact;
+	@ResponseBody
+	public List<Activite>  readActiviteByPresta(@RequestParam String presta) {
+		return activiteService.readActiviteByNomPrestaAct(presta);
 	}
 
 }
