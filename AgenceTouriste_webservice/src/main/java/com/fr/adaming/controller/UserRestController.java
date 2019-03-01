@@ -58,9 +58,9 @@ public class UserRestController implements IUserRestController {
 	 * @return String
 	 */
 	@PostMapping(path = "login")
-	public String login(@Valid @RequestBody LoginDTO logDto) {
-		User user = userService.login(logDto.getEmail(), logDto.getPwd());
-		return "Bonjour " + user.getPrenom() + " " + user.getNom() + ", vous etes connecte";
+	public User login(@Valid @RequestBody LoginDTO logDto) {
+
+		return userService.login(logDto.getEmail(), logDto.getPwd());
 	}
 
 	/**
