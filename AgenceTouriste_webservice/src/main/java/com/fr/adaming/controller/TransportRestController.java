@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.TransportCreateDTO;
@@ -41,7 +42,7 @@ public class TransportRestController {
 	public String createTransport(@RequestBody TransportCreateDTO trans) {
 		transportService.createTransport(new Transport(trans.getPrestaTrans(), trans.getVilleArriveeTrans(),
 				trans.getVilleDepartTrans(), trans.getPrix(), trans.getTypeTrans()));
-		return "Transport cree : " + trans;
+		return "Transport cree : " + trans.toString();
 	}
 
 	/**
@@ -59,15 +60,15 @@ public class TransportRestController {
 	 */
 	@GetMapping(path = "transport")
 	public List<Transport> readAllTransport() {
-		List<Transport> listtrans = transportService.readAllTransport();
-		return listtrans;
+
+		return transportService.readAllTransport();
 	}
 
 	/**
 	 * @param id l'id du transport
 	 * @return le transport par id
 	 */
-	@GetMapping(path = "transport/{id}")
+	@GetMapping(path = "transport/id/{id}")
 	public Transport readByIdTransport(@PathVariable Long id) {
 		
 		return transportService.readTransportById(id);
@@ -89,7 +90,7 @@ public class TransportRestController {
 	 * @return String + liste des transports
 	 */
 	@GetMapping(path = "transport/{prixTrans}")
-	public List<Transport> readByPrixTransport(@PathVariable Double prix) {
+	public List<Transport> readByPrixTransport(@RequestParam(value="prixTrans") Double prix) {
 
 		return transportService.readByPrix(prix);
 	}
@@ -99,7 +100,7 @@ public class TransportRestController {
 	 * @return String + liste des transports
 	 */
 	@GetMapping(path = "transport/{typeTrans}")
-	public List<Transport> readByTypeTransport(@PathVariable typeTransEnum type) {
+	public List<Transport> readByTypeTransport(@RequestParam(value="typeTrans") typeTransEnum type) {
 		
 		return transportService.readByTypeTrans(type);
 	}
@@ -108,7 +109,7 @@ public class TransportRestController {
 	 * @param presta nom de la prestation
 	 * @return String + liste de transports selon la prestation recherchee
 	 */
-	@GetMapping(path = "transport/{presta}")
+	@GetMapping(path = "transport/prestataire/{presta}")
 	public List<Transport> readTransportByPresta(@PathVariable String presta) {
  
 		return transportService.readTransportByPrestaTrans(presta);

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.ActiviteCreateDTO;
@@ -69,9 +71,9 @@ public class ActiviteRestController {
 	 * @param id objet Long, prend l id de l activite recherchee
 	 * @return String retournant les details de l activite recherchee
 	 */
-	@GetMapping(path = "activite/{id}")
+	@GetMapping(path = "activite/id/{id}")
 	public Activite readByIdActivite(@PathVariable Long id) {
-		return (activiteService.readActiviteById(id));
+		return activiteService.readActiviteById(id);
 	}
 
 	/**
@@ -89,9 +91,9 @@ public class ActiviteRestController {
 	 * @param prix objet Double, correspond au prix des activites recherchees
 	 * @return String + liste des activites correspondant au prix recherche
 	 */
-	@GetMapping(path = "activite/{prixAct}")
-	public List<Activite> readByPrixActivite(@PathVariable Double prix) {
-		return activiteService.readActiviteByPrix(prix);
+	@GetMapping(path = "activite/prix/{prixAct}")
+	public List<Activite> readByPrixActivite(@PathVariable Double prixAct) {
+		return activiteService.readActiviteByPrix(prixAct);
 	}
 
 	/**
@@ -99,16 +101,18 @@ public class ActiviteRestController {
 	 * @return String + liste d activites correspondant au type recherche
 	 */
 	@GetMapping(path = "activite/{typeAct}")
-	public List<Activite> readByTypeActivite(@PathVariable typeActEnum type) {
+	public List<Activite> readByTypeActivite(@RequestParam(value="typeAct") typeActEnum type) {
 		return activiteService.readActiviteByTypeAct(type);
 	}
+
 
 	/**
 	 * @param presta String, permet de chercher les activites liees a une prestation
 	 * @return String renvoyant les activites liees a la prrestation recherchee
 	 */
 	@GetMapping(path = "activite/{presta}")
-	public List<Activite>  readActiviteByPresta(@PathVariable String presta) {
+	@ResponseBody
+	public List<Activite>  readActiviteByPresta(@RequestParam String presta) {
 		return activiteService.readActiviteByNomPrestaAct(presta);
 	}
 
