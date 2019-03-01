@@ -96,10 +96,9 @@ public class PrestationRestController implements IPrestationRestController {
 	 */
 	@PostMapping(path = "prestation/{prestadto}")
 	public List<Prestation> readByDatesDePresta(@RequestBody PrestationCreateDTO prestadto) throws ParseException {
-		List<Prestation> listPrestation = prestaService.readByDebutPrestaAndFinPresta(
+		return prestaService.readByDebutPrestaAndFinPresta(
 				new SimpleDateFormat(FORMATDATE).parse(prestadto.getDebutPresta()),
 				new SimpleDateFormat(FORMATDATE).parse(prestadto.getFinPresta()));
-		return listPrestation;
 	}
 
 	/**
@@ -109,9 +108,8 @@ public class PrestationRestController implements IPrestationRestController {
 	 */
 	@GetMapping(path = "prestation/{villeResidence}/conf/{destination}")
 	public List<Prestation> readByResidenceAndDestinationPresta(@PathVariable("villeResidence") String villeResidence,
-			@PathVariable("destination") String destination) { 
-		return prestaService.readByVilleDepartArriveeAndDestination(villeResidence,
-				destination);
+			@PathVariable("destination") String destination) {
+		return prestaService.readByVilleDepartArriveeAndDestination(villeResidence, destination);
 	}
 
 	/**

@@ -27,7 +27,7 @@ public class LogementService implements ILogementService {
 
 	// Methodes CRUD Logement + readLogementByPrestaLog + readByVille +
 	// readByTypeLog
-	
+
 	/**
 	 * Insere un objet Logement dans la database si logement y est inexistant
 	 * 
@@ -97,7 +97,7 @@ public class LogementService implements ILogementService {
 			log.info("Lecture du Logement avec l'id " + id + " SUCCESS");
 			return optLog.get();
 		}
-		
+
 	}
 
 	/**

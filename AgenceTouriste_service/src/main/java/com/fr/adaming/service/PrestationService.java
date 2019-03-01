@@ -172,7 +172,6 @@ public class PrestationService implements IProduitService<Prestation> {
 				prixTraTot = prixTraTot + prestation.getTransport().get(i).getPrix();
 			}
 		}
-		System.out.println(prixActTot + prixLogTot + prixTraTot);
 		prestation.setPrixTotal((prixActTot + prixLogTot + prixTraTot) * (1 + prestation.getCommission()));
 	}
 }

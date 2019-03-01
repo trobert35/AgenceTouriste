@@ -27,7 +27,7 @@ public class ActiviteService implements IActiviteService {
 
 	// Methodes CRUD Activite + readActiviteByPrestaAct + readActiviteByPrix +
 	// readActiviteByTypeAct
-	
+
 	/**
 	 * Insere un objet Activite dans la database si activite y est inexistant
 	 * 
@@ -91,7 +91,7 @@ public class ActiviteService implements IActiviteService {
 	 * @throws InvalidDataAccessApiUsageException si id est null
 	 */
 	public Activite readActiviteById(Long id) {
-		Optional<Activite> optAct = daoA.findById(id); 
+		Optional<Activite> optAct = daoA.findById(id);
 		if (!optAct.isPresent()) {
 			log.warn("Lecture de l'Activite avec l'id " + id + " FAILED");
 			return null;

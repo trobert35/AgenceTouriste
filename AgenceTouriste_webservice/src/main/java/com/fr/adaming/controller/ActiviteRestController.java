@@ -34,7 +34,6 @@ public class ActiviteRestController {
 	@Autowired
 	private IActiviteService activiteService;
 
-	
 	/**
 	 * @param act correspond aux caracs necessaires a la creation d une activite
 	 * @return String retournant le nom de l activite creee
@@ -42,9 +41,9 @@ public class ActiviteRestController {
 	@PostMapping(path = "activite")
 	public String createActivite(@RequestBody ActiviteCreateDTO act) {
 		activiteService
-		.createActivite(new Activite(act.getPrix(), act.getTypeAct(), act.getNom(), act.getNomPrestaAct()));
+				.createActivite(new Activite(act.getPrix(), act.getTypeAct(), act.getNom(), act.getNomPrestaAct()));
 		return "Creation Activite SUCCESS";
-		
+
 	}
 
 	/**
@@ -101,10 +100,9 @@ public class ActiviteRestController {
 	 * @return String + liste d activites correspondant au type recherche
 	 */
 	@GetMapping(path = "activite/{typeAct}")
-	public List<Activite> readByTypeActivite(@RequestParam(value="typeAct") typeActEnum type) {
+	public List<Activite> readByTypeActivite(@RequestParam(value = "typeAct") typeActEnum type) {
 		return activiteService.readActiviteByTypeAct(type);
 	}
-
 
 	/**
 	 * @param presta String, permet de chercher les activites liees a une prestation
@@ -112,7 +110,7 @@ public class ActiviteRestController {
 	 */
 	@GetMapping(path = "activite/{presta}")
 	@ResponseBody
-	public List<Activite>  readActiviteByPresta(@RequestParam String presta) {
+	public List<Activite> readActiviteByPresta(@RequestParam String presta) {
 		return activiteService.readActiviteByNomPrestaAct(presta);
 	}
 

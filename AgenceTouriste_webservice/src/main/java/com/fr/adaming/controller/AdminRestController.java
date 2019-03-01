@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fr.adaming.dto.AdminCreateDTO;
 import com.fr.adaming.entity.Admin;
-import com.fr.adaming.entity.User;
 import com.fr.adaming.service.IAdminService;
 
 /**
@@ -54,7 +53,7 @@ public class AdminRestController implements IAdminRestController {
 		a.setId(admin.getId());
 		adminService.updateAdmin(a);
 		return a.getNom() + " est un admin correctement modifie";
-	}//Comment choisir l'admin a modifier
+	}// Comment choisir l'admin a modifier
 
 	/**
 	 * @param id objet Long, prend l id de l admin recherche
@@ -71,7 +70,7 @@ public class AdminRestController implements IAdminRestController {
 	@GetMapping(path = "admin")
 	public List<Admin> readAllAdmin() {
 		return adminService.readAllAdmin();
-	}//Attention retourne tous les users en plus des admins avec Swagger
+	}// Attention retourne tous les users en plus des admins avec Swagger
 
 	/**
 	 * @param id prend un objet Long correpondant a l id de l admin que l on
