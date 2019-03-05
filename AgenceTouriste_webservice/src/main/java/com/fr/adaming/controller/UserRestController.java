@@ -120,8 +120,29 @@ public class UserRestController implements IUserRestController {
 	 * @throws ParseException parseException
 	 */
 	@PostMapping(path = "user/PrestationToBook/conf/userToBook")
-	public String book(@RequestBody BookingDTO dtoBook) throws ParseException {
-
+	public boolean book(@RequestBody BookingDTO dtoBook) throws ParseException {
+		if (dtoBook.getDebutPresta().charAt(2) != '/' && dtoBook.getFinPresta().charAt(2) != '/') {
+			String jd = dtoBook.getDebutPresta().substring(8, 10);
+			int a = Integer.parseInt(jd) + 1;
+			if (a < 1) {
+				jd = "0" + Integer.toString(a);
+			} else {
+				jd = Integer.toString(a);
+			}
+			String md = dtoBook.getDebutPresta().substring(5, 7);
+			String yd = dtoBook.getDebutPresta().substring(0, 4);
+			String jf = dtoBook.getFinPresta().substring(8, 10);
+			a = Integer.parseInt(jf) + 1;
+			if (a < 1) {
+				jf = "0" + Integer.toString(a);
+			} else {
+				jf = Integer.toString(a);
+			}
+			String mf = dtoBook.getFinPresta().substring(5, 7);
+			String yf = dtoBook.getFinPresta().substring(0, 4);
+			dtoBook.setDebutPresta(jd + "/" + md + "/" + yd);
+			dtoBook.setFinPresta(jf + "/" + mf + "/" + yf);
+		}
 		Prestation p = prestaService
 				.readByDebutPrestaAndFinPresta(new SimpleDateFormat(FORMATDATE).parse(dtoBook.getDebutPresta()),
 						new SimpleDateFormat(FORMATDATE).parse(dtoBook.getFinPresta()))
@@ -130,9 +151,9 @@ public class UserRestController implements IUserRestController {
 		User u = userService.readByNomAndPrenom(dtoBook.getNomUser(), dtoBook.getPrenomUser());
 		boolean isBookGood = userService.bookPrestation(u, p);
 		if (isBookGood) {
-			return "Reservation effectuee ! Pour l'utilisateur " + u.getNom() + " et a la date " + p.getDebutPresta();
+			return true;
 		} else {
-			return "Reservation ECHEC";
+			return false;
 		}
 
 	}
