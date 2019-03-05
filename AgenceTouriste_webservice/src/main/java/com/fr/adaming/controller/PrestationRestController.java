@@ -52,10 +52,8 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @throws ParseException
 	 */
 	@PutMapping(path = "prestation")
-	public String updatePrestation(@RequestBody Prestation presta, String datedebut, String datefin)
+	public String updatePrestation(@RequestBody Prestation presta)
 			throws ParseException {
-		presta.setDebutPresta(new SimpleDateFormat(FORMATDATE).parse(datedebut));
-		presta.setFinPresta(new SimpleDateFormat(FORMATDATE).parse(datefin));
 		presta = prestaService.updatePrestation(presta);
 		return "Prestation modifiee : " + presta;
 	}
