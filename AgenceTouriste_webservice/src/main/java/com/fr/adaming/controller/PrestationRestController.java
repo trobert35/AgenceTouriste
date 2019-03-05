@@ -174,7 +174,7 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @param destination des prestations recherchees
 	 * @return la liste de prestations correpondant a la destination recherchees
 	 */
-	@GetMapping(path = "prestation/{destination}")
+	@GetMapping(path = "prestation/destination/{destination}")
 	public List<Prestation> ReadPrestationByDestination(@PathVariable String destination) {
 		return prestaService.readByDestination(destination);
 	}
