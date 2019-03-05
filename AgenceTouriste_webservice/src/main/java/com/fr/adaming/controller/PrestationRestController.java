@@ -52,8 +52,7 @@ public class PrestationRestController implements IPrestationRestController {
 	 * @throws ParseException
 	 */
 	@PutMapping(path = "prestation")
-	public String updatePrestation(@RequestBody Prestation presta)
-			throws ParseException {
+	public String updatePrestation(@RequestBody Prestation presta) {
 		presta = prestaService.updatePrestation(presta);
 		return "Prestation modifiee : " + presta;
 	}

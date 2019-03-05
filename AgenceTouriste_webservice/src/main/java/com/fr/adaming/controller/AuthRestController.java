@@ -48,8 +48,7 @@ public class AuthRestController implements IAuthRestController {
 	@PostMapping(path = "register")
 	public User register(@Valid @RequestBody RegisterDTO regDto) {
 		User user = new User(regDto.getNom(), regDto.getPrenom(), regDto.getEmail(), regDto.getPwd());
-		User user1 = userService.register(user);
-		return user1;
+		return userService.register(user);
 	}
 
 }
