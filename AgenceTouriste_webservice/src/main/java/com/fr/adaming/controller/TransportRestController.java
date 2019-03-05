@@ -32,8 +32,6 @@ public class TransportRestController {
 	@Autowired
 	private ITransportService transportService;
 
-	private static final String SAUT = " : \n";
-
 	/**
 	 * @param trans transportCreateDTO
 	 * @return String + attributs du dto
@@ -70,7 +68,7 @@ public class TransportRestController {
 	 */
 	@GetMapping(path = "transport/id/{id}")
 	public Transport readByIdTransport(@PathVariable Long id) {
-		
+
 		return transportService.readTransportById(id);
 	}
 
@@ -90,7 +88,7 @@ public class TransportRestController {
 	 * @return String + liste des transports
 	 */
 	@GetMapping(path = "transport/{prixTrans}")
-	public List<Transport> readByPrixTransport(@RequestParam(value="prixTrans") Double prix) {
+	public List<Transport> readByPrixTransport(@RequestParam(value = "prixTrans") Double prix) {
 
 		return transportService.readByPrix(prix);
 	}
@@ -100,8 +98,8 @@ public class TransportRestController {
 	 * @return String + liste des transports
 	 */
 	@GetMapping(path = "transport/{typeTrans}")
-	public List<Transport> readByTypeTransport(@RequestParam(value="typeTrans") typeTransEnum type) {
-		
+	public List<Transport> readByTypeTransport(@RequestParam(value = "typeTrans") typeTransEnum type) {
+
 		return transportService.readByTypeTrans(type);
 	}
 
@@ -111,7 +109,7 @@ public class TransportRestController {
 	 */
 	@GetMapping(path = "transport/prestataire/{presta}")
 	public List<Transport> readTransportByPresta(@PathVariable String presta) {
- 
+
 		return transportService.readTransportByPrestaTrans(presta);
 	}
 

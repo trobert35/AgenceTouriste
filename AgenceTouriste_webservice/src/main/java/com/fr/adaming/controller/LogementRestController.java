@@ -32,8 +32,6 @@ public class LogementRestController {
 	@Autowired
 	private ILogementService logementService;
 
-	private static final String STRING = ", voici le(s) logement(s) : \n";
-
 	/**
 	 * @param logement logement dto
 	 * @return nom logement + String
@@ -69,7 +67,7 @@ public class LogementRestController {
 	 */
 	@GetMapping(path = "logement/id/{id}")
 	public Logement readByIdLogement(@PathVariable Long id) {
-		
+
 		return logementService.readLogementById(id);
 	}
 
@@ -99,7 +97,7 @@ public class LogementRestController {
 	 */
 	@GetMapping(path = "logement/ville/{ville}")
 	public List<Logement> readByVille(@PathVariable String ville) {
-		
+
 		return logementService.readByVille(ville);
 	}
 
@@ -108,8 +106,8 @@ public class LogementRestController {
 	 * @return String + liste de logements
 	 */
 	@GetMapping(path = "logement/{typeLog}")
-	public List<Logement> readByTypeOfLogement(@RequestParam(value="typeLog") typeLogEnum type) {
-		 
+	public List<Logement> readByTypeOfLogement(@RequestParam(value = "typeLog") typeLogEnum type) {
+
 		return logementService.readByTypeLog(type);
 	}
 
@@ -118,8 +116,8 @@ public class LogementRestController {
 	 * @return String + liste logements
 	 */
 	@GetMapping(path = "logement/{prixLog}")
-	public List<Logement> readByPrixLogement(@RequestParam(value="prixLog") Double prix) {
-		
+	public List<Logement> readByPrixLogement(@RequestParam(value = "prixLog") Double prix) {
+
 		return logementService.readByPrixLogement(prix);
 	}
 

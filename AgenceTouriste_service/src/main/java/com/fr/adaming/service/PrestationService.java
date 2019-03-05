@@ -82,6 +82,7 @@ public class PrestationService implements IProduitService<Prestation> {
 			return optPres.get();
 		}
 	}
+	
 
 	/**
 	 * Ressort la liste de toutes les Prestation de la database
@@ -172,7 +173,24 @@ public class PrestationService implements IProduitService<Prestation> {
 				prixTraTot = prixTraTot + prestation.getTransport().get(i).getPrix();
 			}
 		}
-
 		prestation.setPrixTotal((prixActTot + prixLogTot + prixTraTot) * (1 + prestation.getCommission()));
 	}
-}
+
+	
+	/**
+	 * @param la destination par laquelle on recherche les prestations
+	 * @return la liste de prestations correspondant a la destination entree
+	 */
+	@Override
+	public List<Prestation> readByDestination(String destination) {
+		List<Prestation> lili = daoP.findByDestination(destination);
+			if (lili.isEmpty()) {
+				log.warn("Lecture de la liste de Prestation FAILED");
+			} else {
+				log.info("Lecture de la liste de Prestation SUCCESS");
+			}
+			return lili;
+		}
+
+	}
+

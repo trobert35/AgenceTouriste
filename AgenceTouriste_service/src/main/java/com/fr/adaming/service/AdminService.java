@@ -10,7 +10,6 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 
 import com.fr.adaming.dao.IAdminDao;
-import com.fr.adaming.dao.IUserDao;
 import com.fr.adaming.entity.Admin;
 import com.fr.adaming.entity.User;
 
