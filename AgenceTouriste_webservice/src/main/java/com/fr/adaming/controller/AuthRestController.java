@@ -32,12 +32,12 @@ public class AuthRestController implements IAuthRestController {
 	 * @return String attestant de la connexion + identite de l utilisateur connecte
 	 */
 	@PostMapping(path = "login")
-	public String loginRest(@Valid @RequestBody LoginDTO logDto) {
+	public User loginRest(@Valid @RequestBody LoginDTO logDto) {
 		User user = new User();
 		user.setEmail(logDto.getEmail());
 		user.setPwd(logDto.getPwd());
 		user = userService.login(user.getEmail(), user.getPwd());
-		return "Bonjour " + user.getPrenom() + " " + user.getNom() + ", vous etes bien connecte";
+		return user;
 	}
 
 	/**
@@ -46,10 +46,10 @@ public class AuthRestController implements IAuthRestController {
 	 * @return String attestant de l inscription + identite de l utilisateur inscrit
 	 */
 	@PostMapping(path = "register")
-	public String register(@Valid @RequestBody RegisterDTO regDto) {
+	public User register(@Valid @RequestBody RegisterDTO regDto) {
 		User user = new User(regDto.getNom(), regDto.getPrenom(), regDto.getEmail(), regDto.getPwd());
 		User user1 = userService.register(user);
-		return " " + user1.getPrenom() + " " + user1.getNom() + " a ete correctement enregistre(e) ";
+		return user1;
 	}
 
 }
