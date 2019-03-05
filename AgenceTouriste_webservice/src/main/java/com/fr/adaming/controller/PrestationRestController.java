@@ -39,6 +39,28 @@ public class PrestationRestController implements IPrestationRestController {
 	 */
 	@PostMapping(path = "prestation")
 	public String createPrestation(@RequestBody PrestationCreateDTO dtoPresta) throws ParseException {
+		if (dtoPresta.getDebutPresta().charAt(2) != '/' && dtoPresta.getFinPresta().charAt(2) != '/') {
+			String jd = dtoPresta.getDebutPresta().substring(8, 10);
+			int a = Integer.parseInt(jd) + 1;
+			if (a < 1) {
+				jd = "0" + Integer.toString(a);
+			} else {
+				jd = Integer.toString(a);
+			}
+			String md = dtoPresta.getDebutPresta().substring(5, 7);
+			String yd = dtoPresta.getDebutPresta().substring(0, 4);
+			String jf = dtoPresta.getFinPresta().substring(8, 10);
+			a = Integer.parseInt(jf) + 1;
+			if (a < 1) {
+				jf = "0" + Integer.toString(a);
+			} else {
+				jf = Integer.toString(a);
+			}
+			String mf = dtoPresta.getFinPresta().substring(5, 7);
+			String yf = dtoPresta.getFinPresta().substring(0, 4);
+			dtoPresta.setDebutPresta(jd + "/" + md + "/" + yd);
+			dtoPresta.setFinPresta(jf + "/" + mf + "/" + yf);
+		}
 		prestaService.createPrestation(new Prestation(dtoPresta.getNom(),
 				new SimpleDateFormat(FORMATDATE).parse(dtoPresta.getDebutPresta()),
 				new SimpleDateFormat(FORMATDATE).parse(dtoPresta.getFinPresta()), dtoPresta.getVilleDepartArrivee(),
