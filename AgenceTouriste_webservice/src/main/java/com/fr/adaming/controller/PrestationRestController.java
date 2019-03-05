@@ -169,4 +169,14 @@ public class PrestationRestController implements IPrestationRestController {
 		prestaService.updatePrestation(p);
 		return Double.toString(p.getPrixTotal());
 	}
+	
+	/**
+	 * @param destination des prestations recherchees
+	 * @return la liste de prestations correpondant a la destination recherchees
+	 */
+	@GetMapping(path = "prestation/{destination}")
+	public List<Prestation> ReadPrestationByDestination(@PathVariable String destination) {
+		return prestaService.readByDestination(destination);
+	}
+
 }
