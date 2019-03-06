@@ -149,12 +149,7 @@ public class UserRestController implements IUserRestController {
 				.get(0);
 
 		User u = userService.readByNomAndPrenom(dtoBook.getNomUser(), dtoBook.getPrenomUser());
-		boolean isBookGood = userService.bookPrestation(u, p);
-		if (isBookGood) {
-			return true;
-		} else {
-			return false;
-		}
+		return userService.bookPrestation(u, p);
 
 	}
 
