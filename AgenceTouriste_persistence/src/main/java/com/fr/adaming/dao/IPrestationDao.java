@@ -28,4 +28,10 @@ public interface IPrestationDao extends JpaRepository<Prestation, Long> {
 	 *         de retour) et la ville de destination
 	 */
 	public List<Prestation> findByVilleDepartArriveeAndDestination(String villeDepartArrivee, String destination);
+	
+	/**
+	 * @param destination de la prestation
+	 * @return une liste de prestations selon la destination
+	 */
+	public List<Prestation> findByDestination(String destination);
 }

@@ -60,4 +60,10 @@ public interface IProduitService<T> {
 	 */
 	public void calculPrixTotal(Prestation prestation);
 
+	/**
+	 * @param destination attribut de la classe Prestation
+	 * @return la liste de prestation correspondant a la destination entree en argument
+	 */
+	public List<Prestation> readByDestination(String destination);
+
 }
