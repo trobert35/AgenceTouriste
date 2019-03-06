@@ -26,7 +26,7 @@ public class Admin extends User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private float remise;
+	private Float remise;
 
 	/**
 	 * Constructor with parameters for Admin

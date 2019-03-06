@@ -2,6 +2,9 @@ package com.fr.adaming.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import com.fr.adaming.entity.Prestation;
 import com.fr.adaming.entity.User;
 
@@ -58,4 +61,14 @@ public interface IUserService<T> {
 	 * @return true si le User ou la Prestation sont connus, false sinon
 	 */
 	public boolean bookPrestation(User user, Prestation prestation);
+
+	/**
+	 * @param idProvider identifiant du user sur la base de donnee du reseau social
+	 * @param token 	token du user envoye par le reseau social
+	 * @return User si le login ou le register fonctionnent, null sinon 
+	 */
+	public User socialLogin(User user);
+
+	public String isAdmin(Long id);
+	
 }
