@@ -65,6 +65,31 @@ public class UserService implements IUserService<User> {
 	}
 
 	/**
+	 * @param idProvider identifiant du user sur la base de donnee du reseau social
+	 * @param token 	token du user envoye par le reseau social
+	 * @return User si le login ou le register fonctionnent, null sinon 
+	 */
+	public User socialLogin(User user) {
+		try {
+			User u = dao.findByIdProviderAndToken(user.getIdProvider(), user.getToken());
+			if (dao.existsById(u.getId())) {
+				log.info("socialLogin (LOGIN) : " + u.getPrenom() + " " + u.getNom()
+						+ " est deja enregistre dans la base de donnee!!");
+				return u;
+			} else {
+				dao.save(u);
+				log.info("socialLogin (REGISTER) : " + u.getPrenom() + " " + u.getNom()
+						+ " a ete enregistre dans la base de donnee!!");
+				return u;
+			}
+		} catch (Exception e) {
+			log.warn("socialLogin (ERREUR) : " + FAILED);
+			return null;
+		}
+
+	}
+	
+	/**
 	 * @param user objet de classe User
 	 * @return un user si son id est null, égal à 0 ou s'il n'existe pas dans la BD;
 	 *         retourne null dans le cas contraire
@@ -172,6 +197,16 @@ public class UserService implements IUserService<User> {
 			return true;
 		}
 
+	}
+
+	/**
+	 * @param Long id  identifiant d'un user
+	 * @return true si user est un admin, false sinon
+	 */
+	public String isAdmin(Long id) {
+
+		return dao.isAdmin(id);
+		
 	}
 
 }

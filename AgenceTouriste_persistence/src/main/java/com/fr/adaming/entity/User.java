@@ -48,6 +48,13 @@ public class User implements Serializable {
 
 	@Embedded
 	private CB cb;
+	
+	private String provider;
+	
+	@Column(unique=true)
+	private String idProvider;
+	private String token;
+	private String idToken;
 
 	/**
 	 * Constructor with parameters for User
@@ -84,4 +91,34 @@ public class User implements Serializable {
 		this.pwd = pwd;
 	}
 
+	public User(String nom, String prenom, @Email String email, String pwd, String urlImg, CB cb, String provider,
+			String idProvider, String token, String idToken) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.pwd = pwd;
+		this.urlImg = urlImg;
+		this.cb = cb;
+		this.provider = provider;
+		this.idProvider = idProvider;
+		this.token = token;
+		this.idToken = idToken;
+	}
+
+	public User(String nom, String prenom, @Email String email, String urlImg, String provider,
+			String idProvider, String token, String idToken) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.urlImg = urlImg;
+		this.provider = provider;
+		this.idProvider = idProvider;
+		this.token = token;
+		this.idToken = idToken;
+	}
+
+	
+	
 }
